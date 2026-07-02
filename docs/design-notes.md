@@ -68,6 +68,24 @@ for the full per-repository breakdown.
   needs a `migration-plan`), the skill explicitly points to the other rather than absorbing its
   content.
 
+## Relationship to installed third-party skill collections
+
+This repository deliberately does **not** duplicate the third-party collections already
+installed and managed separately (via `npx skills add` / symlinks into `~/.agents/skills`):
+
+- **`golang-*` (37 skills, samber's collection)** — deep Go *knowledge base* (how to write
+  idiomatic code, which library to pick, how slog/testify/pprof work). The `go-*` skills here
+  are *workflow* skills (how to fix a bug, how to review a diff) — they complement, not compete.
+  Don't add Go knowledge-base skills here; that ground is covered upstream.
+- **`terraform-skill` (Anton Babenko)** — diagnose-first Terraform knowledge base with deep
+  reference files. `terraform-review` here is the review-workflow counterpart with this repo's
+  standard output shape. Both being active is intentional.
+- **`gws-*`, `beads`, `chezmoi`, `playwright-cli`, `excalidraw-diagram`, `dream`** — tool-bound
+  or off-domain; out of scope for a DevOps skill repo.
+
+The rule: third-party collections stay upstream-managed and are never vendored in. If one dies
+or degrades, write a replacement here in this repo's own shape rather than forking the corpse.
+
 ## How this repository should evolve
 
 - Add one skill at a time, following `CONTRIBUTING.md`'s checklist — check for overlap first,
