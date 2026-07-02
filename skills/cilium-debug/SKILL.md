@@ -57,6 +57,10 @@ evidence, and propose a fix — without mutating live policies or cluster state.
 kube-proxy-replacement service issues, node-to-node/encryption, DNS flows). Route there as soon
 as `hubble observe` names the drop reason.
 
+For designing/deploying/configuring Cilium features (install, kube-proxy replacement, policy
+authoring, Hubble, encryption, Cluster Mesh, Gateway/Egress/BGP) rather than troubleshooting a
+live drop, use the `cilium` skill.
+
 ## Safety rules
 
 - Read-only first, always: `cilium status/endpoint list/service list/identity get`,

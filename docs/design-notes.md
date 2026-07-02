@@ -61,6 +61,11 @@ for the full per-repository breakdown.
 - `argocd-debug` (single Application troubleshooting) is kept distinct from
   `argocd-applicationset` (multi-cluster/environment generator design) and `gitops-review` (repo
   structure and promotion flow) — escalating scope, not duplicated content.
+- `cilium` (umbrella: design/deploy/configure the many features — install, kube-proxy
+  replacement, L3/L4/L7 policy, Hubble, encryption, Cluster Mesh, Gateway/Egress/BGP, across 6
+  references) is kept distinct from `cilium-debug` (symptom triage of live drops via Hubble drop
+  reasons) — same relationship as `kubernetes-yaml-review` ↔ `kubernetes-debug`. Each
+  cross-references the other.
 - `root-cause-analysis` (general bug/regression investigation) is kept distinct from
   `incident-analysis` (production incident, audience is a team writeup) — different workflows
   and different output shapes even though both are "investigate first."
@@ -97,7 +102,8 @@ Skills split deliberately into two depths:
   `kubernetes-security`, `helm-review`, `gitops-review`, `terraform-review`, `cicd-review`,
   `observability-review`, `alert-rule-review`, `grafana-dashboards`, `dockerfile-review`,
   `argocd-applicationset`, `production-readiness`, `supply-chain-security`,
-  `admission-policy-review`, `dast-review`, `secrets-management`.
+  `admission-policy-review`, `dast-review`, `secrets-management`, `cilium` (6 references — its
+  own multi-facet umbrella, like the upstream terraform-skill).
 - **Flat (SKILL.md only)** — methodology skills where the workflow itself is the whole content
   and extra reference material would be padding: `git-message`, `pr-review`,
   `root-cause-analysis`, `incident-analysis`, `architecture-review`, `migration-plan`,

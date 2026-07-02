@@ -51,6 +51,7 @@ Codex-style agents, CodeWhale, OpenCode, and others.
 | [`terraform-review`](skills/terraform-review) | Terraform | Diagnose-first review of Terraform/OpenTofu modules and plans |
 | [`dockerfile-review`](skills/dockerfile-review) | Containers | Review Dockerfiles for size, security, and reproducibility |
 | [`cicd-review`](skills/cicd-review) | CI/CD | Security and reliability review of pipeline definitions (GitHub Actions, GitLab CI) |
+| [`cilium`](skills/cilium) | Networking | Design/deploy/review Cilium: install, kube-proxy replacement, L3/L4/L7 policy, Hubble, encryption, Cluster Mesh, Gateway/Egress/BGP |
 | [`cilium-debug`](skills/cilium-debug) | Networking | Diagnose Cilium CNI drops and CiliumNetworkPolicy issues via Hubble evidence |
 | [`istio-debug`](skills/istio-debug) | Networking | Diagnose Istio mesh issues: sidecars, mTLS, routing, 503 classification |
 | [`grafana-dashboards`](skills/grafana-dashboards) | Observability | Design and review Grafana dashboards as code |
