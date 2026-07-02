@@ -45,6 +45,7 @@ Codex-style agents, CodeWhale, OpenCode, and others.
 | [`kubernetes-yaml-review`](skills/kubernetes-yaml-review) | Kubernetes | Review manifests before they're applied |
 | [`kubernetes-security`](skills/kubernetes-security) | Kubernetes | Security audit of workloads, RBAC, and cluster config |
 | [`helm-review`](skills/helm-review) | Kubernetes | Review Helm chart templates, values, and upgrade safety |
+| [`argocd`](skills/argocd) | GitOps | Install/operate Argo CD: HA, sharding, SSO/RBAC, AppProject, repos, sync design, backup/DR |
 | [`argocd-debug`](skills/argocd-debug) | GitOps | Diagnose an out-of-sync or degraded ArgoCD Application |
 | [`argocd-applicationset`](skills/argocd-applicationset) | GitOps | Design/review ArgoCD ApplicationSet generators and blast radius |
 | [`gitops-review`](skills/gitops-review) | GitOps | Review a GitOps repo's layout, secrets strategy, and promotion flow |

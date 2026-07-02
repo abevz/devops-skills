@@ -54,6 +54,11 @@ Use the general workflow below when nothing matches or the picture is unclear.
    permission errors.
 9. Correlate findings into a root cause before proposing a fix.
 
+## References
+
+`references/playbooks.md` — symptom→cause→fix diagnosis trees. For installing/operating Argo CD
+itself (HA, sharding, SSO/RBAC, AppProject design, repo setup, backup/DR) use the `argocd` skill.
+
 ## Safety rules
 
 - Do not run `argocd app sync`, `argocd app delete`, or any command that changes live cluster

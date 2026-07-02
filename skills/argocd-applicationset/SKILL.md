@@ -54,6 +54,9 @@ blast radius and promotion flow that matches how the team actually wants to ship
   missingkey=error and other template correctness traps, AppProject fencing, and read-only
   audit one-liners.
 
+For installing/operating Argo CD itself (HA, sharding, SSO/RBAC, repo setup, backup/DR) use the
+`argocd` skill; for single-Application troubleshooting use `argocd-debug`.
+
 ## Safety rules
 
 - This is a design/review skill: do not create, sync, or delete ApplicationSets or the
