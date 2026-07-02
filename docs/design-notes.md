@@ -96,13 +96,24 @@ Skills split deliberately into two depths:
   taxonomies, query math. Currently: all `*-debug` skills, `kubernetes-yaml-review`,
   `kubernetes-security`, `helm-review`, `gitops-review`, `terraform-review`, `cicd-review`,
   `observability-review`, `alert-rule-review`, `grafana-dashboards`, `dockerfile-review`,
-  `argocd-applicationset`, `production-readiness`.
+  `argocd-applicationset`, `production-readiness`, `supply-chain-security`,
+  `admission-policy-review`.
 - **Flat (SKILL.md only)** — methodology skills where the workflow itself is the whole content
   and extra reference material would be padding: `git-message`, `pr-review`,
   `root-cause-analysis`, `incident-analysis`, `architecture-review`, `migration-plan`,
   `runbook-writer`, `english-technical-message`, `interview-system-design`,
-  `homelab-change-plan`. Also the `go-*` trio — deliberately thin because deep Go knowledge
-  lives in the upstream `golang-*` collection (see the boundary section above).
+  `homelab-change-plan`, `vulnerability-triage`, `runtime-security-review`. Also the `go-*`
+  trio — deliberately thin because deep Go knowledge lives in the upstream `golang-*`
+  collection (see the boundary section above). Note: Go-specific security scanning depth
+  (`gosec`, `govulncheck` mechanics) also stays upstream in `golang-security`.
+
+The DevSecOps delivery chain (code → PR → CI → build → registry → GitOps → admission →
+runtime → incident response) is covered by composition, not one mega-skill:
+`cicd-review` (pipeline attack surface) → `dockerfile-review` (image) →
+`supply-chain-security` (SBOM/signing/provenance/registry) → `gitops-review` +
+`kubernetes-yaml-review`/`kubernetes-security` (repo and manifests) →
+`admission-policy-review` (enforcement) → `runtime-security-review` (detection) →
+`vulnerability-triage` (findings process) → `incident-analysis`/`runbook-writer` (response).
 
 When adding a skill, decide its depth explicitly against these criteria rather than defaulting
 to flat.
