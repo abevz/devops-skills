@@ -9,10 +9,11 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 ## When to use
 
-Use when reviewing runtime detection coverage (Falco/Tracee rules and their tuning), triaging a
-runtime alert ("shell spawned in container X"), or investigating suspicious behavior that
-build-time scanning can't see. Completes the chain: `supply-chain-security` proves what was
-deployed, `admission-policy-review` gates what runs, this watches what it *does*.
+Use when **deploying** Falco/Tracee (driver choice, DaemonSet, rule authoring, alert output),
+reviewing runtime detection **coverage**, tuning noisy rules, triaging a runtime alert ("shell
+spawned in container X"), or investigating suspicious behavior that build-time scanning can't
+see. Completes the chain: `supply-chain-security` proves what was deployed,
+`admission-policy-review` gates what runs, this watches what it *does*.
 
 ## Goal
 
@@ -21,6 +22,12 @@ triage path that distinguishes attack from ops-as-usual — without the agent ev
 workload under investigation.
 
 ## Workflow
+
+0. **Deployment (if not yet running)** — before coverage/triage there has to be a sensor. Plan
+   the driver (`modern_ebpf` default, needs kernel 5.8+; `kmod` for bare metal; gVisor/managed-
+   node caveats), the privileged DaemonSet, the k8s-metadata collector (so alerts name pods not
+   container IDs), rule ConfigMaps in the GitOps repo, and the Falcosidekick output fan-out. Full
+   mechanics, Helm values, rule syntax, and troubleshooting in `references/falco-deployment.md`.
 
 1. **Coverage check** — the detections that matter most, in rough order of signal value:
    - shell/exec into a container (`kubectl exec` legitimate use vs reverse shell — the alert
@@ -53,6 +60,14 @@ workload under investigation.
 6. **Feed back** — every confirmed false positive becomes a scoped rule exception; every
    confirmed incident becomes an `incident-analysis` writeup and usually a new admission policy
    or hardening fix (the runtime alert that keeps firing is a control gap upstream).
+
+## References
+
+- `references/falco-deployment.md` — driver decision (modern_ebpf/ebpf/kmod, kernel floors,
+  gVisor and managed-node caveats), privileged DaemonSet shape and Helm values, rule structure
+  (lists/macros/rules, Sysdig filter fields, priorities), where rules live on nodes and how to
+  override without forking (`append`), Falcosidekick output fan-out, k8saudit plugin, and
+  deployment troubleshooting.
 
 ## Safety rules
 

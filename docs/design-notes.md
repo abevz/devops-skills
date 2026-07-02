@@ -107,6 +107,17 @@ Skills split deliberately into two depths:
   collection (see the boundary section above). Note: Go-specific security scanning depth
   (`gosec`, `govulncheck` mechanics) also stays upstream in `golang-security`.
 
+## Review vs deployment content
+
+Most skills are review/design skills — they assume the tool exists and evaluate its use. Where a
+control has to be *stood up in the cluster* before it can be reviewed, the skill also carries a
+deployment reference with working examples and setup best practices (still markdown-only:
+propose Helm values/manifests, never run the install). Current deployment references:
+`runtime-security-review/references/falco-deployment.md` (Falco driver/DaemonSet/rules/output)
+and `admission-policy-review/references/kyverno-deployment.md` (Kyverno controllers/HA/
+failurePolicy/CRDs/GitOps). Tools that are CLI-in-pipeline rather than in-cluster (cosign, syft,
+trivy, ZAP) carry their setup as CI-wiring examples in their existing references instead.
+
 The DevSecOps delivery chain (code → PR → CI → build → registry → GitOps → admission →
 runtime → incident response) is covered by composition, not one mega-skill:
 `cicd-review` (pipeline attack surface) → `dockerfile-review` (image) →

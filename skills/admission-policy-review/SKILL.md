@@ -9,9 +9,10 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 ## When to use
 
-Use when designing or reviewing cluster admission policy: choosing between PSA/Kyverno/
-Gatekeeper, authoring policies, planning an audit→enforce rollout, or debugging "why did
-admission block this." This is the enforcement counterpart to `kubernetes-security` (which
+Use when **deploying** an admission engine (Kyverno install, HA, webhook failure policy),
+designing or reviewing cluster admission policy: choosing between PSA/Kyverno/Gatekeeper,
+authoring policies, planning an audit→enforce rollout, or debugging "why did admission block
+this." This is the enforcement counterpart to `kubernetes-security` (which
 finds the gaps policies should close) and `supply-chain-security` (whose signatures policies
 verify).
 
@@ -59,6 +60,10 @@ installed and left in audit mode forever.
 - `references/kyverno-patterns.md` — working policy patterns (require digest, verifyImages
   with identity pinning, deny privileged, required resources/probes, mutate-to-defaults),
   PolicyException with expiry, audit-mode reporting queries, and rollout sequencing.
+- `references/kyverno-deployment.md` — installing/operating Kyverno itself: controller
+  components, the HA-vs-failurePolicy tradeoff decided at install, never-gate-system-namespaces,
+  webhook scoping/timeouts, CRD upgrade discipline, GitOps integration (PolicyReport diff noise,
+  mutate-vs-drift, sync-wave bootstrap ordering), and deployment troubleshooting.
 
 ## Safety rules
 
