@@ -105,7 +105,7 @@ Skills split deliberately into two depths:
   `argocd-applicationset`, `production-readiness`, `supply-chain-security`,
   `admission-policy-review`, `dast-review`, `secrets-management`, `cilium` (6 references — its
   own multi-facet umbrella, like the upstream terraform-skill), `argocd` (5 references — operator/
-  platform umbrella).
+  platform umbrella), `vault` (4 references — Vault/OpenBao operator umbrella).
 - **Flat (SKILL.md only)** — methodology skills where the workflow itself is the whole content
   and extra reference material would be padding: `git-message`, `pr-review`,
   `root-cause-analysis`, `incident-analysis`, `architecture-review`, `migration-plan`,

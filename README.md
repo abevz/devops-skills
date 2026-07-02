@@ -68,6 +68,7 @@ Codex-style agents, CodeWhale, OpenCode, and others.
 | [`runtime-security-review`](skills/runtime-security-review) | Security | Falco/Tracee coverage and tuning, runtime alert triage |
 | [`dast-review`](skills/dast-review) | Security | ZAP DAST scan placement, authenticated/API scans, findings gate |
 | [`secrets-management`](skills/secrets-management) | Security | External Secrets Operator / Sealed Secrets / SOPS: deploy, provider auth, rotation |
+| [`vault`](skills/vault) | Security | Operate HashiCorp Vault/OpenBao: HA, auto-unseal, auth methods, policies, secret engines, DR |
 | [`interview-system-design`](skills/interview-system-design) | Career | Structure and practice system design interview answers |
 | [`homelab-change-plan`](skills/homelab-change-plan) | Homelab | Plan homelab infra changes with no staging: tiers, snapshots, bail-out |
 

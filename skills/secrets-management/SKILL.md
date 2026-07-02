@@ -63,6 +63,9 @@ become the weak link.
   ExternalSecret/PushSecret spec, rotation and reloader wiring, GitOps ordering and ArgoCD
   exclusions, comparison with Sealed Secrets/SOPS, and troubleshooting.
 
+For operating Vault itself (HA, seal/auto-unseal, auth methods, policies, secret engines, DR)
+rather than consuming its secrets into Kubernetes, use the `vault` skill.
+
 ## Safety rules
 
 - Never read, print, or exfiltrate actual secret values — work with references, keys, and
