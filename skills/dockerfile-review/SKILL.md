@@ -45,11 +45,14 @@ non-reproducible builds — with the concrete fix for each.
 9. **Reproducibility** — dependency versions pinned (lockfiles used in the build); no
    `curl | sh` of unpinned installers mid-build.
 
-## Optional tooling
+## References
 
-`hadolint` (Dockerfile lint) and `trivy image` / `grype` (CVE scan of the built image) can
-supplement this review if the user already has them — suggest, never install, and only run them
-with the user's confirmation.
+- `references/examples.md` — bad → good multi-stage pairs for Go/Node/Python with the
+  mechanics behind each finding (signal handling, layer additivity, BuildKit secret/cache
+  mounts, digest pinning, HEALTHCHECK applicability).
+- Optional tooling: `hadolint` (Dockerfile lint) and `trivy image` / `grype` (CVE scan of the
+  built image) can supplement this review if the user already has them — suggest, never
+  install, and only run them with the user's confirmation.
 
 ## Safety rules
 

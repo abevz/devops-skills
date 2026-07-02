@@ -36,6 +36,13 @@ ranked by risk — not a generic checklist recital.
 8. Rank every gap found by risk (what breaks, how badly, how likely) — not by how easy it is to
    fix.
 
+## References
+
+- `references/checklists.md` — deep per-artifact checklists (Kubernetes workload operational
+  layer, stateful/restore-is-the-deliverable, Terraform state protection, GitOps promotion and
+  bootstrap, observability and documentation gates), each item tied to the concrete failure it
+  prevents.
+
 ## Safety rules
 
 - This is a review skill: do not deploy, apply, or provision anything.

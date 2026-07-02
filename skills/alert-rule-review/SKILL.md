@@ -49,6 +49,13 @@ the right urgency — and that the rule set as a whole would have caught recent 
 9. **Recording rules** — expensive expressions used by several alerts/dashboards belong in
    recording rules; check naming follows `level:metric:operations` convention.
 
+## References
+
+- `references/promql-patterns.md` — burn-rate math with the standard multiwindow table,
+  absence-pairing patterns, rate/increase/histogram_quantile pitfalls, for:/keep_firing_for
+  flap control, cardinality rules, recording-rule promotion criteria, and Alertmanager routing
+  review points.
+
 ## Safety rules
 
 - This is a review skill: do not apply rule changes to a live Prometheus/Alertmanager, and do

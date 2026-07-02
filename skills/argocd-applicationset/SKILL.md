@@ -47,6 +47,13 @@ blast radius and promotion flow that matches how the team actually wants to ship
 9. **Multi-env safety** — confirm `AppProject` restrictions prevent a generated Application from
    being pointed at a namespace/cluster outside its intended scope.
 
+## References
+
+- `references/generators.md` — generator decision table, staged-rollout revision patterns,
+  deletion-protection options (preserveResourcesOnDeletion, create-update policies),
+  missingkey=error and other template correctness traps, AppProject fencing, and read-only
+  audit one-liners.
+
 ## Safety rules
 
 - This is a design/review skill: do not create, sync, or delete ApplicationSets or the

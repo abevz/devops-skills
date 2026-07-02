@@ -87,6 +87,26 @@ Upstream sources, as recorded in `~/.agents/.skill-lock.json` at the time of wri
 The rule: third-party collections stay upstream-managed and are never vendored in. If one dies
 or degrades, write a replacement here in this repo's own shape rather than forking the corpse.
 
+## Depth policy: which skills carry references and which stay flat
+
+Skills split deliberately into two depths:
+
+- **Deep (SKILL.md + references/)** — domains where diagnosis/review quality depends on exact
+  facts an agent can't reliably hold: symptom→cause tables, version floors, error-text
+  taxonomies, query math. Currently: all `*-debug` skills, `kubernetes-yaml-review`,
+  `kubernetes-security`, `helm-review`, `gitops-review`, `terraform-review`, `cicd-review`,
+  `observability-review`, `alert-rule-review`, `grafana-dashboards`, `dockerfile-review`,
+  `argocd-applicationset`, `production-readiness`.
+- **Flat (SKILL.md only)** — methodology skills where the workflow itself is the whole content
+  and extra reference material would be padding: `git-message`, `pr-review`,
+  `root-cause-analysis`, `incident-analysis`, `architecture-review`, `migration-plan`,
+  `runbook-writer`, `english-technical-message`, `interview-system-design`,
+  `homelab-change-plan`. Also the `go-*` trio — deliberately thin because deep Go knowledge
+  lives in the upstream `golang-*` collection (see the boundary section above).
+
+When adding a skill, decide its depth explicitly against these criteria rather than defaulting
+to flat.
+
 ## How this repository should evolve
 
 - Add one skill at a time, following `CONTRIBUTING.md`'s checklist — check for overlap first,

@@ -50,6 +50,13 @@ wall of every metric that exists.
    (`No data` for months), duplicated panels that contradict each other, and missing top-row
    verdict are the four most common findings.
 
+## References
+
+- `references/panel-patterns.md` — verdict-panel query patterns (with `$__rate_interval`),
+  chained template variables, legend/unit/axis discipline, deploy annotations, provisioning
+  shapes compared (sidecar ConfigMap / operator CRD / file / Terraform), uid pinning, and
+  review quick-hits for existing dashboards.
+
 ## Safety rules
 
 - Do not modify or delete live Grafana dashboards, datasources, or provisioning config unless
