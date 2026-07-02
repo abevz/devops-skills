@@ -1,0 +1,98 @@
+name: Validate skills
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Every skill directory has exactly one SKILL.md
+        run: |
+          fail=0
+          for d in skills/*/; do
+            count=$(find "$d" -maxdepth 1 -name SKILL.md | wc -l)
+            if [ "$count" -ne 1 ]; then
+              echo "::error::$d has $count SKILL.md files (expected 1)"
+              fail=1
+            fi
+          done
+          exit $fail
+
+      - name: Frontmatter is present and complete
+        run: |
+          fail=0
+          for f in skills/*/SKILL.md; do
+            if ! head -1 "$f" | grep -q '^---$'; then
+              echo "::error file=$f::missing YAML frontmatter"
+              fail=1
+            fi
+            for field in name description license compatibility; do
+              if ! grep -q "^$field:" "$f"; then
+                echo "::error file=$f::missing frontmatter field '$field'"
+                fail=1
+              fi
+            done
+          done
+          exit $fail
+
+      - name: Frontmatter name matches directory name
+        run: |
+          fail=0
+          for d in skills/*/; do
+            dir=$(basename "$d")
+            fname=$(awk -F': ' '/^name:/{print $2; exit}' "$d/SKILL.md")
+            if [ "$dir" != "$fname" ]; then
+              echo "::error file=$d/SKILL.md::frontmatter name '$fname' != directory '$dir'"
+              fail=1
+            fi
+            if ! echo "$dir" | grep -qE '^[a-z0-9]+(-[a-z0-9]+)*$'; then
+              echo "::error::directory '$dir' is not lowercase-hyphen-separated"
+              fail=1
+            fi
+          done
+          exit $fail
+
+      - name: Description states a trigger
+        run: |
+          fail=0
+          for f in skills/*/SKILL.md; do
+            if ! grep -q '^description: Use when' "$f"; then
+              echo "::error file=$f::description must start with 'Use when'"
+              fail=1
+            fi
+          done
+          exit $fail
+
+      - name: Required sections are present
+        run: |
+          fail=0
+          for f in skills/*/SKILL.md; do
+            for section in 'When to use' 'Goal' 'Workflow' 'Safety rules' 'Output format' 'Quality checklist'; do
+              if ! grep -q "^## $section" "$f"; then
+                echo "::error file=$f::missing section '## $section'"
+                fail=1
+              fi
+            done
+          done
+          exit $fail
+
+      - name: No executable scripts or package manifests
+        run: |
+          found=$(find skills docs tests .github -type f \( -name '*.sh' -o -name '*.ps1' -o -name '*.js' -o -name '*.py' -o -name 'package.json' \) 2>/dev/null || true)
+          if [ -n "$found" ]; then
+            echo "::error::executable scripts or package manifests found:"
+            echo "$found"
+            exit 1
+          fi
+
+      - name: No secrets or credential patterns
+        run: |
+          if grep -rEl 'AKIA[0-9A-Z]{16}|BEGIN (RSA|OPENSSH|PGP) PRIVATE KEY|ghp_[A-Za-z0-9]{36}' skills/ docs/ tests/ README.md SECURITY.md CONTRIBUTING.md; then
+            echo "::error::possible secret/credential pattern found"
+            exit 1
+          fi
