@@ -97,7 +97,7 @@ Skills split deliberately into two depths:
   `kubernetes-security`, `helm-review`, `gitops-review`, `terraform-review`, `cicd-review`,
   `observability-review`, `alert-rule-review`, `grafana-dashboards`, `dockerfile-review`,
   `argocd-applicationset`, `production-readiness`, `supply-chain-security`,
-  `admission-policy-review`, `dast-review`.
+  `admission-policy-review`, `dast-review`, `secrets-management`.
 - **Flat (SKILL.md only)** — methodology skills where the workflow itself is the whole content
   and extra reference material would be padding: `git-message`, `pr-review`,
   `root-cause-analysis`, `incident-analysis`, `architecture-review`, `migration-plan`,
@@ -113,10 +113,13 @@ Most skills are review/design skills — they assume the tool exists and evaluat
 control has to be *stood up in the cluster* before it can be reviewed, the skill also carries a
 deployment reference with working examples and setup best practices (still markdown-only:
 propose Helm values/manifests, never run the install). Current deployment references:
-`runtime-security-review/references/falco-deployment.md` (Falco driver/DaemonSet/rules/output)
-and `admission-policy-review/references/kyverno-deployment.md` (Kyverno controllers/HA/
-failurePolicy/CRDs/GitOps). Tools that are CLI-in-pipeline rather than in-cluster (cosign, syft,
-trivy, ZAP) carry their setup as CI-wiring examples in their existing references instead.
+`runtime-security-review/references/falco-deployment.md` (Falco driver/DaemonSet/rules/output),
+`admission-policy-review/references/kyverno-deployment.md` (Kyverno controllers/HA/failurePolicy/
+CRDs/GitOps), `secrets-management/references/eso-deployment.md` (External Secrets Operator:
+provider auth, stores, rotation), and `observability-review/references/prometheus-stack.md`
+(kube-prometheus-stack: CRDs, storage, cardinality, provisioning). Tools that are CLI-in-pipeline
+rather than in-cluster (cosign, syft, trivy, ZAP) carry their setup as CI-wiring examples in
+their existing references instead.
 
 The DevSecOps delivery chain (code → PR → CI → build → registry → GitOps → admission →
 runtime → incident response) is covered by composition, not one mega-skill:

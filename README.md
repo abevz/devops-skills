@@ -65,6 +65,7 @@ Codex-style agents, CodeWhale, OpenCode, and others.
 | [`vulnerability-triage`](skills/vulnerability-triage) | Security | Turn scanner findings into ranked actions; suppression discipline |
 | [`runtime-security-review`](skills/runtime-security-review) | Security | Falco/Tracee coverage and tuning, runtime alert triage |
 | [`dast-review`](skills/dast-review) | Security | ZAP DAST scan placement, authenticated/API scans, findings gate |
+| [`secrets-management`](skills/secrets-management) | Security | External Secrets Operator / Sealed Secrets / SOPS: deploy, provider auth, rotation |
 | [`interview-system-design`](skills/interview-system-design) | Career | Structure and practice system design interview answers |
 | [`homelab-change-plan`](skills/homelab-change-plan) | Homelab | Plan homelab infra changes with no staging: tiers, snapshots, bail-out |
 

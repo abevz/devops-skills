@@ -19,6 +19,12 @@ under five minutes."
 
 ## Workflow
 
+0. **Stack deployment (if setting one up)** — before reviewing signals there has to be a stack.
+   For the Prometheus/Grafana side see `references/prometheus-stack.md`: kube-prometheus-stack
+   components, the ServiceMonitor/PodMonitor/PrometheusRule CRDs (and the selector-label trap
+   that silently drops targets), storage/retention/remote-write, cardinality control, HA, and
+   Grafana/Alertmanager provisioning as code.
+
 1. **Logs** — check for structured (not free-text) logging, consistent correlation/request IDs,
    appropriate levels, and that errors include enough context to act on (not just "request
    failed").
@@ -42,6 +48,11 @@ under five minutes."
 - `references/instrumentation.md` — probes as the observability foundation, Prometheus scraping
   (annotations vs ServiceMonitor), a hardened instrumented-deployment checklist, metric
   naming/buckets, alert-vs-dashboard guidance, and logging/tracing patterns for Kubernetes.
+- `references/prometheus-stack.md` — deploying/operating kube-prometheus-stack: components and
+  CRDs (ServiceMonitor/PodMonitor/PrometheusRule + the selector-label trap), storage/retention/
+  remote-write to Thanos/Mimir/VM, cardinality control, HA/dedup, Alertmanager routing, Grafana
+  provisioning as code, GitOps bootstrap ordering (ServerSideApply for big CRDs), and
+  troubleshooting.
 
 ## Safety rules
 
