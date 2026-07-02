@@ -54,6 +54,10 @@ under five minutes."
   provisioning as code, GitOps bootstrap ordering (ServerSideApply for big CRDs), and
   troubleshooting.
 
+For deploying/scaling the stack itself beyond the base install — Prometheus HA/sharding/remote-
+write, Thanos vs Mimir long-term storage, OpenTelemetry Collector pipelines, Loki/Tempo backends
+— use the `observability-stack` skill.
+
 ## Safety rules
 
 - This is a review skill: do not modify alerting rules, dashboards, or monitoring config directly

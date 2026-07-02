@@ -39,6 +39,7 @@ Codex-style agents, CodeWhale, OpenCode, and others.
 | [`incident-analysis`](skills/incident-analysis) | Investigate | Structured writeup of a production-like incident |
 | [`production-readiness`](skills/production-readiness) | Infra | Check whether a service/workload/module is ready for production |
 | [`observability-review`](skills/observability-review) | Infra | Review logs, metrics, traces, dashboards, alerts, SLOs |
+| [`observability-stack`](skills/observability-stack) | Infra | Operate the stack: Prometheus HA/sharding, Thanos/Mimir, OTel Collector, Loki/Tempo |
 | [`architecture-review`](skills/architecture-review) | Architecture | Review repo/system boundaries, coupling, and layering |
 | [`migration-plan`](skills/migration-plan) | Architecture | Build a phased, reversible migration plan |
 | [`kubernetes-debug`](skills/kubernetes-debug) | Kubernetes | Diagnose a failing Kubernetes workload, read-only first |
