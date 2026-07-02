@@ -154,6 +154,13 @@ to flat.
 - Prefer `references/` for genuinely reusable supporting material (like the optional-tooling
   tables added to the Kubernetes/Helm/Terraform/GitOps review skills) over bloating `SKILL.md`
   itself — but keep the bar high; most skills should stay flat.
+- **Conditional references** (`references/conditional/<signal>.md`, loaded only when a signal is
+  detected — following upstream kubernetes-skill's pattern) keep cloud/platform-specific depth
+  out of the core path. Used for cloud-specific Cilium integration
+  (`cilium/references/conditional/{eks,gke,aks}.md` — ENI vs DPv2 vs Azure-CNI-Powered) and
+  managed-cluster debugging (`kubernetes-debug/references/conditional/managed-clusters.md`).
+  Reach for this when a fact only applies on one platform and would otherwise clutter the
+  generic guidance.
 - Revisit `docs/design-notes.md`'s "intentionally not created" list periodically — some of those
   exclusions (day-2 operational skills, CI/CD generation) may become worth a carefully-scoped,
   safety-first skill later, but only as a deliberate addition, never a wholesale import. The

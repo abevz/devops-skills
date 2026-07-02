@@ -77,7 +77,9 @@ k8sServicePort: 6443
 | kubeadm/bare metal | Full control; you own routing/BGP/L2 for LB |
 
 On managed control planes you often can't remove kube-proxy or the cloud CNI cleanly — confirm
-what the platform allows before designing around full replacement.
+what the platform allows before designing around full replacement. For the deep per-cloud
+specifics (ENI vs overlay, VPC CNI removal, DPv2, Azure CNI Powered by Cilium, BYOCNI), load the
+matching `conditional/{eks,gke,aks}.md` — those override this generic table.
 
 ## Verification (read-only)
 

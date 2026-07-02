@@ -32,7 +32,10 @@ instead of walking the full checklist:
 | Name resolution errors / 5s latencies | DNS — CoreDNS, FQDN vs short names, ndots, netpol on port 53 |
 | Node `NotReady` | Node — conditions → pressure/kubelet/CNI |
 
-Use the general workflow below when the symptom doesn't match a playbook or spans several.
+Use the general workflow below when the symptom doesn't match a playbook or spans several. **On
+a managed cloud cluster (EKS/GKE/AKS), also load `references/conditional/managed-clusters.md`** —
+control-plane logs live in the cloud backend, nodes auto-remediate (hiding the cause), and
+IPAM/LB/IAM issues masquerade as k8s issues (e.g. EKS ENI IP exhaustion → stuck ContainerCreating).
 
 ## Workflow
 
@@ -53,6 +56,13 @@ Use the general workflow below when the symptom doesn't match a playbook or span
    - `NetworkPolicy` — if connectivity is denied unexpectedly
 3. Correlate evidence to a probable cause before proposing a fix.
 4. Propose the safe fix, and the exact commands to verify it worked.
+
+## References
+
+- `references/playbooks.md` — symptom-keyed diagnosis trees (Pending, CrashLoop exit codes,
+  ImagePull error text, OOM, service chain, DNS, node, CPU throttling, cascading liveness).
+- `references/conditional/managed-clusters.md` — EKS/GKE/AKS debugging caveats (hidden control-
+  plane logs, node auto-remediation, ENI IP exhaustion, LB/IAM masquerading), loaded by signal.
 
 ## Safety rules
 

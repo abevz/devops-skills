@@ -39,7 +39,11 @@ kube-proxy-replacement prerequisites).
 2. **Confirm the baseline** before feature work: Cilium version, datapath mode, whether
    kube-proxy replacement is on (many features — Egress Gateway, some LB paths — require it),
    kernel version (eBPF features have floors), and the underlying cluster (managed vs self-hosted
-   changes IPAM and routing).
+   changes IPAM and routing). **If the cluster is a managed cloud one, load the matching
+   conditional reference** — `references/conditional/eks.md` (ENI vs overlay, VPC CNI removal,
+   SG-per-pod caveat), `gke.md` (Dataplane V2 *is* managed Cilium vs self-managed for advanced
+   features), or `aks.md` (Azure CNI Powered by Cilium vs BYOCNI) — before recommending anything,
+   because IPAM, kube-proxy, and available features differ substantially per cloud.
 3. **Match feature to need, not to novelty** — encryption, Cluster Mesh, BGP each add real
    operational cost; recommend them when the requirement (compliance, multi-region HA, bare-metal
    L2) exists, and say so plainly when it doesn't.
@@ -57,6 +61,9 @@ kube-proxy-replacement prerequisites).
 - `references/install.md`, `references/network-policies.md`, `references/hubble.md`,
   `references/encryption.md`, `references/clustermesh.md`, `references/gateway-egress.md` — one
   per feature area, each with decision tables, Helm/CRD examples, prerequisites, and gotchas.
+- `references/conditional/{eks,gke,aks}.md` — cloud-specific integration, loaded by signal
+  (managed cluster detected): the per-cloud IPAM, kube-proxy, and feature-availability
+  differences that override the generic install guidance.
 
 ## Safety rules
 
