@@ -71,17 +71,18 @@ for the full per-repository breakdown.
 ## Relationship to installed third-party skill collections
 
 This repository deliberately does **not** duplicate the third-party collections already
-installed and managed separately (via `npx skills add` / symlinks into `~/.agents/skills`):
+installed and managed separately (via `npx skills add` / symlinks into `~/.agents/skills`).
+Upstream sources, as recorded in `~/.agents/.skill-lock.json` at the time of writing:
 
-- **`golang-*` (37 skills, samber's collection)** — deep Go *knowledge base* (how to write
-  idiomatic code, which library to pick, how slog/testify/pprof work). The `go-*` skills here
-  are *workflow* skills (how to fix a bug, how to review a diff) — they complement, not compete.
-  Don't add Go knowledge-base skills here; that ground is covered upstream.
-- **`terraform-skill` (Anton Babenko)** — diagnose-first Terraform knowledge base with deep
-  reference files. `terraform-review` here is the review-workflow counterpart with this repo's
-  standard output shape. Both being active is intentional.
-- **`gws-*`, `beads`, `chezmoi`, `playwright-cli`, `excalidraw-diagram`, `dream`** — tool-bound
-  or off-domain; out of scope for a DevOps skill repo.
+| Installed collection | Upstream | Role vs. this repo |
+|---|---|---|
+| `golang-*` (35+ skills) | https://github.com/samber/cc-skills-golang | Go *knowledge base* (idioms, libraries, slog/testify/pprof). The `go-*` skills here are *workflow* skills (fix a bug, review a diff) — complement, not compete. Don't add Go knowledge-base skills here. |
+| `terraform-skill` | https://github.com/antonbabenko/terraform-skill | Diagnose-first Terraform knowledge base. `terraform-review` here is the review-workflow counterpart. Both active is intentional. |
+| `gws-*` (17 skills) | https://github.com/googleworkspace/cli | Tool-bound (Google Workspace CLI); off-domain. |
+| `find-skills` | https://github.com/vercel-labs/skills | Skill discovery tooling; off-domain. |
+| `excalidraw-diagram` | https://github.com/coleam00/excalidraw-diagram-skill | Diagramming; off-domain. |
+| `beads` | Steve Yegge's beads issue tracker (author field in SKILL.md) | Tool-bound; off-domain. Not in the lock file — installed manually. |
+| `chezmoi`, `dream`, `playwright-cli` | not recorded in the lock file (installed manually / bundled) | Tool-bound or off-domain. |
 
 The rule: third-party collections stay upstream-managed and are never vendored in. If one dies
 or degrades, write a replacement here in this repo's own shape rather than forking the corpse.

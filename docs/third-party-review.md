@@ -2,8 +2,20 @@
 
 Five repositories were downloaded into the workspace root for inspection and inspiration while
 building this skill collection. All five were reviewed read-only — no scripts were executed, no
-dependencies were installed, and none of them are tracked by this repository's git history (see
-`.gitignore`). They remain on disk locally as untouched reference material.
+dependencies were installed, and none of them were ever tracked by this repository's git
+history. After the review was complete and the findings were documented here, the local clones
+were deleted (2026-07-02). Upstream sources, for re-cloning if ever needed:
+
+| Repo reviewed | Upstream |
+|---|---|
+| `agentskills` | https://github.com/agentskills/agentskills (agentskills.io spec) |
+| `devops-ai-skill` | https://github.com/qwedsazxc78/devops-ai-skill |
+| `cluster-skills` | https://github.com/kcns008/cluster-skills |
+| `kubernetes-skill` | https://github.com/LukasNiessen/kubernetes-skill |
+| `terraform-skill` | https://github.com/antonbabenko/terraform-skill |
+
+Future third-party inspections go into the gitignored `third-party-review/` scratch directory
+(see `.gitignore`), get an entry in this file, and get deleted after the review — same process.
 
 ---
 

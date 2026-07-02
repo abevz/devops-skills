@@ -60,6 +60,8 @@ Codex-style agents, CodeWhale, OpenCode, and others.
 | [`go-testing-review`](skills/go-testing-review) | Go | Review Go test quality and coverage gaps |
 | [`go-code-review`](skills/go-code-review) | Go | Review Go code for idiomatic style and correctness |
 | [`english-technical-message`](skills/english-technical-message) | Communication | Polish short technical English (PR comments, Slack, recruiter replies) |
+| [`interview-system-design`](skills/interview-system-design) | Career | Structure and practice system design interview answers |
+| [`homelab-change-plan`](skills/homelab-change-plan) | Homelab | Plan homelab infra changes with no staging: tiers, snapshots, bail-out |
 
 ## Installing
 

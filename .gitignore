@@ -1,13 +1,9 @@
-# Third-party repositories kept locally for inspection/inspiration only.
-# Treated as untrusted, read-only reference material — never tracked, modified, or executed.
-/agentskills/
-/cluster-skills/
-/devops-ai-skill/
-/kubernetes-skill/
-/terraform-skill/
-
 # Personal research notes, not part of the published skill repository.
 /2026-07-02-best-practices-codewhale.md
 
 # Local Claude Code project config, not part of the published skill repository.
 /.claude/
+
+# Scratch area for inspecting third-party skill repos before mining ideas from them.
+# Clone anything under review here — it stays untracked (see CONTRIBUTING.md / SECURITY.md).
+/third-party-review/
