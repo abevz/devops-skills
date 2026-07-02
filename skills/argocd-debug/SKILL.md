@@ -17,6 +17,21 @@ needs to be found before taking action.
 Diagnose the actual cause of the sync/health problem using read-only inspection, and propose a
 fix the user (or ArgoCD's own automated sync) can apply.
 
+## Diagnostic routing
+
+Identify the symptom, then jump to its playbook in `references/playbooks.md`:
+
+| Symptom | Playbook section |
+|---|---|
+| OutOfSync, "nothing changed in git" | Diff-content → cause table (HPA, webhooks, defaulting, rotation, moving revision) |
+| ComparisonError / manifest generation failed | Condition text → cause table (repo auth, path, helm deps, tool version skew) |
+| Degraded / Progressing forever | Find the leaf resource, route by kind (→ kubernetes-debug for pods) |
+| Sync hangs mid-way | Hooks, sync waves, finalizer-blocked prune |
+| SharedResourceWarning | Two apps own one object — tracking-id diagnosis |
+| Permission errors on sync | Destination RBAC vs AppProject restrictions |
+
+Use the general workflow below when nothing matches or the picture is unclear.
+
 ## Workflow
 
 1. Check `Application` status: `sync status`, `health status`, and `conditions` for explicit

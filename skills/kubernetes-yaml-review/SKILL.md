@@ -48,6 +48,10 @@ Check each manifest against:
 
 ## References
 
+- `references/reliability.md` — deep-dive on probes (liveness vs readiness vs startup, the
+  cascading-restart rule), graceful shutdown/preStop, rollout strategy arithmetic, QoS classes,
+  the CPU-limit throttling question, cross-resource checks (HPA↔PDB), and read-only
+  verification one-liners.
 - `references/examples.md` — bad → good manifest pairs for the most common findings; use them to
   recognize patterns and to show the user what the fix looks like.
 - `references/tools.md` — optional local static-analysis tools (kubeconform, kube-score,

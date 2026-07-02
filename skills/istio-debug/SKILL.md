@@ -54,6 +54,12 @@ it, backed by istioctl/Envoy evidence, and propose a fix — without mutating li
 8. **Correlate and conclude** — name the failing hop and the exact config object; propose the
    minimal change and the command that verifies it.
 
+## References
+
+`references/playbooks.md` — Envoy response-flag → cause table, the mTLS mismatch matrix,
+sidecar-injection failure tree, gateway path checks, and the reading order for intermittent
+503s. Route there as soon as you have a response flag or istioctl output.
+
 ## Safety rules
 
 - Read-only first, always: `istioctl analyze/proxy-status/proxy-config/x describe`,

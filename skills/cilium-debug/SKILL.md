@@ -51,6 +51,12 @@ evidence, and propose a fix — without mutating live policies or cluster state.
    before proposing a fix; propose the minimal policy change (or agent remediation) and how to
    verify it with `hubble observe` after applying.
 
+## References
+
+`references/playbooks.md` — drop-reason → cause → fix tables (policy denial walkthrough,
+kube-proxy-replacement service issues, node-to-node/encryption, DNS flows). Route there as soon
+as `hubble observe` names the drop reason.
+
 ## Safety rules
 
 - Read-only first, always: `cilium status/endpoint list/service list/identity get`,

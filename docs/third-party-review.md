@@ -122,8 +122,14 @@ Future third-party inspections go into the gitignored `third-party-review/` scra
 - **Risky files/patterns**: none found. No scripts anywhere in the repo, no hooks, no
   `package.json` scripts of concern (only a `honkit build/serve` for the doc site), no
   curl/wget pipes, no secrets or credential references — verified by full-tree grep.
-- **Reused**: Yes — content and structural approach (not files) informed several skills, as
-  described above.
+- **Reused**: Yes — in two passes. First pass: structure and framing informed several skills.
+  Second pass (2026-07-02, re-cloned into `third-party-review/` scratch): direct distillation of
+  `references/fragile-rollouts.md` + `references/resource-starvation.md` into
+  `skills/kubernetes-yaml-review/references/reliability.md` (probe semantics and the cascading-
+  restart rule, graceful-shutdown/preStop mechanics, QoS classes, the CPU-limit throttling
+  guidance, HPA↔PDB cross-checks, verification one-liners) and two new kubernetes-debug playbook
+  sections (CPU throttling signature, cascading liveness failure). Content rewritten, not
+  copied; source credited in the reference file header.
 - **Rejected**: N/A — nothing risky to reject; this repo was safe to mine liberally.
 - **Trust level**: **High.**
 
@@ -150,7 +156,13 @@ Future third-party inspections go into the gitignored `third-party-review/` scra
   All `apply`/`destroy` mentions in the docs are either illustrative CI examples or explicit
   anti-patterns the skill tells the agent to avoid; the skill itself hard-codes a rule never to
   run `terraform destroy` without a reviewed `plan -destroy` first.
-- **Reused**: Yes — the Response Contract pattern and technical checklist content, not files.
+- **Reused**: Yes — in two passes. First pass: the Response Contract pattern shaped
+  `terraform-review`'s output format and the safety discipline of several review skills. Second
+  pass (2026-07-02, re-cloned into `third-party-review/` scratch): direct distillation of
+  `references/quick-reference.md` into `skills/terraform-review/references/version-guards.md`
+  (feature version floors, Terraform/OpenTofu divergence, stuck-state-lock protocol,
+  CI-vs-local version skew, test-cost hygiene). Content rewritten, not copied; source credited
+  in the reference file header.
 - **Rejected**: N/A — nothing risky to reject.
 - **Trust level**: **High.**
 

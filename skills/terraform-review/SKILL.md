@@ -46,6 +46,9 @@ opinions.
 
 ## References
 
+- `references/version-guards.md` — version floors for features you might recommend (native
+  tests 1.6+, mocks 1.7+, moved/import blocks), Terraform vs OpenTofu divergence, the stuck
+  state-lock protocol, and CI-vs-local version-skew diagnosis.
 - `references/examples.md` — bad → good Terraform pairs mapped to the risk categories above.
 - `references/tools.md` — optional local tools (`tflint`, `checkov`, `trivy config`,
   `gitleaks`) that can supplement this manual review. Never install these automatically.

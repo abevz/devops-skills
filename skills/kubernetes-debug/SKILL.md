@@ -17,10 +17,27 @@ behaving unexpectedly, and the cause needs to be diagnosed.
 Find the probable cause using read-only inspection, with commands the user can run to confirm,
 and a safe fix — without mutating cluster state unless explicitly asked.
 
+## Diagnostic routing
+
+Identify the symptom first, then jump straight to its playbook in `references/playbooks.md`
+instead of walking the full checklist:
+
+| Symptom | Playbook section |
+|---|---|
+| Pod stuck `Pending` | Pod Pending — scheduler event text → cause table |
+| `CrashLoopBackOff` | CrashLoopBackOff — exit code/reason → cause table |
+| `ImagePullBackOff` / `ErrImagePull` | ImagePull — pull error text → cause table |
+| `OOMKilled` restarts | OOMKilled — usage-pattern classification |
+| Service unreachable / connection refused | Service chain — 6-link walk (selector → endpoints → readiness → ports → bind address → NetworkPolicy) |
+| Name resolution errors / 5s latencies | DNS — CoreDNS, FQDN vs short names, ndots, netpol on port 53 |
+| Node `NotReady` | Node — conditions → pressure/kubelet/CNI |
+
+Use the general workflow below when the symptom doesn't match a playbook or spans several.
+
 ## Workflow
 
 1. Narrow scope: namespace, workload name, and symptom (CrashLoopBackOff, Pending, no traffic,
-   OOMKilled, etc.).
+   OOMKilled, etc.) — and route via the table above if it matches a playbook.
 2. Inspect in this order, read-only:
    - `kubectl get pods` / `describe pod` — status, restart count, events
    - `kubectl get events --sort-by=.lastTimestamp` — recent cluster events in the namespace
