@@ -67,6 +67,10 @@ for the full per-repository breakdown.
   references) is kept distinct from `cilium-debug` (symptom triage of live drops via Hubble drop
   reasons) — same relationship as `kubernetes-yaml-review` ↔ `kubernetes-debug`. Each
   cross-references the other.
+- `istio` (umbrella: install/revision upgrades, sidecar vs ambient data plane, traffic
+  management, mTLS/authorization/identity, telemetry — across 5 references) is kept distinct from
+  `istio-debug` (503/mTLS/injection symptom triage via Envoy response flags) — the same
+  umbrella↔debugger pairing as `cilium`↔`cilium-debug`. Each cross-references the other.
 - `root-cause-analysis` (general bug/regression investigation) is kept distinct from
   `incident-analysis` (production incident, audience is a team writeup) — different workflows
   and different output shapes even though both are "investigate first."
@@ -105,7 +109,8 @@ Skills split deliberately into two depths:
   `argocd-applicationset`, `production-readiness`, `supply-chain-security`,
   `admission-policy-review`, `dast-review`, `secrets-management`, `cilium` (6 references — its
   own multi-facet umbrella, like the upstream terraform-skill), `argocd` (5 references — operator/
-  platform umbrella), `vault` (4 references — Vault/OpenBao operator umbrella).
+  platform umbrella), `vault` (4 references — Vault/OpenBao operator umbrella), `istio` (5
+references — service-mesh operator umbrella).
 - **Flat (SKILL.md only)** — methodology skills where the workflow itself is the whole content
   and extra reference material would be padding: `git-message`, `pr-review`,
   `root-cause-analysis`, `incident-analysis`, `architecture-review`, `migration-plan`,

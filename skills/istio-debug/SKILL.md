@@ -60,6 +60,9 @@ it, backed by istioctl/Envoy evidence, and propose a fix — without mutating li
 sidecar-injection failure tree, gateway path checks, and the reading order for intermittent
 503s. Route there as soon as you have a response flag or istioctl output.
 
+For installing/operating the mesh itself (install, revision/canary upgrades, sidecar vs ambient,
+traffic management, mTLS/authz design, telemetry) use the `istio` skill.
+
 ## Safety rules
 
 - Read-only first, always: `istioctl analyze/proxy-status/proxy-config/x describe`,
