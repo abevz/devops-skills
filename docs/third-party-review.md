@@ -128,8 +128,15 @@ Future third-party inspections go into the gitignored `third-party-review/` scra
   `skills/kubernetes-yaml-review/references/reliability.md` (probe semantics and the cascading-
   restart rule, graceful-shutdown/preStop mechanics, QoS classes, the CPU-limit throttling
   guidance, HPA↔PDB cross-checks, verification one-liners) and two new kubernetes-debug playbook
-  sections (CPU throttling signature, cascading liveness failure). Content rewritten, not
-  copied; source credited in the reference file header.
+  sections (CPU throttling signature, cascading liveness failure). Third pass (same day): all
+  15 remaining reference files read fully and distilled into
+  `kubernetes-security/references/hardening.md` (PSA with version pinning, NSA/CISA + OWASP K8s
+  Top 10 mapping, RBAC escalation vectors, network exposure, multi-tenancy limits),
+  `kubernetes-yaml-review/references/workload-patterns.md` (workload-kind decision table,
+  StatefulSet/Job/CronJob/DaemonSet review points, storage pitfalls, API drift),
+  `observability-review/references/instrumentation.md`, `helm-review/references/patterns.md`,
+  and `gitops-review/references/validation-policy.md`. Content rewritten, not copied; source
+  credited in each reference file header.
 - **Rejected**: N/A — nothing risky to reject; this repo was safe to mine liberally.
 - **Trust level**: **High.**
 
@@ -161,8 +168,12 @@ Future third-party inspections go into the gitignored `third-party-review/` scra
   pass (2026-07-02, re-cloned into `third-party-review/` scratch): direct distillation of
   `references/quick-reference.md` into `skills/terraform-review/references/version-guards.md`
   (feature version floors, Terraform/OpenTofu divergence, stuck-state-lock protocol,
-  CI-vs-local version skew, test-cost hygiene). Content rewritten, not copied; source credited
-  in the reference file header.
+  CI-vs-local version skew, test-cost hygiene). Third pass (same day): `state-management.md`
+  (1834 lines), `module-patterns.md`, `security-compliance.md`, `ci-cd-workflows.md`, and
+  `code-patterns.md` read fully and distilled into
+  `terraform-review/references/{state-operations,module-design,security-compliance}.md` and
+  `cicd-review/references/terraform-pipelines.md`. Content rewritten, not copied; source
+  credited in each reference file header.
 - **Rejected**: N/A — nothing risky to reject.
 - **Trust level**: **High.**
 

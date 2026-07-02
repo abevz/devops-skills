@@ -47,6 +47,9 @@ Check for, and explain the exploit path for each:
 ## References
 
 - `references/examples.md` — bad → good security examples with the exploit path each fix closes.
+- `references/hardening.md` — PSA labeling with version pinning, NSA/CISA + OWASP K8s Top 10
+  mapping, RBAC privilege-escalation vectors, network exposure taxonomy, namespace isolation
+  limits, and read-only kubectl/jq audit one-liners.
 - `references/tools.md` — optional local scanners (trivy, gitleaks, kube-linter, polaris,
   conftest) that can supplement this manual audit. Never install these automatically; only
   suggest running ones the user confirms are already available.

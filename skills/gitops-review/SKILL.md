@@ -43,10 +43,13 @@ ownership — not a review of any single manifest.
 9. **Bootstrap safety** — how is a new cluster/environment bootstrapped into this GitOps setup?
    Is the bootstrap process itself version-controlled and repeatable, or manual/tribal knowledge?
 
-## Optional tooling
+## References
 
-See `references/tools.md` for optional local tools (`kustomize build`, `conftest`, `yamllint`,
-`gitleaks`) that can supplement this manual review. Never install these automatically.
+- `references/validation-policy.md` — validation pipeline order (schema → lint → policy →
+  cluster dry-run), Kyverno/Gatekeeper policy examples, and Kustomize overlay structure
+  patterns and pitfalls (patch ordering, base drift, components).
+- `references/tools.md` — optional local tools (`kustomize build`, `conftest`, `yamllint`,
+  `gitleaks`) that can supplement this manual review. Never install these automatically.
 
 ## Safety rules
 

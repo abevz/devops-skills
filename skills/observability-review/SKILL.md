@@ -37,6 +37,12 @@ under five minutes."
 7. **Tracing/metric gaps** — call out the specific missing signal that would have shortened the
    last incident, if known.
 
+## References
+
+- `references/instrumentation.md` — probes as the observability foundation, Prometheus scraping
+  (annotations vs ServiceMonitor), a hardened instrumented-deployment checklist, metric
+  naming/buckets, alert-vs-dashboard guidance, and logging/tracing patterns for Kubernetes.
+
 ## Safety rules
 
 - This is a review skill: do not modify alerting rules, dashboards, or monitoring config directly

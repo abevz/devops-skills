@@ -44,10 +44,13 @@ rendered output across environments.
 11. **GitOps compatibility** — chart renders deterministically (no reliance on `Values.random`,
     timestamps, or `lookup` in ways that break `argocd diff`/drift detection).
 
-## Optional tooling
+## References
 
-See `references/tools.md` for optional local tools (`helm lint`, `helm template` piped into
-kubeconform/kube-score/polaris/pluto) that can supplement this manual review, all cluster-safe.
+- `references/patterns.md` — Chart.yaml/values.yaml contracts, template safety rules
+  (whitespace/nindent/quote, required helpers, selector immutability), Capabilities-based
+  apiVersion branching, and upgrade-behavior pitfalls.
+- `references/tools.md` — optional local tools (`helm lint`, `helm template` piped into
+  kubeconform/kube-score/polaris/pluto) that can supplement this manual review, all cluster-safe.
 
 ## Safety rules
 

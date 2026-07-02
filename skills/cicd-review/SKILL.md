@@ -47,6 +47,13 @@ chain) or can silently misbehave (flaky, unpinned, unbounded), ranked by severit
 9. **Reproducibility** — build steps don't `curl | sh` unpinned installers; tool versions pinned
    (setup actions with explicit versions, or versions from the repo's own config files).
 
+## References
+
+- `references/terraform-pipelines.md` — Terraform/OpenTofu-specific pipeline review: reviewed
+  plan→apply artifact gate, OIDC trust-policy pinning, drift-detection scheduling (and the
+  scheduled-auto-apply anti-pattern), PR plan visibility, multi-env promotion, and
+  concurrency/locking in CI.
+
 ## Safety rules
 
 - This is a review skill: do not edit workflows, trigger runs, re-run jobs, or modify repository/

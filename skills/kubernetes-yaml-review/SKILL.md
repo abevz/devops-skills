@@ -54,6 +54,9 @@ Check each manifest against:
   verification one-liners.
 - `references/examples.md` — bad → good manifest pairs for the most common findings; use them to
   recognize patterns and to show the user what the fix looks like.
+- `references/workload-patterns.md` — choosing the right workload kind, StatefulSet/Job/CronJob/
+  DaemonSet-specific review points, StorageClass and PVC pitfalls, and API deprecation/drift
+  tables with validation one-liners.
 - `references/tools.md` — optional local static-analysis tools (kubeconform, kube-score,
   kube-linter, polaris, pluto, yamllint) that can supplement this manual review. Never install
   these automatically; only suggest running ones the user confirms are already available.

@@ -52,6 +52,15 @@ opinions.
 - `references/examples.md` — bad → good Terraform pairs mapped to the risk categories above.
 - `references/tools.md` — optional local tools (`tflint`, `checkov`, `trivy config`,
   `gitleaks`) that can supplement this manual review. Never install these automatically.
+- `references/state-operations.md` — state surgery decision table (moved/import/removed blocks
+  vs CLI), backend migration, state splitting, drift reconciliation, disaster recovery,
+  workspaces-vs-directories, and the safe-destroy protocol.
+- `references/module-design.md` — module sizing/composition, variable and output contracts,
+  version pinning, for_each/count keying rules, dynamic blocks, and named anti-patterns
+  (god modules, thin wrappers, hardcoded env assumptions).
+- `references/security-compliance.md` — what actually lands in state (write-only/ephemeral
+  floors), OIDC vs static credentials, state backend encryption/hardening, policy-as-code
+  pipeline placement, and compliance checklist items.
 
 ## Safety rules
 
