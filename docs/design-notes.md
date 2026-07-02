@@ -97,7 +97,7 @@ Skills split deliberately into two depths:
   `kubernetes-security`, `helm-review`, `gitops-review`, `terraform-review`, `cicd-review`,
   `observability-review`, `alert-rule-review`, `grafana-dashboards`, `dockerfile-review`,
   `argocd-applicationset`, `production-readiness`, `supply-chain-security`,
-  `admission-policy-review`.
+  `admission-policy-review`, `dast-review`.
 - **Flat (SKILL.md only)** — methodology skills where the workflow itself is the whole content
   and extra reference material would be padding: `git-message`, `pr-review`,
   `root-cause-analysis`, `incident-analysis`, `architecture-review`, `migration-plan`,
@@ -114,6 +114,8 @@ runtime → incident response) is covered by composition, not one mega-skill:
 `kubernetes-yaml-review`/`kubernetes-security` (repo and manifests) →
 `admission-policy-review` (enforcement) → `runtime-security-review` (detection) →
 `vulnerability-triage` (findings process) → `incident-analysis`/`runbook-writer` (response).
+`dast-review` (ZAP) attaches at the staging/nightly point for apps and APIs with a web surface,
+feeding its findings into `vulnerability-triage` like the other scanners.
 
 When adding a skill, decide its depth explicitly against these criteria rather than defaulting
 to flat.
