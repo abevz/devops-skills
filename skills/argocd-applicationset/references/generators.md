@@ -85,3 +85,13 @@ kubectl get applications -n argocd -o json | jq -r '.items[] | select(.metadata.
 # Deletion-protection audit
 kubectl get appsets -n argocd -o json | jq -r '.items[] | .metadata.name + ": preserveOnDelete=" + (.spec.syncPolicy.preserveResourcesOnDeletion // false | tostring)'
 ```
+
+## Cross-cluster infrastructure consistency (Cluster Mesh and friends)
+
+When member clusters form a shared fabric — Cilium Cluster Mesh, a stretched service mesh, a
+shared CA — per-cluster drift stops being cosmetic and becomes a network incident (one cluster
+on an older CNI chart or missing a cross-cluster allow policy drops real traffic). The cluster
+generator with label selectors is the tool: label the members (`mesh: prod`), generate one
+Application per member from the same chart/policy source, and drift shows up as OutOfSync
+instead of as mystery packet loss. The Cilium side of this pairing lives in
+`cilium/references/clustermesh.md`.

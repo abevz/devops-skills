@@ -201,7 +201,7 @@ content). `conditional/` references load only when their platform signal is dete
 | `pr-review` | flat | — |
 | `root-cause-analysis` | flat | — |
 | `runbook-writer` | flat | — |
-| `runtime-security-review` | deep | falco-deployment |
+| `runtime-security-review` | deep | falco-deployment, tetragon-deployment |
 | `secrets-management` | deep | eso-deployment |
 | `storage-debug` | deep | playbooks |
 | `supply-chain-security` | deep | signing-attestation |

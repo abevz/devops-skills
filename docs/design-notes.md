@@ -138,7 +138,8 @@ Most skills are review/design skills — they assume the tool exists and evaluat
 control has to be *stood up in the cluster* before it can be reviewed, the skill also carries a
 deployment reference with working examples and setup best practices (still markdown-only:
 propose Helm values/manifests, never run the install). Current deployment references:
-`runtime-security-review/references/falco-deployment.md` (Falco driver/DaemonSet/rules/output),
+`runtime-security-review/references/falco-deployment.md` (Falco driver/DaemonSet/rules/output)
+and `tetragon-deployment.md` (TracingPolicy, in-kernel enforcement discipline),
 `admission-policy-review/references/kyverno-deployment.md` (Kyverno controllers/HA/failurePolicy/
 CRDs/GitOps), `secrets-management/references/eso-deployment.md` (External Secrets Operator:
 provider auth, stores, rotation), and `observability-review/references/prometheus-stack.md`

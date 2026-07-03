@@ -23,6 +23,10 @@ Codex-style agents, CodeWhale, OpenCode, and others.
   minute.
 - Prefer installing one skill at a time (`npx skills add ./skills/<name>`) over the whole repo,
   especially at first, so you know exactly what's active.
+- The `./skills/<name>` form is a *local path* — clone this repository first, then install from
+  the clone. Installing straight from a GitHub URL (`npx skills add github:owner/repo`) only
+  works if the repository is public or your git credentials can reach it; for a private copy,
+  the clone-then-path (or a symlink into `~/.agents/skills`) route is the reliable one.
 - None of these skills bundle install scripts or `postinstall` hooks. If you ever add a
   third-party skill from elsewhere, treat it as untrusted input first — see `SECURITY.md`.
 - A few review skills mention *optional* local CLI tools (e.g. `kubeconform`, `trivy`,

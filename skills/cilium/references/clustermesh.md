@@ -65,3 +65,15 @@ cilium status | grep -i clustermesh
 
 Rollout: enable on a non-prod pair first, validate global-service failover with Hubble, then
 extend — never mesh production clusters as the first exercise.
+
+## Multi-cluster GitOps tie-in
+
+A mesh is only as healthy as the *consistency* of per-cluster config: Cilium versions, cluster
+IDs/names, CA, and the CNPs that allow cross-cluster flows must roll out coherently to every
+member. Manage meshed clusters from one GitOps control plane — an ApplicationSet cluster
+generator keyed on cluster labels (e.g. `mesh: prod`) deploys the same Cilium chart version and
+policy set to all members and makes "one cluster drifted" visible as an out-of-sync app rather
+than a mystery drop (see `argocd-applicationset` for the generator design, `argocd` for
+multi-cluster operations). Global-service annotations live with the workload's manifests, so a
+service becomes global on every member the moment the change merges — not cluster-by-cluster by
+hand.

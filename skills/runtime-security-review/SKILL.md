@@ -1,6 +1,6 @@
 ---
 name: runtime-security-review
-description: Use when setting up or reviewing runtime threat detection for Kubernetes — Falco/Tracee rules, triaging runtime alerts, or investigating suspicious container behavior. Mention "falco", "tracee", "runtime security", "suspicious process in container" as triggers.
+description: Use when setting up or reviewing runtime threat detection for Kubernetes — Falco/Tetragon/Tracee rules and policies, triaging runtime alerts, or investigating suspicious container behavior. Mention "falco", "tetragon", "tracingpolicy", "tracee", "runtime security", "suspicious process in container" as triggers.
 license: MIT
 compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, and other agents that support Agent Skills-style instructions.
 ---
@@ -28,6 +28,9 @@ workload under investigation.
    node caveats), the privileged DaemonSet, the k8s-metadata collector (so alerts name pods not
    container IDs), rule ConfigMaps in the GitOps repo, and the Falcosidekick output fan-out. Full
    mechanics, Helm values, rule syntax, and troubleshooting in `references/falco-deployment.md`.
+   If the sensor choice is open (or Cilium is the CNI, or in-kernel *enforcement* is wanted),
+   weigh Tetragon first — decision table and TracingPolicy/enforcement discipline in
+   `references/tetragon-deployment.md`.
 
 1. **Coverage check** — the detections that matter most, in rough order of signal value:
    - shell/exec into a container (`kubectl exec` legitimate use vs reverse shell — the alert
@@ -68,6 +71,9 @@ workload under investigation.
   (lists/macros/rules, Sysdig filter fields, priorities), where rules live on nodes and how to
   override without forking (`append`), Falcosidekick output fan-out, k8saudit plugin, and
   deployment troubleshooting.
+- `references/tetragon-deployment.md` — Falco vs Tetragon decision table, TracingPolicy hook
+  points and in-kernel selectors, export wiring, and the Post→Sigkill enforcement discipline
+  (observe first, narrowest selector, blast radius reviewed).
 
 ## Safety rules
 
