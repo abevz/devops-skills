@@ -81,6 +81,36 @@ jobs:
           done
           exit $fail
 
+      - name: Reference files mentioned in SKILL.md exist
+        run: |
+          fail=0
+          for d in skills/*/; do
+            for r in $(grep -o 'references/[a-z0-9/-]*\.md' "$d/SKILL.md" 2>/dev/null | sort -u); do
+              # cross-skill refs are written as <skill>/references/... and checked against skills/
+              if [ ! -f "$d$r" ] && ! grep -o '[a-z-]*/references/[a-z0-9/-]*\.md' "$d/SKILL.md" | grep -q "$r"; then
+                echo "::error file=$d/SKILL.md::dangling reference $r"
+                fail=1
+              fi
+            done
+            # verify cross-skill refs too
+            for x in $(grep -o '[a-z-]*/references/[a-z0-9/-]*\.md' "$d/SKILL.md" 2>/dev/null | sort -u); do
+              if [ ! -f "skills/$x" ]; then
+                echo "::error file=$d/SKILL.md::dangling cross-skill reference $x"
+                fail=1
+              fi
+            done
+          done
+          exit $fail
+
+      - name: README table matches skills directories
+        run: |
+          grep -o '](skills/[a-z-]*)' README.md | sed 's|](skills/||;s|)||' | sort -u > /tmp/readme.txt
+          ls skills/ | sort > /tmp/dirs.txt
+          if ! diff -u /tmp/readme.txt /tmp/dirs.txt; then
+            echo "::error::README skill table out of sync with skills/ directories"
+            exit 1
+          fi
+
       - name: No executable scripts or package manifests
         run: |
           found=$(find skills docs tests .github -type f \( -name '*.sh' -o -name '*.ps1' -o -name '*.js' -o -name '*.py' -o -name 'package.json' \) 2>/dev/null || true)
