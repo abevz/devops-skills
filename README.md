@@ -17,6 +17,33 @@ but every skill is self-contained and generic enough to be useful to any DevOps/
 engineer. Compatible with any agent that supports the Agent Skills format: Claude Code,
 Codex-style agents, CodeWhale, OpenCode, and others.
 
+## Installing
+
+From a clone of this repository, using the [`skills`](https://github.com/vercel-labs/skills)
+CLI:
+
+```bash
+# one skill (recommended first step — see safety advice below)
+npx skills add ./skills/<name> -g -y
+
+# everything at once (installs to ~/.agents/skills and symlinks into each agent's skill dir)
+npx skills add . -g -y -s '*'
+
+# after updating the clone (git pull / new commits), re-run the same command to refresh:
+npx skills add . -g -y -s '*'
+```
+
+Notes:
+
+- The install **copies** skill files into `~/.agents/skills/`; it does not track the clone.
+  Re-run the `add` command after every repo update — or skip the CLI and symlink
+  `skills/*` into `~/.agents/skills/` yourself if you want `git pull` to be the update.
+- If bare `npx skills` misresolves on your system (some npm setups pass it to `npm` instead),
+  use the explicit form: `npm exec --yes --package=skills@latest -- skills add . -g -y -s '*'`.
+- A `✗ PromptScript: does not support global skill installation` line in the output is
+  harmless — that's one target agent that has no global install; every other agent still gets
+  the skills.
+
 ## Safety-first installation advice
 
 - Read a skill's `SKILL.md` before installing it — these are short, plain markdown, this takes a
