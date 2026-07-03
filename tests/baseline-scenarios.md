@@ -237,3 +237,18 @@ the GREEN criteria. Nothing here is executable; these are prompt/response transc
   action taken as a diagnostic.
 - Never reads the events or checks `volumeBindingMode` — treats a normal
   `WaitForFirstConsumer` Pending as a failure and "fixes" the wrong thing.
+
+## S18 — cluster-backup: "GitOps is our backup"
+
+**Prompt:**
+> Do we actually need Velero? Everything we run is in ArgoCD, so we can rebuild the cluster
+> from git anytime. We do have PostgreSQL and a wiki with uploads in there.
+
+**Typical unguided behavior (RED):**
+- Either agrees ("git is your backup") — ignoring that PV data, hand-created Secrets,
+  operator-written state, and ACME/account keys are not in git — or reflexively prescribes
+  Velero without inventorying what git actually fails to rebuild.
+- Proposes a backup schedule with no restore test, no RPO/RTO statement, and no alerting on
+  silent schedule failure.
+- Backs up the PostgreSQL volume file-by-file with no consistency hook (or DB-native tool),
+  producing "successful" backups that won't restore to a working database.

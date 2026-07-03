@@ -51,6 +51,7 @@ full reference inventory — see [`docs/skill-map.md`](docs/skill-map.md).
 | [`helm-review`](skills/helm-review) | Kubernetes | Review Helm chart templates, values, and upgrade safety |
 | [`kubernetes-autoscaling`](skills/kubernetes-autoscaling) | Kubernetes | Design/review autoscaling: HPA/VPA/KEDA at the workload layer, cluster-autoscaler/Karpenter at the node layer |
 | [`storage-debug`](skills/storage-debug) | Kubernetes | Diagnose PVC/attach/mount/expansion failures and Longhorn/Rook-Ceph/NFS backends, data-safe |
+| [`cluster-backup`](skills/cluster-backup) | Kubernetes | Design/review backup & DR: the GitOps gap inventory, Velero, etcd snapshots, restore testing |
 | [`argocd`](skills/argocd) | GitOps | Install/operate Argo CD: HA, sharding, SSO/RBAC, AppProject, repos, sync design, backup/DR |
 | [`argocd-debug`](skills/argocd-debug) | GitOps | Diagnose an out-of-sync or degraded ArgoCD Application |
 | [`argocd-applicationset`](skills/argocd-applicationset) | GitOps | Design/review ArgoCD ApplicationSet generators and blast radius |

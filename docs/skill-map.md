@@ -77,6 +77,7 @@ flowchart LR
         SM["secrets-management"]
     end
     MP -.->|"platform-specific depth"| UMB
+    CB["cluster-backup<br/>(DR posture: GitOps gap,<br/>Velero, restore testing)"] --> PR
     ISD["interview-system-design<br/>(same muscles, whiteboard setting)"]
 ```
 
@@ -172,6 +173,7 @@ content). `conditional/` references load only when their platform signal is dete
 | `cicd-review` | deep | terraform-pipelines |
 | `cilium` | deep | install, network-policies, hubble, encryption, clustermesh, gateway-egress + conditional/{eks,gke,aks} |
 | `cilium-debug` | deep | playbooks |
+| `cluster-backup` | deep | velero |
 | `dast-review` | deep | zap-usage |
 | `dockerfile-review` | deep | examples |
 | `english-technical-message` | flat | — |
@@ -207,7 +209,7 @@ content). `conditional/` references load only when their platform signal is dete
 | `vault` | deep | deploy-ha, auth-policies, secret-engines, kubernetes-and-dr |
 | `vulnerability-triage` | flat | — |
 
-44 skills: 30 deep, 14 flat.
+45 skills: 31 deep, 14 flat.
 
 ## Maintenance
 

@@ -170,6 +170,18 @@ it regresses if any criterion is lost.
 - [ ] Every mutating step states its data impact and requires confirmation; the fix ends with
       an end-to-end verification (mount + write + backend health).
 
+## S18 — cluster-backup (GREEN criteria)
+
+- [ ] The GitOps gap inventory is walked explicitly (PV data, non-git Secrets, operator-written
+      state, control-plane layer) and every item lands in a bucket: git-rebuildable /
+      backup-covered / uncovered.
+- [ ] RPO/RTO are stated per bucket and actually drive the schedule/method choice; CSI snapshot
+      vs file-system backup is chosen per volume type with the trade-off named.
+- [ ] PostgreSQL gets a consistency answer (hooks with onError: Fail, or a DB-native tool that
+      owns data) — never a bare file-system copy of a live database.
+- [ ] The design includes a scheduled restore test and alerting on backup-pipeline failure;
+      nothing is backed up/restored by the agent.
+
 ---
 
 ## How to run a check
