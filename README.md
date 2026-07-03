@@ -31,6 +31,9 @@ Codex-style agents, CodeWhale, OpenCode, and others.
 
 ## Skills
 
+For the top-down view — entry-point flows, umbrella↔debug pairs, the DevSecOps chain, and the
+full reference inventory — see [`docs/skill-map.md`](docs/skill-map.md).
+
 | Skill | Category | Purpose |
 |---|---|---|
 | [`git-message`](skills/git-message) | Git | Write Conventional Commits-style commit messages from a diff |

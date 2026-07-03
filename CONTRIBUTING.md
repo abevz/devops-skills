@@ -23,7 +23,8 @@ Notes for adding, changing, or retiring skills in this repository later.
    (see `docs/design-notes.md` and `SECURITY.md`). If you're tempted to add a script, first ask
    whether the skill can just tell the agent which read-only command to run instead.
 7. **Update the skill table in `README.md`** with the new skill's name, category, and one-line
-   purpose.
+   purpose, and place the skill on the map in `docs/skill-map.md` (lane, pairings, chain
+   membership, depth row in the inventory).
 
 ## Skill shape (required)
 
