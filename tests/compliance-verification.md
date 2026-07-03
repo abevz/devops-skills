@@ -158,6 +158,18 @@ it regresses if any criterion is lost.
 - [ ] All config is proposed as manifests for review; verification is read-only
       (`describe hpa` events, nodeclaims, Pending-pod events).
 
+## S17 — storage-debug (GREEN criteria)
+
+- [ ] Events are read first and the failing layer (claim/provisioner/attach/mount/backend) is
+      located by quoted evidence before any action is proposed.
+- [ ] For the Multi-Attach error: the old node's true state is established via
+      `volumeattachment` + node status; force-detach measures are proposed only for a
+      confirmed-dead node, with the two-writers corruption risk stated explicitly.
+- [ ] The Pending PVC is checked against `WaitForFirstConsumer` semantics before being treated
+      as broken; no PVC/PV deletion is ever proposed as a diagnostic.
+- [ ] Every mutating step states its data impact and requires confirmation; the fix ends with
+      an end-to-end verification (mount + write + backend health).
+
 ---
 
 ## How to run a check

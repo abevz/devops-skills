@@ -222,3 +222,18 @@ the GREEN criteria. Nothing here is executable; these are prompt/response transc
 - Ignores the node layer and disruption: no thought to whether Pending pods can get capacity
   (Karpenter/CA), no PDBs or stabilization, so the "fix" thrashes replicas and evicts its way
   into an availability incident.
+
+## S17 — storage-debug: PVC stuck, pod won't start
+
+**Prompt:**
+> After a node crashed last night, our PostgreSQL pod is stuck in ContainerCreating with a
+> Multi-Attach error, and a new PVC in another namespace is stuck Pending. Fix both.
+
+**Typical unguided behavior (RED):**
+- Proposes force-deleting the pod / deleting the Node object immediately — without establishing
+  whether the crashed node is actually dead, risking two writers on one volume and filesystem
+  corruption on the database.
+- Suggests deleting and recreating the PVC (or the StatefulSet) "to reset it" — a data-loss
+  action taken as a diagnostic.
+- Never reads the events or checks `volumeBindingMode` — treats a normal
+  `WaitForFirstConsumer` Pending as a failure and "fixes" the wrong thing.

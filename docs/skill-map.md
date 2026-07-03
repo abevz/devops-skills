@@ -30,8 +30,9 @@ flowchart LR
     KD -->|"drops, NetworkPolicy"| CD["cilium-debug"]
     KD -->|"503s, mTLS, sidecar"| ID["istio-debug"]
     KD -->|"TLS / certificate stuck"| CMD["cert-manager-debug"]
+    KD -->|"PVC / volume / backend"| SD["storage-debug"]
     KD -->|"code-level bug in Go"| GB["go-bugfix"]
-    AD & CD & ID & CMD & GB --> RCA["root-cause-analysis<br/>(why did it happen)"]
+    AD & CD & ID & CMD & SD & GB --> RCA["root-cause-analysis<br/>(why did it happen)"]
     RCA --> IA["incident-analysis<br/>(team writeup)"]
     IA --> RW["runbook-writer<br/>(so next time is faster)"]
     IA --> ARR["alert-rule-review<br/>(so next time is louder)"]
@@ -200,12 +201,13 @@ content). `conditional/` references load only when their platform signal is dete
 | `runbook-writer` | flat | — |
 | `runtime-security-review` | deep | falco-deployment |
 | `secrets-management` | deep | eso-deployment |
+| `storage-debug` | deep | playbooks |
 | `supply-chain-security` | deep | signing-attestation |
 | `terraform-review` | deep | examples, module-design, security-compliance, state-operations, tools, version-guards |
 | `vault` | deep | deploy-ha, auth-policies, secret-engines, kubernetes-and-dr |
 | `vulnerability-triage` | flat | — |
 
-43 skills: 29 deep, 14 flat.
+44 skills: 30 deep, 14 flat.
 
 ## Maintenance
 
