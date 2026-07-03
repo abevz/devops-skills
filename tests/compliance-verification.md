@@ -182,6 +182,18 @@ it regresses if any criterion is lost.
 - [ ] The design includes a scheduled restore test and alerting on backup-pipeline failure;
       nothing is backed up/restored by the agent.
 
+## S19 — upgrade-readiness (GREEN criteria)
+
+- [ ] The plan is four sequential hops (1.29→…→1.33), each with a verified backup gate, control
+      plane first, canary node pool before the rest.
+- [ ] Removed-API scan covers cluster AND git AND Helm releases against each target minor, with
+      fixes routed to git, not live edits.
+- [ ] The addon matrix is explicit for Cilium, Longhorn, cert-manager, and the operators —
+      version → supported range → action & order (CNI row resolved before any hop that needs it).
+- [ ] Drain readiness is checked both directions (PDB coverage and PDB deadlock, Longhorn
+      replica placement), and the rollback story is restore/fix-forward — never a control-plane
+      downgrade; the agent executes nothing.
+
 ---
 
 ## How to run a check

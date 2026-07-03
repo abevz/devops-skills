@@ -36,7 +36,10 @@ for the full per-repository breakdown.
 - **No separate "kubernetes-operations"/"cluster lifecycle" skill** — `production-readiness` and
   `kubernetes-debug` already cover the review and diagnostic angles a markdown-only skill can
   responsibly own; actual node/etcd/upgrade operations need real tooling and cluster access, not
-  an agent skill.
+  an agent skill. *Partially revisited (2026-07): `upgrade-readiness` now owns the
+  assessment/planning half of cluster upgrades (skew math, removed-API scans, addon matrix,
+  staged plan) in review shape — the execution half (`kubeadm upgrade`, drains) stays excluded,
+  same split as `cicd-review` vs the rejected pipeline generator.*
 - **No generic "devops-assistant" or "kubernetes-swarm-orchestrator" mega-skill** —
   `cluster-skills`' agent-persona layer (Atlas/Shield/Flow/Pulse/etc.) was interesting but out of
   scope: it's a multi-agent orchestration product, not a single reusable skill, and duplicates
@@ -122,7 +125,8 @@ playbooks), `ingress` (3 references — north-south umbrella: ingress-nginx EOL,
 migration), `kubernetes-autoscaling` (2 references — workload and node layers), `storage-debug`
 (layer-by-layer event playbooks incl. Longhorn/Rook-Ceph backends), `cluster-backup` (Velero/
 etcd design and failure modes — review/design-shaped, so it stays within the "no mutating day-2
-skills" rule the same way `cicd-review` did).
+skills" rule the same way `cicd-review` did), `upgrade-readiness` (skew/scan/matrix/drain
+checks — same review-shaped split).
 - **Flat (SKILL.md only)** — methodology skills where the workflow itself is the whole content
   and extra reference material would be padding: `git-message`, `pr-review`,
   `root-cause-analysis`, `incident-analysis`, `architecture-review`, `migration-plan`,

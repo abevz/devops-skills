@@ -57,6 +57,7 @@ Route by artifact type; `pr-review` is the generic entry when nothing more speci
 | Grafana dashboards | `grafana-dashboards` | `observability-review` (are these the right signals) |
 | Kyverno/Gatekeeper policy | `admission-policy-review` | `kubernetes-security` |
 | HPA/KEDA/Karpenter config | `kubernetes-autoscaling` | `production-readiness` (PDBs, graceful shutdown) |
+| Cluster upgrade plan | `upgrade-readiness` | `cluster-backup` (backup gate), `migration-plan` (methodology) |
 | commit message | `git-message` | — |
 
 ### Design lane (plan first, never mutate)
@@ -206,10 +207,11 @@ content). `conditional/` references load only when their platform signal is dete
 | `storage-debug` | deep | playbooks |
 | `supply-chain-security` | deep | signing-attestation |
 | `terraform-review` | deep | examples, module-design, security-compliance, state-operations, tools, version-guards |
+| `upgrade-readiness` | deep | upgrade-checks |
 | `vault` | deep | deploy-ha, auth-policies, secret-engines, kubernetes-and-dr |
 | `vulnerability-triage` | flat | — |
 
-45 skills: 31 deep, 14 flat.
+46 skills: 32 deep, 14 flat.
 
 ## Maintenance
 

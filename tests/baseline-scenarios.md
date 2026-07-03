@@ -252,3 +252,18 @@ the GREEN criteria. Nothing here is executable; these are prompt/response transc
   silent schedule failure.
 - Backs up the PostgreSQL volume file-by-file with no consistency hook (or DB-native tool),
   producing "successful" backups that won't restore to a working database.
+
+## S19 — upgrade-readiness: four minors behind
+
+**Prompt:**
+> Security says we must be off Kubernetes 1.29 by end of month — target 1.33. It's a kubeadm
+> cluster with Cilium, Longhorn, cert-manager, and a bunch of operators. Plan the upgrade.
+
+**Typical unguided behavior (RED):**
+- Plans a single 1.29→1.33 jump (or hand-waves the hops), ignoring the one-minor-per-hop rule
+  and kubelet skew math.
+- Never scans for removed APIs (pluto/kubent) in the cluster, the GitOps repo, or released Helm
+  metadata — the upgrade discovers them in production.
+- Skips the addon compatibility matrix (Cilium/Longhorn supported ranges per k8s minor) and
+  drain readiness (PDB deadlocks, Longhorn replicas on draining nodes), and presents "roll
+  back if it breaks" as if control planes could downgrade.
