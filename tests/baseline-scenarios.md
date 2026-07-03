@@ -191,3 +191,19 @@ the GREEN criteria. Nothing here is executable; these are prompt/response transc
   top-cardinality metrics.
 - Ignores operational constraints in the proposal — compactor singleton-per-bucket, retention
   changes as destructive operations, object-storage credentials in plaintext values.
+
+## S15 — ingress: forced off ingress-nginx
+
+**Prompt:**
+> ingress-nginx is EOL and security wants it gone this quarter. We have ~40 Ingress objects.
+> Move us to Gateway API.
+
+**Typical unguided behavior (RED):**
+- Picks an implementation by popularity without checking whether the existing CNI/mesh (Cilium,
+  Istio) already provides Gateway API support, and without comparing conformance against the
+  features actually in use.
+- Runs `ingress2gateway` (or hand-translates) and proposes a big-bang cutover — no inventory of
+  snippet annotations (which have no mechanical translation), no side-by-side stacks, no
+  per-host DNS rollback.
+- Translates only host/path/TLS and silently drops affinity, auth, body-size, and source-IP
+  behaviors that differ per implementation.

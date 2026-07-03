@@ -51,6 +51,7 @@ Route by artifact type; `pr-review` is the generic entry when nothing more speci
 | CI/CD pipeline | `cicd-review` | `supply-chain-security`, `dast-review` |
 | Terraform / OpenTofu | `terraform-review` | (knowledge base: upstream `terraform-skill`) |
 | GitOps repo layout | `gitops-review` | `argocd-applicationset` (generator design) |
+| Ingress / Gateway API config | `ingress` | `cert-manager-debug` (listener TLS), `cilium`/`istio` (their gateway impls) |
 | Prometheus alert rules | `alert-rule-review` | `runbook-writer` (the rule's runbook link) |
 | Grafana dashboards | `grafana-dashboards` | `observability-review` (are these the right signals) |
 | Kyverno/Gatekeeper policy | `admission-policy-review` | `kubernetes-security` |
@@ -120,7 +121,7 @@ flowchart TD
     subgraph NET["Networking / mesh / TLS"]
         CIL2["cilium<br/>(umbrella)"] --- CDBG2["cilium-debug"]
         IST2["istio<br/>(umbrella)"] --- IDBG2["istio-debug"]
-        CMDBG["cert-manager-debug<br/>(no umbrella — debug-only by design)"]
+        ING["ingress<br/>(umbrella: north-south,<br/>Gateway API migration)"] --- CMDBG["cert-manager-debug<br/>(listener TLS troubleshooting)"]
     end
     subgraph OBSD["Observability"]
         OSTACK["observability-stack<br/>(umbrella: operate the stack)"] --- OREV["observability-review<br/>(what to instrument, SLOs)"]
@@ -181,6 +182,7 @@ content). `conditional/` references load only when their platform signal is dete
 | `helm-review` | deep | patterns, tools |
 | `homelab-change-plan` | flat | — |
 | `incident-analysis` | flat | — |
+| `ingress` | deep | ingress-nginx, gateway-api, migration |
 | `interview-system-design` | flat | — |
 | `istio` | deep | install-upgrade, sidecar-vs-ambient, traffic-management, security, telemetry |
 | `istio-debug` | deep | playbooks |
@@ -201,7 +203,7 @@ content). `conditional/` references load only when their platform signal is dete
 | `vault` | deep | deploy-ha, auth-policies, secret-engines, kubernetes-and-dr |
 | `vulnerability-triage` | flat | — |
 
-41 skills: 27 deep, 14 flat.
+42 skills: 28 deep, 14 flat.
 
 ## Maintenance
 

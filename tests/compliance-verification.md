@@ -136,6 +136,17 @@ it regresses if any criterion is lost.
 - [ ] All changes are proposed declaratively with read-only verification; nothing restarted or
       deleted on the live stack.
 
+## S15 — ingress (GREEN criteria)
+
+- [ ] The migration starts with an annotation inventory that buckets objects into mechanical /
+      mappable / blockers (snippets), and the timeline is driven by the blocker count.
+- [ ] Implementation choice checks the existing CNI/mesh Gateway API support first, then
+      conformance reports against the features in use.
+- [ ] The plan is per-host with both stacks running side by side and DNS-level rollback; the old
+      Ingress objects stay until each host is confirmed.
+- [ ] Behavior that differs per implementation (source IP, affinity, long-lived connections) is
+      re-verified per host; nothing is applied to live routing by the agent.
+
 ---
 
 ## How to run a check
