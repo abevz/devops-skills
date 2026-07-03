@@ -126,3 +126,68 @@ the GREEN criteria. Nothing here is executable; these are prompt/response transc
 - For a failing HTTP-01 self-check, doesn't distinguish "unreachable from the internet" from
   "unreachable from inside the cluster" (hairpin NAT / split-horizon), so the proposed fix
   targets the wrong layer.
+
+## S10 — argocd: multi-team install
+
+**Prompt:**
+> Set up Argo CD for us: 3 teams, ~80 apps across 2 clusters, we use Okta.
+
+**Typical unguided behavior (RED):**
+- Dumps the default non-HA `install.yaml` (or reflexively full HA) without weighing topology
+  against the actual app/cluster count.
+- Skips SSO/RBAC/AppProject entirely — three teams share the built-in `admin` account in the
+  `default` project, so there is no tenancy boundary at all.
+- Treats DR as "it's all in git" — ignoring that repo/cluster credentials and RBAC live in k8s
+  Secrets/ConfigMaps that git does not contain; configures the live install imperatively.
+
+## S11 — cilium: CNI migration with kube-proxy replacement
+
+**Prompt:**
+> Migrate our production cluster from flannel to Cilium with kube-proxy replacement, and enable
+> encryption while we're at it.
+
+**Typical unguided behavior (RED):**
+- Proposes a single-shot `helm install` flipping CNI, kube-proxy replacement, and encryption at
+  once on the live cluster — no stages, no rollback path, no per-step verification.
+- Never checks prerequisites: kernel version floor for the eBPF features, datapath mode choice,
+  or whether the cluster is managed (EKS/GKE/AKS change the answer substantially).
+- Accepts "enable encryption" without asking what requirement drives it.
+
+## S12 — istio: mesh with mTLS everywhere
+
+**Prompt:**
+> Add Istio to production and turn on mTLS everywhere. We'll want canary deploys later.
+
+**Typical unguided behavior (RED):**
+- `istioctl install` with the default profile and no revision — making every future upgrade an
+  in-place, whole-mesh risk.
+- Flips PeerAuthentication to STRICT mesh-wide immediately, breaking un-injected namespaces and
+  plaintext legacy clients in one shot.
+- Defaults to sidecars without considering whether ambient (L4 mTLS + waypoints only where L7 is
+  needed) fits an mTLS-driven adoption better; never mentions `istioctl analyze`.
+
+## S13 — vault: secrets for apps on Kubernetes
+
+**Prompt:**
+> Deploy Vault on our Kubernetes cluster so apps can pull their database passwords.
+
+**Typical unguided behavior (RED):**
+- Proposes dev mode or a single replica with manual unseal; handles unseal keys and the root
+  token casually (stored in a k8s Secret, left in daily use).
+- Gives all apps one shared token against a static KV mount with a broad `path "*"` policy —
+  no workload-identity auth, no per-app least privilege, no dynamic DB credentials.
+- Has no snapshot/restore story — losing the storage backend means losing the root of trust.
+
+## S14 — observability-stack: OOMing Prometheus + long-term metrics
+
+**Prompt:**
+> Prometheus keeps OOMing at 60GB and management wants 1 year of metrics. Should we set up
+> Thanos?
+
+**Typical unguided behavior (RED):**
+- Says yes to Thanos (or swaps in Mimir) immediately — without ever asking for the active series
+  count or diagnosing the cardinality that is actually driving the OOM.
+- Treats "raise the memory limit" as the fix; never looks at `prometheus_tsdb_head_series` or
+  top-cardinality metrics.
+- Ignores operational constraints in the proposal — compactor singleton-per-bucket, retention
+  changes as destructive operations, object-storage credentials in plaintext values.

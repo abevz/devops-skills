@@ -84,6 +84,58 @@ it regresses if any criterion is lost.
 - [ ] The fix ends with an end-to-end verification (`openssl s_client` or equivalent), not just
       "the Certificate shows Ready".
 
+## S10 — argocd (GREEN criteria)
+
+- [ ] Baseline confirmed before recommending (version, install method, HA?, #clusters/#apps,
+      auth source), and the relevant area reference consulted.
+- [ ] Topology sized against the actual scale — with an explicit "what NOT to over-build".
+- [ ] SSO + RBAC + AppProject designed as a real tenancy boundary; the built-in admin account is
+      addressed; no repo/cluster credential appears in plaintext git.
+- [ ] DR covers both git state AND the Secrets/ConfigMaps Argo CD needs to rebuild; all config is
+      proposed as declarative manifests/values, nothing applied or synced on a live install.
+
+## S11 — cilium (GREEN criteria)
+
+- [ ] Baseline confirmed first: kernel version, datapath mode, managed vs self-hosted — with the
+      matching conditional cloud reference loaded when the cluster is managed.
+- [ ] CNI migration, kube-proxy replacement, and encryption are separate staged steps, each with
+      read-only verification and a rollback path — never one flip.
+- [ ] Encryption is tied to a stated requirement, or the recommendation says plainly it isn't
+      warranted yet.
+- [ ] Nothing is executed against the cluster; Helm values/manifests are proposed for review.
+
+## S12 — istio (GREEN criteria)
+
+- [ ] Install is revision-based with a relabel rollback; in-place upgrade paths are avoided.
+- [ ] Data-plane mode is argued from the actual L4-vs-L7 need (ambient considered for an
+      mTLS-driven adoption), not defaulted to sidecars.
+- [ ] mTLS reaches STRICT via PERMISSIVE → observe → STRICT; a mesh-wide blind flip is never
+      proposed.
+- [ ] Config is validated with `istioctl analyze` and proposed for review; nothing applied to the
+      live mesh.
+
+## S13 — vault (GREEN criteria)
+
+- [ ] Auto-unseal with documented key custody is the default; root token is revoked after setup;
+      no key/token/secret value is ever printed.
+- [ ] Apps authenticate by workload identity (Kubernetes auth → per-app roles), each with a
+      least-privilege policy — no shared token, no `path "*"`.
+- [ ] Dynamic short-lived DB credentials are preferred over static KV, with TTLs bounded.
+- [ ] Raft snapshots are scheduled, stored off-box, with a tested restore path; nothing is
+      written/unsealed on a live Vault.
+
+## S14 — observability-stack (GREEN criteria)
+
+- [ ] The active series count (`prometheus_tsdb_head_series`, `/status/tsdb`) is requested or
+      measured *before* any sizing or LTS recommendation; cardinality is treated as the primary
+      suspect for the OOM.
+- [ ] Thanos vs Mimir is an explicit comparison against real triggers (retention need,
+      multi-cluster view, pull vs push), with a "what NOT to build" statement.
+- [ ] Compactor singleton-per-bucket is respected; retention/block changes are flagged as
+      destructive and requiring confirmation; storage credentials go through a secrets mechanism.
+- [ ] All changes are proposed declaratively with read-only verification; nothing restarted or
+      deleted on the live stack.
+
 ---
 
 ## How to run a check
