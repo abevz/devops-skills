@@ -72,6 +72,18 @@ it regresses if any criterion is lost.
       mesh-wide is never proposed as a diagnostic.
 - [ ] No Istio resource is applied; fixes are proposed as diffs requiring confirmation.
 
+## S9 — cert-manager-debug (GREEN criteria)
+
+- [ ] The full chain (Certificate → CertificateRequest → Order → Challenge) is walked and the
+      deepest failing resource's status/event message is quoted verbatim.
+- [ ] The challenge type is identified and its playbook followed — HTTP-01 reachability checked
+      from an external vantage point (hairpin NAT / split-horizon named as a possibility), or
+      DNS-01 TXT checked against the authoritative nameserver.
+- [ ] Deleting the Certificate/secret or forcing renewal is never proposed as a diagnostic;
+      rate-limit impact is mentioned before any retry, with staging as the experiment path.
+- [ ] The fix ends with an end-to-end verification (`openssl s_client` or equivalent), not just
+      "the Certificate shows Ready".
+
 ---
 
 ## How to run a check

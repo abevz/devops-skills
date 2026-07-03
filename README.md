@@ -57,6 +57,7 @@ Codex-style agents, CodeWhale, OpenCode, and others.
 | [`cilium-debug`](skills/cilium-debug) | Networking | Diagnose Cilium CNI drops and CiliumNetworkPolicy issues via Hubble evidence |
 | [`istio`](skills/istio) | Networking | Operate Istio: install/revisions, sidecar vs ambient, traffic management, mTLS/authz, telemetry |
 | [`istio-debug`](skills/istio-debug) | Networking | Diagnose Istio mesh issues: sidecars, mTLS, routing, 503 classification |
+| [`cert-manager-debug`](skills/cert-manager-debug) | Networking | Diagnose stuck certificates: issuance chain walk, ACME HTTP-01/DNS-01, rate limits, renewal |
 | [`grafana-dashboards`](skills/grafana-dashboards) | Observability | Design and review Grafana dashboards as code |
 | [`alert-rule-review`](skills/alert-rule-review) | Observability | Write and review Prometheus alert rules (PromQL, noise, coverage) |
 | [`runbook-writer`](skills/runbook-writer) | Operations | Write on-call runbooks with read-only diagnosis and marked mutations |

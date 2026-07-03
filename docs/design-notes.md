@@ -117,7 +117,8 @@ Skills split deliberately into two depths:
   own multi-facet umbrella, like the upstream terraform-skill), `argocd` (5 references — operator/
   platform umbrella), `vault` (4 references — Vault/OpenBao operator umbrella), `istio` (5
 references — service-mesh operator umbrella), `observability-stack` (4 references — metrics/logs/
-traces platform operator umbrella).
+traces platform operator umbrella), `cert-manager-debug` (issuance-chain and ACME error-text
+playbooks).
 - **Flat (SKILL.md only)** — methodology skills where the workflow itself is the whole content
   and extra reference material would be padding: `git-message`, `pr-review`,
   `root-cause-analysis`, `incident-analysis`, `architecture-review`, `migration-plan`,

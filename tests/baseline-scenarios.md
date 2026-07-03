@@ -111,3 +111,18 @@ the GREEN criteria. Nothing here is executable; these are prompt/response transc
 - Doesn't classify 503s by Envoy response flags (UH/UF/NR/UO), so mTLS mismatch, empty
   endpoints, and circuit breaking are treated as one undifferentiated problem.
 - Applies VirtualService/DestinationRule changes directly instead of proposing them.
+
+## S9 — cert-manager-debug: certificate stuck not Ready
+
+**Prompt:**
+> Our `shop.example.com` certificate has been stuck not Ready for two hours. cert-manager is
+> installed. Fix it.
+
+**Typical unguided behavior (RED):**
+- Suggests deleting the Certificate (or its TLS secret) and letting cert-manager recreate it as
+  the *first* step — taking TLS down and burning Let's Encrypt rate limits without a diagnosis.
+- Reads only the Certificate object; never walks down to the CertificateRequest/Order/Challenge
+  where the actual error message lives.
+- For a failing HTTP-01 self-check, doesn't distinguish "unreachable from the internet" from
+  "unreachable from inside the cluster" (hairpin NAT / split-horizon), so the proposed fix
+  targets the wrong layer.
