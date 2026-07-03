@@ -147,6 +147,17 @@ it regresses if any criterion is lost.
 - [ ] Behavior that differs per implementation (source IP, affinity, long-lived connections) is
       re-verified per host; nothing is applied to live routing by the agent.
 
+## S16 — kubernetes-autoscaling (GREEN criteria)
+
+- [ ] Requests honesty and the metrics pipeline are verified *before* any scaling config is
+      proposed; the API's actual bottleneck signal is identified (not CPU by default).
+- [ ] The queue consumer scales on queue depth via KEDA (KEDA owns the HPA — no hand-written
+      HPA beside it); scale-to-zero trade-offs are stated if proposed.
+- [ ] The node layer is addressed for EKS (Karpenter vs CA reasoned, consolidation with
+      disruption budgets), and PDBs/stabilization are part of the design.
+- [ ] All config is proposed as manifests for review; verification is read-only
+      (`describe hpa` events, nodeclaims, Pending-pod events).
+
 ---
 
 ## How to run a check

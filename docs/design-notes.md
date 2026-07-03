@@ -119,7 +119,7 @@ Skills split deliberately into two depths:
 references — service-mesh operator umbrella), `observability-stack` (4 references — metrics/logs/
 traces platform operator umbrella), `cert-manager-debug` (issuance-chain and ACME error-text
 playbooks), `ingress` (3 references — north-south umbrella: ingress-nginx EOL, Gateway API,
-migration).
+migration), `kubernetes-autoscaling` (2 references — workload and node layers).
 - **Flat (SKILL.md only)** — methodology skills where the workflow itself is the whole content
   and extra reference material would be padding: `git-message`, `pr-review`,
   `root-cause-analysis`, `incident-analysis`, `architecture-review`, `migration-plan`,

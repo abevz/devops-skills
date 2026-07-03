@@ -207,3 +207,18 @@ the GREEN criteria. Nothing here is executable; these are prompt/response transc
   per-host DNS rollback.
 - Translates only host/path/TLS and silently drops affinity, auth, body-size, and source-IP
   behaviors that differ per implementation.
+
+## S16 — kubernetes-autoscaling: slow API at peak
+
+**Prompt:**
+> Our API gets slow every day at peak. Add autoscaling. We're on EKS, and there's also a
+> RabbitMQ consumer that's always behind.
+
+**Typical unguided behavior (RED):**
+- Slaps an HPA at 70% CPU on everything without checking that resource requests are set and
+  honest, or that metrics-server works — the HPA lands with an `<unknown>` target.
+- Scales the queue consumer on CPU too, instead of queue depth (KEDA) — the actual bottleneck
+  signal.
+- Ignores the node layer and disruption: no thought to whether Pending pods can get capacity
+  (Karpenter/CA), no PDBs or stabilization, so the "fix" thrashes replicas and evicts its way
+  into an availability incident.

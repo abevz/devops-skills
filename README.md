@@ -49,6 +49,7 @@ full reference inventory — see [`docs/skill-map.md`](docs/skill-map.md).
 | [`kubernetes-yaml-review`](skills/kubernetes-yaml-review) | Kubernetes | Review manifests before they're applied |
 | [`kubernetes-security`](skills/kubernetes-security) | Kubernetes | Security audit of workloads, RBAC, and cluster config |
 | [`helm-review`](skills/helm-review) | Kubernetes | Review Helm chart templates, values, and upgrade safety |
+| [`kubernetes-autoscaling`](skills/kubernetes-autoscaling) | Kubernetes | Design/review autoscaling: HPA/VPA/KEDA at the workload layer, cluster-autoscaler/Karpenter at the node layer |
 | [`argocd`](skills/argocd) | GitOps | Install/operate Argo CD: HA, sharding, SSO/RBAC, AppProject, repos, sync design, backup/DR |
 | [`argocd-debug`](skills/argocd-debug) | GitOps | Diagnose an out-of-sync or degraded ArgoCD Application |
 | [`argocd-applicationset`](skills/argocd-applicationset) | GitOps | Design/review ArgoCD ApplicationSet generators and blast radius |

@@ -55,6 +55,7 @@ Route by artifact type; `pr-review` is the generic entry when nothing more speci
 | Prometheus alert rules | `alert-rule-review` | `runbook-writer` (the rule's runbook link) |
 | Grafana dashboards | `grafana-dashboards` | `observability-review` (are these the right signals) |
 | Kyverno/Gatekeeper policy | `admission-policy-review` | `kubernetes-security` |
+| HPA/KEDA/Karpenter config | `kubernetes-autoscaling` | `production-readiness` (PDBs, graceful shutdown) |
 | commit message | `git-message` | — |
 
 ### Design lane (plan first, never mutate)
@@ -186,6 +187,7 @@ content). `conditional/` references load only when their platform signal is dete
 | `interview-system-design` | flat | — |
 | `istio` | deep | install-upgrade, sidecar-vs-ambient, traffic-management, security, telemetry |
 | `istio-debug` | deep | playbooks |
+| `kubernetes-autoscaling` | deep | workload-autoscaling, node-autoscaling |
 | `kubernetes-debug` | deep | playbooks + conditional/managed-clusters |
 | `kubernetes-security` | deep | examples, hardening, tools |
 | `kubernetes-yaml-review` | deep | examples, reliability, tools, workload-patterns |
@@ -203,7 +205,7 @@ content). `conditional/` references load only when their platform signal is dete
 | `vault` | deep | deploy-ha, auth-policies, secret-engines, kubernetes-and-dr |
 | `vulnerability-triage` | flat | — |
 
-42 skills: 28 deep, 14 flat.
+43 skills: 29 deep, 14 flat.
 
 ## Maintenance
 
