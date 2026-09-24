@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # CI/CD Review
 
+## TL;DR checklist
+
+- [ ] Check permissions and privileged triggers first.
+- [ ] Trace untrusted inputs through shell, actions, and checked-out code.
+- [ ] Check pinning, secrets handling, and deploy gates.
+
+## Key read-only checks
+
+- Read the exact workflow file, trigger event, token permissions, and run steps.
+
+## Common pitfalls
+
+- Do not execute a pipeline while reviewing its configuration.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/terraform-pipelines.md](references/terraform-pipelines.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when reviewing pipeline definitions — GitHub Actions workflows, GitLab CI, or similar —

@@ -7,6 +7,31 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Observability stack
 
+## TL;DR checklist
+
+- [ ] Identify the deployed telemetry components and target area.
+- [ ] Measure active series, traffic volume, retention, and current bottleneck.
+- [ ] Choose scale or storage changes against the measured problem.
+
+## Key read-only checks
+
+- Read Prometheus status, target and series counts, retention, remote-write, and object-storage configuration.
+
+## Common pitfalls
+
+- Do not recommend long-term storage before measuring cardinality and retention needs.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/prometheus-ha-scaling.md](references/prometheus-ha-scaling.md)
+- [references/long-term-storage.md](references/long-term-storage.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when standing up or scaling the observability *platform*: Prometheus HA and sharding,
