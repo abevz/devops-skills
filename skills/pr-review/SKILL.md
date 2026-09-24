@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # PR Review
 
+## TL;DR checklist
+
+- [ ] Identify the change intent and read the complete diff with callers.
+- [ ] Check correctness, security, compatibility, performance, and meaningful tests.
+- [ ] Report only actionable findings with evidence and severity.
+
+## Key read-only checks
+
+- Inspect the PR diff, affected call sites, and focused tests before judging.
+
+## Common pitfalls
+
+- Do not approve a change based only on a green CI badge.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [Workflow](#workflow) below.
+
+Last verified: unverified
+
 ## When to use
 
 Use when the user shares a pull request, diff, or branch and asks for a review, or wants a second

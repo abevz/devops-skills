@@ -7,6 +7,31 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Helm Review
 
+## TL;DR checklist
+
+- [ ] Inspect values contracts, template guards, helper names, and labels.
+- [ ] Render the chart for relevant values and check upgrade-sensitive fields.
+- [ ] Report exact rendered-resource risks before recommending a release.
+
+## Key read-only checks
+
+- Read Chart.yaml, values, templates, schema, and provided rendered output.
+
+## Common pitfalls
+
+- Do not infer rendered behavior from a template fragment alone.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/patterns.md](references/patterns.md)
+- [references/tools.md](references/tools.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when reviewing a Helm chart (own or third-party) before adopting it, upgrading it, or

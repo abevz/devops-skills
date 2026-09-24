@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Supply Chain Security
 
+## TL;DR checklist
+
+- [ ] Trace the built image through SBOM, scan, signature, and provenance.
+- [ ] Check digest binding and the deployment admission point.
+- [ ] Identify which verification step would reject an unsigned or unexpected artifact.
+
+## Key read-only checks
+
+- Read the build workflow, registry references, signing settings, and deployment image ref.
+
+## Common pitfalls
+
+- Do not treat a mutable tag as artifact identity.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/signing-attestation.md](references/signing-attestation.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when reviewing or designing the path from build to running artifact: SBOM, CVE scanning
