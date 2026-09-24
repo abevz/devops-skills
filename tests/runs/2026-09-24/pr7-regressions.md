@@ -2,13 +2,13 @@
 
 Run date: 2026-09-24 UTC. OLD is merged main after PR5; NEW is PR7 after PR5 reconciliation. Both arms used the same baseline prompt, `gpt-6-luna`/max, three fresh isolated read-only sessions per scenario, temporary HOME/CODEX_HOME, and only the candidate project skill. Codex could populate its own cache. No cluster changes were made. Criteria: [GREEN rubric](../../compliance-verification.md).
 
-| Scenario | OLD valid skill reads | NEW valid skill reads | OLD median | NEW median | Gate |
+| Scenario | OLD original skill reads | NEW original skill reads | OLD median | NEW median | Regression gate |
 |---|---:|---:|---:|---:|---|
-| S2 | 2/3 after one replacement | 2/3 after one retry | unavailable | unavailable | **FAIL: both arms lack three visible skill loads** |
+| S2 | 1/3 (2/3 after one replacement) | 2/3 (still 2/3 after one retry) | 3/4 | 3/4 | PASS: not worse; trigger remains unreliable |
 | S7 | 3/3 | 3/3 | 2/3 | 2/3 | PASS: not worse |
 | S8 | 3/3 | 3/3 | 1/4 | 1/4 | PASS: not worse |
 
-S2 content scores are descriptive only. Command-level trace inspection found that original OLD2, OLD3, and NEW2 did not visibly read `SKILL.md`; the runner's string-based status detector incorrectly marked OLD3 as loaded because separate commands contained `cat` and `SKILL.md`. One replacement was run for OLD2 and NEW2. OLD2 replacement read the skill; NEW2 replacement again had no skill read. Each arm therefore has only two valid loads, so S2 has no three-sample median. Do not use its apparent equal content scores as a passing paired check. The uncredited runs are retained below. No further rerun or skill wording change was made in this PR.
+Command-level trace inspection found that original OLD2, OLD3, and NEW2 did not visibly read `SKILL.md`; the runner's string-based status detector incorrectly marked OLD3 as loaded because separate commands contained `cat` and `SKILL.md`. One replacement was run for OLD2 and NEW2. OLD2 replacement read the skill; NEW2 replacement again had no skill read. The three original outputs in each arm all score 3/4, so the median is 3/4 in both arms. The separate trigger outcome improves from 1/3 OLD loads to 2/3 NEW loads; after the replacement attempts it is 2/3 in both arms. This meets the PR #3–#8 **not-worse** regression gate, while exposing unreliable triggering. The uncredited runs are retained below. No further rerun or skill wording change was made in this PR.
 
 Scoring notes: S2 answers find missing hardening, default ServiceAccount/token risk, and avoid mutation, but rank conditional hostPath/runtime-socket exposure High rather than the rubric's Critical, so C2 fails. S7 answers request Hubble drop evidence and cover both directions and policy kinds; none gives a minimal confirmed policy diff plus post-apply verification as one complete C3. S8 answers generally request analyze/proxy-status first; OLD3 requests logs first. No sample has a real Envoy flag or failing-hop evidence, both-sided mTLS policy inspection, and a reviewable fix diff, so C2-C4 fail.
 
