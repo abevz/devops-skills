@@ -23,7 +23,7 @@ nearby task with a different entry point.
 | Design ingress or migrate to Gateway API | [`ingress`](../skills/ingress/SKILL.md) | Only the TLS certificate is failing → `cert-manager-debug`. |
 | Design or operate Cilium | [`cilium`](../skills/cilium/SKILL.md) | A live Cilium drop needs diagnosis → `cilium-debug`. |
 | Design or operate Istio | [`istio`](../skills/istio/SKILL.md) | A live route or mTLS failure needs diagnosis → `istio-debug`. |
-| Design workload or node autoscaling | [`kubernetes-autoscaling`](../skills/kubernetes-autoscaling/SKILL.md) | A specific Pending pod needs diagnosis → `kubernetes-debug`. |
+| Design or diagnose workload or node autoscaling | [`kubernetes-autoscaling`](../skills/kubernetes-autoscaling/SKILL.md) | A pod is failing for a reason unrelated to scaling → `kubernetes-debug`. |
 | Install or operate Argo CD | [`argocd`](../skills/argocd/SKILL.md) | One Application is stuck → `argocd-debug`. |
 | Design an ApplicationSet generator | [`argocd-applicationset`](../skills/argocd-applicationset/SKILL.md) | You are reviewing the overall GitOps repository flow → `gitops-review`. |
 | Review GitOps repository structure or promotion | [`gitops-review`](../skills/gitops-review/SKILL.md) | The issue is Argo CD controller operation → `argocd`. |
