@@ -1,5 +1,59 @@
 # Skill Map
 
+## Quick task index
+
+Start with the symptom or task. Each link opens the skill directly. The last column names a
+nearby task with a different entry point.
+
+| Symptom or task | Open | Use another skill when… |
+|---|---|---|
+| PVC Pending, attach error, or volume expansion stuck | [`storage-debug`](../skills/storage-debug/SKILL.md) | A pod fails for a reason outside storage → `kubernetes-debug`. |
+| Certificate not Ready or ACME challenge stuck | [`cert-manager-debug`](../skills/cert-manager-debug/SKILL.md) | You are designing the traffic entry point → `ingress`. |
+| Argo CD Application OutOfSync or Degraded | [`argocd-debug`](../skills/argocd-debug/SKILL.md) | The controller installation or RBAC itself needs design → `argocd`. |
+| Pod crashing, Pending, or service broken with no known subsystem | [`kubernetes-debug`](../skills/kubernetes-debug/SKILL.md) | A storage, CNI, mesh, or certificate signal is already known → its debugger above or below. |
+| Cilium drop or network policy denial | [`cilium-debug`](../skills/cilium-debug/SKILL.md) | You are designing or upgrading Cilium → `cilium`. |
+| Istio 503, mTLS, or route failure | [`istio-debug`](../skills/istio-debug/SKILL.md) | You are choosing or operating the mesh → `istio`. |
+| Upgrade a Kubernetes cluster | [`upgrade-readiness`](../skills/upgrade-readiness/SKILL.md) | The change is a general service migration → `migration-plan`. |
+| Plan cluster backup and restore | [`cluster-backup`](../skills/cluster-backup/SKILL.md) | You are debugging a single volume now → `storage-debug`. |
+| Review Kubernetes YAML before apply | [`kubernetes-yaml-review`](../skills/kubernetes-yaml-review/SKILL.md) | The artifact is a Helm chart → `helm-review`. |
+| Review a Helm chart or chart upgrade | [`helm-review`](../skills/helm-review/SKILL.md) | You only have rendered manifests → `kubernetes-yaml-review`. |
+| Audit cluster or workload security posture | [`kubernetes-security`](../skills/kubernetes-security/SKILL.md) | You are authoring an admission rule → `admission-policy-review`. |
+| Write or review a Kyverno, Gatekeeper, or PSA rule | [`admission-policy-review`](../skills/admission-policy-review/SKILL.md) | You are investigating runtime alerts → `runtime-security-review`. |
+| Review runtime detection rules or alerts | [`runtime-security-review`](../skills/runtime-security-review/SKILL.md) | You need preventive admission rules → `admission-policy-review`. |
+| Design ingress or migrate to Gateway API | [`ingress`](../skills/ingress/SKILL.md) | Only the TLS certificate is failing → `cert-manager-debug`. |
+| Design or operate Cilium | [`cilium`](../skills/cilium/SKILL.md) | A live Cilium drop needs diagnosis → `cilium-debug`. |
+| Design or operate Istio | [`istio`](../skills/istio/SKILL.md) | A live route or mTLS failure needs diagnosis → `istio-debug`. |
+| Design workload or node autoscaling | [`kubernetes-autoscaling`](../skills/kubernetes-autoscaling/SKILL.md) | A specific Pending pod needs diagnosis → `kubernetes-debug`. |
+| Install or operate Argo CD | [`argocd`](../skills/argocd/SKILL.md) | One Application is stuck → `argocd-debug`. |
+| Design an ApplicationSet generator | [`argocd-applicationset`](../skills/argocd-applicationset/SKILL.md) | You are reviewing the overall GitOps repository flow → `gitops-review`. |
+| Review GitOps repository structure or promotion | [`gitops-review`](../skills/gitops-review/SKILL.md) | The issue is Argo CD controller operation → `argocd`. |
+| Design Kubernetes secret delivery | [`secrets-management`](../skills/secrets-management/SKILL.md) | You are operating Vault itself → `vault`. |
+| Deploy or operate Vault/OpenBao | [`vault`](../skills/vault/SKILL.md) | You are choosing how Kubernetes receives secrets → `secrets-management`. |
+| Review Terraform or OpenTofu code or plan | [`terraform-review`](../skills/terraform-review/SKILL.md) | The task is a broader architecture review → `architecture-review`. |
+| Plan a Proxmox or homelab change | [`homelab-change-plan`](../skills/homelab-change-plan/SKILL.md) | You need a general migration cutover → `migration-plan`. |
+| Plan a service or infrastructure migration | [`migration-plan`](../skills/migration-plan/SKILL.md) | You are checking an already designed release → `production-readiness`. |
+| Review repository or system architecture | [`architecture-review`](../skills/architecture-review/SKILL.md) | You have a concrete deployment artifact → its artifact review skill. |
+| Check production readiness | [`production-readiness`](../skills/production-readiness/SKILL.md) | You are reviewing a single chart or manifest → `helm-review` or `kubernetes-yaml-review`. |
+| Review a CI/CD pipeline | [`cicd-review`](../skills/cicd-review/SKILL.md) | The focus is image provenance after build → `supply-chain-security`. |
+| Review image signing, SBOMs, or provenance | [`supply-chain-security`](../skills/supply-chain-security/SKILL.md) | The focus is the Dockerfile → `dockerfile-review`. |
+| Review a Dockerfile | [`dockerfile-review`](../skills/dockerfile-review/SKILL.md) | The concern is pipeline permissions → `cicd-review`. |
+| Review a vulnerability finding | [`vulnerability-triage`](../skills/vulnerability-triage/SKILL.md) | The concern is a runtime detection rule → `runtime-security-review`. |
+| Review or set up a DAST scan | [`dast-review`](../skills/dast-review/SKILL.md) | The concern is CI permissions or triggers → `cicd-review`. |
+| Design or operate Prometheus and telemetry storage | [`observability-stack`](../skills/observability-stack/SKILL.md) | You are judging service signals and SLOs → `observability-review`. |
+| Review service observability or SLOs | [`observability-review`](../skills/observability-review/SKILL.md) | You are changing a specific alert expression → `alert-rule-review`. |
+| Review a Prometheus alert rule | [`alert-rule-review`](../skills/alert-rule-review/SKILL.md) | You are designing a dashboard → `grafana-dashboards`. |
+| Build or review a Grafana dashboard | [`grafana-dashboards`](../skills/grafana-dashboards/SKILL.md) | You are deciding which signals matter → `observability-review`. |
+| Fix a Go bug | [`go-bugfix`](../skills/go-bugfix/SKILL.md) | You are reviewing code without editing it → `go-code-review`. |
+| Review Go code | [`go-code-review`](../skills/go-code-review/SKILL.md) | The review is specifically about tests → `go-testing-review`. |
+| Review or improve Go tests | [`go-testing-review`](../skills/go-testing-review/SKILL.md) | You are fixing a confirmed production bug → `go-bugfix`. |
+| Review a PR with no narrower artifact skill | [`pr-review`](../skills/pr-review/SKILL.md) | Go, Helm, Kubernetes YAML, Dockerfile, or another artifact has its own review skill. |
+| Investigate an unclear failure's cause | [`root-cause-analysis`](../skills/root-cause-analysis/SKILL.md) | A known Kubernetes subsystem has a specific debugger. |
+| Analyze an incident or write a postmortem | [`incident-analysis`](../skills/incident-analysis/SKILL.md) | The cause is still unknown → `root-cause-analysis`. |
+| Write an operational runbook | [`runbook-writer`](../skills/runbook-writer/SKILL.md) | You are writing the incident account → `incident-analysis`. |
+| Write a commit message | [`git-message`](../skills/git-message/SKILL.md) | You are reviewing the change itself → `pr-review`. |
+| Improve a short English technical message | [`english-technical-message`](../skills/english-technical-message/SKILL.md) | You need an operational runbook → `runbook-writer`. |
+| Practice a system design interview answer | [`interview-system-design`](../skills/interview-system-design/SKILL.md) | You are reviewing a real repository architecture → `architecture-review`. |
+
 The README table lists every skill flat; this is the top-down view — which skill to enter
 through for a given situation, how skills pair and hand off to each other, and what reference
 depth each one carries. Diagrams are Mermaid (GitHub renders them inline).
