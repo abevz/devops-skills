@@ -7,6 +7,31 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Admission Policy Review
 
+## TL;DR checklist
+
+- [ ] Decide whether the gap belongs to PSA, Kyverno, Gatekeeper, or built-in admission policy.
+- [ ] Check the proposed deny set in audit mode and review violations before enforcement.
+- [ ] Require narrow, owned, expiring exceptions and test policies before rollout.
+
+## Key read-only checks
+
+- Read policy match/exclude scope, audit reports, webhook failure policy, and test fixtures.
+
+## Common pitfalls
+
+- Do not turn on enforcement before measuring its existing violations.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/kyverno-patterns.md](references/kyverno-patterns.md)
+- [references/kyverno-deployment.md](references/kyverno-deployment.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when **deploying** an admission engine (Kyverno install, HA, webhook failure policy),

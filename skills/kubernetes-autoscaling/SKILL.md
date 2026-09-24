@@ -7,6 +7,37 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Kubernetes Autoscaling
 
+## TL;DR checklist
+
+- [ ] Identify workload scaling versus node provisioning.
+- [ ] Check resource requests and the metric source first.
+- [ ] Match scaling policy and disruption protection to the bottleneck.
+
+## Answer must include
+
+Before proposing a metric, threshold, or replica floor, establish the measured bottleneck,
+honest resource requests, available metrics, and node capacity and disruption constraints.
+If these are unknown, give read-only checks and decision branches instead of numeric manifests.
+
+## Key read-only checks
+
+- Read requests, HPA/KEDA status, Pending events, and node provisioner decisions.
+
+## Common pitfalls
+
+- Do not tune CPU scaling when the queue or another external signal is the bottleneck.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/workload-autoscaling.md](references/workload-autoscaling.md)
+- [references/node-autoscaling.md](references/node-autoscaling.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when adding, tuning, or reviewing autoscaling at either layer: **workload** (HPA, VPA, KEDA
