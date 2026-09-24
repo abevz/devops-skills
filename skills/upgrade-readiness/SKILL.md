@@ -31,7 +31,8 @@ complete instead of deadlocking, one minor per hop, and a stated (honest) rollba
 2. **Skew math first** — the rules that shape the order (details and the full table in
    `references/upgrade-checks.md`): control plane goes first, one minor at a time; kubelets
    may trail the API server by up to three minors (n-3), so node pools can lag but never lead;
-   kube-proxy follows its kubelet. Anything violating skew *today* is a finding before any
+   upgrading kube-proxy with its node's kubelet is an operational preference, not the upstream
+   skew limit. Anything violating skew *today* is a finding before any
    upgrade starts.
 3. **Removed-API scan** — run `pluto`/`kubent` (read-only) against live resources AND against
    the GitOps repo/Helm releases for the *target* version. The fix always lands in git first

@@ -19,13 +19,17 @@
 |---|---|---|
 | Mechanism | VolumeSnapshot via the CSI driver; data mover copies snapshot content to the BSL bucket | node-agent pod reads the live filesystem, uploads with kopia |
 | Consistency | Crash-consistent at an instant (snapshot semantics) | File-by-file over time — inconsistent for live databases *by construction* |
-| Requirements | CSI driver with snapshot support + `VolumeSnapshotClass` labeled for Velero (`velero.io/csi-volumesnapshot-class`) | Any volume a pod mounts (incl. NFS/local-path — the homelab path) |
+| Requirements | CSI driver with snapshot support + `VolumeSnapshotClass` labeled for Velero (`velero.io/csi-volumesnapshot-class`) | A supported volume mounted by a running pod; NFS and local persistent volumes can qualify, but `hostPath` does not in Velero v1.17 |
 | Restore speed | Fast within the same backend; cross-cluster needs the data-mover copy | Full data re-upload/download always |
 | Choose when | Backend has real snapshot support (cloud disks, Ceph, Longhorn) | No snapshot support, or portability across backends matters |
 
 Opt-in/opt-out matters: FSB is per-pod-volume (annotation `backup.velero.io/backup-volumes`
 opt-in, or `--default-volumes-to-fs-backup` opt-out) — an unannotated volume in opt-in mode is
 **silently not backed up**; reviews check which mode is active and what falls through.
+Velero v1.17 FSB cannot back up a PVC with no pod mounting it; its volume exceptions and
+incremental-backup behavior are documented in the
+[versioned FSB guide](https://velero.io/docs/v1.17/file-system-backup/). Check the deployed
+Velero version before applying this row.
 
 ## Consistency hooks (databases)
 
