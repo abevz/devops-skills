@@ -1,6 +1,6 @@
 ---
 name: admission-policy-review
-description: Use when writing, reviewing, or rolling out Kubernetes admission policies with Kyverno, OPA Gatekeeper, or Pod Security Admission. Mention "kyverno policy", "gatekeeper constraint", "admission control", "pod security admission" as triggers.
+description: Use when authoring, reviewing, or rolling out Kubernetes admission enforcement with Kyverno, OPA Gatekeeper, or Pod Security Admission. Mention "kyverno policy", "gatekeeper constraint", or "admission control"; use kubernetes-security for broad posture audits and runtime-security-review for detection after admission.
 license: MIT
 compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, and other agents that support Agent Skills-style instructions.
 ---
@@ -40,6 +40,8 @@ authoring policies, planning an audit→enforce rollout, or debugging "why did a
 this." This is the enforcement counterpart to `kubernetes-security` (which
 finds the gaps policies should close) and `supply-chain-security` (whose signatures policies
 verify).
+Use `kubernetes-security` instead for a general posture audit and `runtime-security-review`
+instead for Falco/Tetragon/Tracee detection after admission.
 
 ## Goal
 

@@ -1,6 +1,6 @@
 ---
 name: argocd-debug
-description: Use when debugging an ArgoCD Application that is out of sync, degraded, or failing to deploy. Mention "argocd is stuck", "application out of sync", "argocd debug" as triggers.
+description: Use when diagnosing one Argo CD Application that is OutOfSync, Degraded, Unknown, or failing to deploy. Mention "argocd is stuck", "application out of sync", or "argocd debug"; use argocd for controller installation/operation, argocd-applicationset for generator design, and gitops-review for repository flow.
 license: MIT
 compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, and other agents that support Agent Skills-style instructions.
 ---
@@ -35,6 +35,8 @@ Last verified: unverified
 
 Use when an ArgoCD `Application` is `OutOfSync`, `Degraded`, `Unknown`, or stuck, and the cause
 needs to be found before taking action.
+Use `argocd` instead for controller installation or operation, `argocd-applicationset` for
+generator design, and `gitops-review` for repository structure or promotion flow.
 
 ## Goal
 

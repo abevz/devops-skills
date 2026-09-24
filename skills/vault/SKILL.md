@@ -7,6 +7,31 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Vault
 
+## TL;DR checklist
+
+- [ ] Choose the Vault/OpenBao operation area and its reference.
+- [ ] Record version, storage, seal, HA, and authentication baseline.
+- [ ] Check least-privilege policy and off-box recovery before a design recommendation.
+
+## Key read-only checks
+
+- Inspect configured auth roles, policy paths, lease settings, and snapshot evidence without revealing secret values.
+
+## Common pitfalls
+
+- Do not propose shared broad tokens or a recovery story without a tested restore.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/deploy-ha.md](references/deploy-ha.md)
+- [references/auth-policies.md](references/auth-policies.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when standing up or operating HashiCorp Vault / OpenBao: HA topology and storage, seal /
