@@ -11,7 +11,7 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 Use for a focused security audit of Kubernetes workloads, RBAC, or cluster configuration —
 distinct from a general manifest-quality review.
-Use `admission-policy-review` instead when writing or rolling out Kyverno, Gatekeeper, or PSA
+Use `admission-policy-review` instead when writing, reviewing, or rolling out Kyverno, Gatekeeper, or PSA
 enforcement. Use `runtime-security-review` instead for Falco/Tetragon/Tracee detections.
 
 ## Goal

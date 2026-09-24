@@ -1,6 +1,6 @@
 ---
 name: runtime-security-review
-description: Use when reviewing Kubernetes detection after admission — Falco/Tetragon/Tracee rules, runtime alerts, or suspicious container behavior. Mention "falco", "tetragon", "tracingpolicy", "tracee", or "runtime security"; use admission-policy-review for preventive admission rules and kubernetes-security for broad posture audits.
+description: Use when deploying or reviewing Kubernetes detection after admission — Falco/Tetragon/Tracee rules, runtime alerts, or suspicious container behavior. Mention "falco", "tetragon", "tracingpolicy", "tracee", or "runtime security"; use admission-policy-review for preventive admission rules and kubernetes-security for broad posture audits.
 license: MIT
 compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, and other agents that support Agent Skills-style instructions.
 ---
