@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Go Testing Review
 
+## TL;DR checklist
+
+- [ ] Check behavior coverage across success, error, boundary, and concurrency cases.
+- [ ] Look for deterministic tests and narrow fakes.
+- [ ] Identify missing tests that would catch a real regression.
+
+## Key read-only checks
+
+- Read production behavior and test assertions; inspect race-test output when supplied.
+
+## Common pitfalls
+
+- Do not reward coverage numbers when assertions miss the failure mode.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [Workflow](#workflow) below.
+
+Last verified: unverified
+
 ## When to use
 
 Use when reviewing existing Go tests, or deciding what tests to add, for a package or change.

@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Go Code Review
 
+## TL;DR checklist
+
+- [ ] Check idiomatic Go, package boundaries, context propagation, and error handling.
+- [ ] Inspect concurrency, resource cleanup, and API behavior at call sites.
+- [ ] Report concrete findings with their impact and location.
+
+## Key read-only checks
+
+- Read the changed code, callers, nearby tests, and relevant interfaces.
+
+## Common pitfalls
+
+- Do not substitute style preferences for correctness findings.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [Workflow](#workflow) below.
+
+Last verified: unverified
+
 ## When to use
 
 Use when reviewing Go code for quality — separate from `pr-review` (broader, any language) and
