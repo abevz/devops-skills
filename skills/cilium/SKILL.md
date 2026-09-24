@@ -7,6 +7,31 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Cilium
 
+## TL;DR checklist
+
+- [ ] Choose the Cilium feature area before loading its reference.
+- [ ] Record Cilium, kernel, datapath, kube-proxy, and cluster baseline.
+- [ ] Match the feature to a concrete need and plan validation.
+
+## Key read-only checks
+
+- Inspect the installed Cilium version, datapath mode, kube-proxy replacement, and relevant cluster type.
+
+## Common pitfalls
+
+- Do not combine CNI migration and unrelated features into one blind change.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/install.md](references/install.md)
+- [references/network-policies.md](references/network-policies.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when planning, installing, configuring, or reviewing any part of Cilium: the CNI/datapath,

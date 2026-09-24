@@ -3,6 +3,12 @@
 Self-authored reference (no third-party source). Working patterns for the policies the minimal
 deny set requires. All examples start life with `validationFailureAction: Audit`.
 
+**Version scope:** The `kyverno.io/v1` `ClusterPolicy` examples below use Kyverno's legacy
+policy API. Kyverno v1.19 deprecates `ClusterPolicy`/`Policy` and says they will be removed in
+v1.20. For v1.19 migrations and later releases, consult the corresponding CEL policy types
+before copying these examples. This file has not been validated against a live Kyverno version.
+[Kyverno upgrade guide](https://kyverno.io/docs/installation/upgrading/).
+
 ## Require digest, deny :latest / tag-only
 
 ```yaml

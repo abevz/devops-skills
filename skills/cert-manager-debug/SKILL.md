@@ -33,7 +33,8 @@ propose a fix — without mutating live secrets, forcing renewals, or burning AC
    ACME account registration failures (missing/invalid account key secret, unreachable ACME
    server) stall every certificate under that issuer at once.
 4. **Route by challenge type** once a Challenge holds the error:
-   - **HTTP-01**: does the `cm-acme-http-solver` pod/ingress exist, and is
+   - **HTTP-01**: does the `cm-acme-http-solver` pod and configured Ingress or Gateway
+     HTTPRoute exist, and is
      `http://<domain>/.well-known/acme-challenge/<token>` reachable *from the internet*? The
      self-check runs from inside the cluster — hairpin-NAT homelab setups fail it even when the
      outside world would succeed.

@@ -1,6 +1,6 @@
 ---
 name: dockerfile-review
-description: Use when reviewing a Dockerfile or container image build for size, security, and reproducibility. Mention "review this dockerfile", "container image review", "why is my image huge" as triggers.
+description: Use when reviewing a Dockerfile or image build for size, security, caching, or reproducibility. Mention "review this dockerfile", "container image review", or "why is my image huge"; use supply-chain-security for signing/provenance after build and pr-review for a diff with no image-build focus.
 license: MIT
 compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, and other agents that support Agent Skills-style instructions.
 ---
@@ -11,6 +11,8 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 Use when reviewing a Dockerfile (or Containerfile) before it ships — new images, base image
 changes, or "the image is too big / too slow to build / flagged by the scanner" complaints.
+Use `supply-chain-security` instead for signing and provenance after build, and `pr-review`
+for a diff without a specific image-build focus.
 
 ## Goal
 

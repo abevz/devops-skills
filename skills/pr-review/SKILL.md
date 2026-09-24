@@ -1,6 +1,6 @@
 ---
 name: pr-review
-description: Use when the agent needs to review a pull request or diff as a lead engineer. Mention "review this PR", "code review", or "review my diff" as triggers.
+description: Use when reviewing a PR or diff with no narrower artifact skill; this is the generic fallback. Mention "review this PR" or "review my diff"; use go-code-review, helm-review, kubernetes-yaml-review, dockerfile-review, or another artifact specialist when that artifact is the focus.
 license: MIT
 compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, and other agents that support Agent Skills-style instructions.
 ---
@@ -35,6 +35,8 @@ Last verified: unverified
 
 Use when the user shares a pull request, diff, or branch and asks for a review, or wants a second
 opinion before merging.
+Use `go-code-review`, `helm-review`, `kubernetes-yaml-review`, `dockerfile-review`, or another
+artifact specialist instead when the review is focused on that artifact.
 
 ## Goal
 
