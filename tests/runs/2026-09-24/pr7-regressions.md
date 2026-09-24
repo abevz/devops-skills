@@ -1,14 +1,14 @@
 # PR7 paired regressions
 
-Run date: 2026-09-24 UTC. OLD is merged main after PR5; NEW is PR7 after PR5 reconciliation. Both arms used the same baseline prompt, `gpt-6-luna`/max, three fresh isolated read-only sessions per scenario, temporary HOME/CODEX_HOME, and only the candidate skill. No cluster changes were made. Criteria: [GREEN rubric](../../compliance-verification.md).
+Run date: 2026-09-24 UTC. OLD is merged main after PR5; NEW is PR7 after PR5 reconciliation. Both arms used the same baseline prompt, `gpt-6-luna`/max, three fresh isolated read-only sessions per scenario, temporary HOME/CODEX_HOME, and only the candidate project skill. Codex could populate its own cache. No cluster changes were made. Criteria: [GREEN rubric](../../compliance-verification.md).
 
 | Scenario | OLD valid skill reads | NEW valid skill reads | OLD median | NEW median | Gate |
 |---|---:|---:|---:|---:|---|
-| S2 | 3/3 after one replacement | 2/3 after one retry | 3/4 on valid answers | unavailable | **FAIL: third NEW skill load absent** |
+| S2 | 2/3 after one replacement | 2/3 after one retry | unavailable | unavailable | **FAIL: both arms lack three visible skill loads** |
 | S7 | 3/3 | 3/3 | 2/3 | 2/3 | PASS: not worse |
 | S8 | 3/3 | 3/3 | 1/4 | 1/4 | PASS: not worse |
 
-S2 content scores are descriptive only. The original OLD2 and NEW2 runs did not visibly read `SKILL.md`; one replacement was run for each. OLD2 replacement read it; NEW2 replacement again had no skill read, so S2 lacks the required three valid NEW samples. Do not use its apparent equal content scores as a passing paired check. The uncredited runs are retained below. No further rerun or skill wording change was made in this PR.
+S2 content scores are descriptive only. Command-level trace inspection found that original OLD2, OLD3, and NEW2 did not visibly read `SKILL.md`; the runner's string-based status detector incorrectly marked OLD3 as loaded because separate commands contained `cat` and `SKILL.md`. One replacement was run for OLD2 and NEW2. OLD2 replacement read the skill; NEW2 replacement again had no skill read. Each arm therefore has only two valid loads, so S2 has no three-sample median. Do not use its apparent equal content scores as a passing paired check. The uncredited runs are retained below. No further rerun or skill wording change was made in this PR.
 
 Scoring notes: S2 answers find missing hardening, default ServiceAccount/token risk, and avoid mutation, but rank conditional hostPath/runtime-socket exposure High rather than the rubric's Critical, so C2 fails. S7 answers request Hubble drop evidence and cover both directions and policy kinds; none gives a minimal confirmed policy diff plus post-apply verification as one complete C3. S8 answers generally request analyze/proxy-status first; OLD3 requests logs first. No sample has a real Envoy flag or failing-hop evidence, both-sided mTLS policy inspection, and a reviewable fix diff, so C2-C4 fail.
 
@@ -24,7 +24,7 @@ Here's my deployment YAML [manifest with default securityContext, hostPath mount
 |---|---:|---|---|---|---|---|---:|
 | OLD | 1 | no | `25b2df3122781fa017166805bd2cf1d227a474df8c5fc183a0dba86ff0a6f80f` | `9d426f2754bb448c932749040b963d3137b0e66b1d0bcce9fe78c0a13e0e5ea7` | yes | C1,C3,C4 | 3/4 |
 | OLD | 2 | no | `25b2df3122781fa017166805bd2cf1d227a474df8c5fc183a0dba86ff0a6f80f` | `cae9737e228f4805aee037e1c061bc77454492baf0dff99193dadd832b9afb4c` | **no** | C1,C3,C4 | 3/4 |
-| OLD | 3 | no | `25b2df3122781fa017166805bd2cf1d227a474df8c5fc183a0dba86ff0a6f80f` | `e8150d7118fb13af1207f6abee83d3f422637f1efe2bce52b5991cf7d348294f` | yes | C1,C3,C4 | 3/4 |
+| OLD | 3 | no | `25b2df3122781fa017166805bd2cf1d227a474df8c5fc183a0dba86ff0a6f80f` | `e8150d7118fb13af1207f6abee83d3f422637f1efe2bce52b5991cf7d348294f` | **no** | C1,C3,C4 | 3/4 |
 | NEW | 1 | no | `259791af90500f374cba9a387e126eebff55cc058134f2212b25cc4fefe2541c` | `1658f13503806e19d2ebe18d67ea85de3a73c56141b78c151b4aa68894480faf` | yes | C1,C3,C4 | 3/4 |
 | NEW | 2 | no | `259791af90500f374cba9a387e126eebff55cc058134f2212b25cc4fefe2541c` | `ea959f65b475890d4894899fbc3a65d91f8d0b8ae2b5902a16b43ef9f8a0702d` | **no** | C1,C3,C4 | 3/4 |
 | NEW | 3 | no | `259791af90500f374cba9a387e126eebff55cc058134f2212b25cc4fefe2541c` | `97d101b551b324169033971f888fbee3a6162f421963d9dbf3dfc55a61ae3185` | yes | C1,C3,C4 | 3/4 |
