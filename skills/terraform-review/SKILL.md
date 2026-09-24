@@ -7,6 +7,31 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Terraform Review
 
+## TL;DR checklist
+
+- [ ] Identify the present risk: identity churn, secrets, blast radius, CI drift, or state corruption.
+- [ ] Check module contracts, provider constraints, lifecycle rules, and the supplied plan.
+- [ ] Flag unexpected replacement or destroy for explicit review.
+
+## Key read-only checks
+
+- Read `required_version`, provider constraints, `.terraform.lock.hcl`, and the exact plan if supplied.
+
+## Common pitfalls
+
+- Do not treat a state-changing command or destructive plan as routine.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/version-guards.md](references/version-guards.md)
+- [references/examples.md](references/examples.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when reviewing Terraform/OpenTofu modules, variables/outputs, provider configuration, or

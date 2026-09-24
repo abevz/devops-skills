@@ -7,6 +7,31 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Kubernetes Debug
 
+## TL;DR checklist
+
+- [ ] Name the namespace, workload, and exact symptom.
+- [ ] Inspect status, events, logs, owner, and the relevant networking or storage objects.
+- [ ] Tie a proposed fix to the observed cause and a verification check.
+
+## Key read-only checks
+
+- Use read-only `kubectl get`, `describe`, and `logs` before proposing a mutation.
+
+## Common pitfalls
+
+- Do not restart or delete a resource as a substitute for finding the cause.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/playbooks.md](references/playbooks.md)
+- [references/conditional/managed-clusters.md](references/conditional/managed-clusters.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when a Kubernetes-hosted workload is failing, not starting, not receiving traffic, or

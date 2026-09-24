@@ -7,6 +7,31 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Argo CD
 
+## TL;DR checklist
+
+- [ ] Choose the Argo CD operation area and its reference.
+- [ ] Record version, install method, HA shape, cluster/app count, and auth source.
+- [ ] Check tenancy boundaries and recovery inputs before recommending a design.
+
+## Key read-only checks
+
+- Inspect current installation, AppProjects, RBAC, repositories, and sync configuration.
+
+## Common pitfalls
+
+- Do not assume Git alone preserves repository credentials or other cluster-held configuration.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/install-ha.md](references/install-ha.md)
+- [references/rbac-sso.md](references/rbac-sso.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when standing up or operating Argo CD as a platform: HA install, scaling/sharding, SSO and

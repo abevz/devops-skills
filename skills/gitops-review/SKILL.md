@@ -7,6 +7,31 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # GitOps Review
 
+## TL;DR checklist
+
+- [ ] Trace where an Application is defined and how a commit reaches each environment.
+- [ ] Check secrets, image updates, drift handling, rollback, and bootstrap.
+- [ ] Report structural gaps with the affected path and promotion risk.
+
+## Key read-only checks
+
+- Read the repository tree, environment boundaries, application definitions, and pre-merge checks.
+
+## Common pitfalls
+
+- Do not mistake a single manifest finding for a repository-flow finding.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/validation-policy.md](references/validation-policy.md)
+- [references/tools.md](references/tools.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when reviewing how a GitOps repository is organized and how changes flow from commit to

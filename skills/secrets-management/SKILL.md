@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Secrets Management
 
+## TL;DR checklist
+
+- [ ] Choose the source of truth: external manager, encrypted Git, or runtime mount.
+- [ ] Check provider authentication, secret scope, rotation, and consumer behavior.
+- [ ] Keep plaintext secret material out of Git and review the delivery path.
+
+## Key read-only checks
+
+- Inspect SecretStore/ExternalSecret or encrypted-file configuration and the workload reference; do not print secret values.
+
+## Common pitfalls
+
+- Do not hide a static credential inside Kubernetes merely to bootstrap a secret operator.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/eso-deployment.md](references/eso-deployment.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when choosing a Kubernetes secrets approach, **deploying** External Secrets Operator (or

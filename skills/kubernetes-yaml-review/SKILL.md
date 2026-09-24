@@ -7,6 +7,31 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Kubernetes YAML Review
 
+## TL;DR checklist
+
+- [ ] Identify the workload type and deployment context.
+- [ ] Check selectors, probes, resources, security context, RBAC, and rollout safety.
+- [ ] Report concrete manifest risks before apply.
+
+## Key read-only checks
+
+- Read raw or rendered YAML, including referenced Services, Secrets, RBAC, PDBs, and HPAs.
+
+## Common pitfalls
+
+- Do not review only the template when rendered output is the artifact being deployed.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/reliability.md](references/reliability.md)
+- [references/examples.md](references/examples.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when reviewing raw or rendered Kubernetes manifests before they're committed or applied —
