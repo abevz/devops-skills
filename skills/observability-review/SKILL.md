@@ -7,6 +7,31 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Observability Review
 
+## TL;DR checklist
+
+- [ ] Inspect logs, metrics, traces, and alerts for the service journey.
+- [ ] Check whether signals cover user-visible errors and latency.
+- [ ] Rank gaps by the failure they leave undetectable.
+
+## Key read-only checks
+
+- Read existing instrumentation, dashboard panels, alert rules, and SLO definitions.
+
+## Common pitfalls
+
+- Do not equate a busy dashboard with useful service observability.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/prometheus-stack.md](references/prometheus-stack.md)
+- [references/instrumentation.md](references/instrumentation.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when reviewing whether a service can be understood and debugged in production: its logs,

@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Production Readiness
 
+## TL;DR checklist
+
+- [ ] Identify the artifact and its release path.
+- [ ] Check rollout, observability, security, capacity, resilience, and rollback.
+- [ ] Name remaining blockers with concrete verification evidence.
+
+## Key read-only checks
+
+- Inspect deploy configuration, alerts, capacity assumptions, backups, and test evidence.
+
+## Common pitfalls
+
+- Treat missing rollback or DR as high risk; check for tested DR in stateful systems.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/checklists.md](references/checklists.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use before something goes live, or during a periodic readiness review of an existing service,
