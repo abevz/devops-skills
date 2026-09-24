@@ -6,7 +6,7 @@ Run date: 2026-09-24 UTC. OLD is merged `main` at `d839594` (PR4 included). NEW 
 Our `shop.example.com` certificate has been stuck not Ready for two hours. cert-manager is installed. Fix it.
 ```
 
-Rubric: [S9 GREEN criteria](../../compliance-verification.md), corrected to distinguish ACME resources. C1: issuer-appropriate chain and verbatim deepest error; C2: for ACME, identify challenge type and complete the relevant external HTTP-01 or authoritative DNS-01 check; C3: no diagnostic delete/renewal, rate-limit impact before retry, staging experiment; C4: end-to-end TLS verification. The [official cert-manager docs](https://cert-manager.io/docs/concepts/acme-orders-challenges/) define Order/Challenge for ACME issuers.
+Rubric: [S9 GREEN criteria](../../compliance-verification.md), corrected to distinguish ACME resources. C1: issuer-appropriate chain and verbatim deepest error; C2: for ACME, identify challenge type and complete the relevant external HTTP-01 or authoritative DNS-01 check; C3: no diagnostic delete/renewal, and for ACME, rate-limit impact before retry plus a staging experiment path; C4: end-to-end TLS verification. The [official cert-manager docs](https://cert-manager.io/docs/concepts/acme-orders-challenges/) define Order/Challenge for ACME issuers.
 
 | Arm | Replicate | Skill SHA-256 | Answer SHA-256 | Loaded | Earned | Score |
 |---|---:|---|---|---|---|---:|
@@ -17,7 +17,7 @@ Rubric: [S9 GREEN criteria](../../compliance-verification.md), corrected to dist
 | NEW | 2 | `c33a6372b3a2c333008dc7f68b2947c2a55e4e237e86796afee19c1bf0eecffb` | `ace9149e6aa8a5ee00ae57045ce196bf285ed17f94dbc05d8daac2a89f9553b4` | yes | none | 0/4 |
 | NEW | 3 | `c33a6372b3a2c333008dc7f68b2947c2a55e4e237e86796afee19c1bf0eecffb` | `a0fb0e50a6c94e2f40eaaae8a1753eeccc52aeee9ef72d02066c624bb42f8a3a` | yes | C4 | 1/4 |
 
-OLD scores 0,1,0 (median **0/4**); NEW scores 0,0,1 (median **0/4**). No median regression and no full-GREEN sample. C1 cannot pass because the fixture has no cluster access or status/event evidence; C2 cannot pass because the issuer and challenge type are unknown; C3 requires rate-limit and staging guidance that no answer provides. OLD 2 and NEW 3 earn C4 for recommending an `openssl s_client` check of served TLS. The corrected NEW skill was visibly read in all three runs. Several answers still describe the ACME chain without first establishing the issuer type; the top-level skill now makes the condition explicit, but these samples do not prove reliable transfer to a no-context prompt.
+OLD scores 0,1,0 (median **0/4**); NEW scores 0,0,1 (median **0/4**). No median regression and no full-GREEN sample. C1 cannot pass because the fixture has no cluster access or status/event evidence; C2 cannot pass because the issuer and challenge type are unknown; C3 requires conditional ACME rate-limit and staging guidance that no answer provides. OLD 2 and NEW 3 earn C4 for recommending an `openssl s_client` check of served TLS. The corrected NEW skill was visibly read in all three runs. Several answers still describe the ACME chain without first establishing the issuer type; the top-level skill now makes the condition explicit, but these samples do not prove reliable transfer to a no-context prompt.
 
 The invocation, status, and event files are retained locally under `/tmp/devops-regressions/pr5-s9-final/`; answer texts follow verbatim.
 

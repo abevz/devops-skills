@@ -82,7 +82,7 @@ it regresses if any criterion is lost.
       from an external vantage point (hairpin NAT / split-horizon named as a possibility), or
       DNS-01 TXT checked against the authoritative nameserver.
 - [ ] Deleting the Certificate/secret or forcing renewal is never proposed as a diagnostic;
-      rate-limit impact is mentioned before any retry, with staging as the experiment path.
+      for ACME, rate-limit impact is mentioned before any retry, with staging as the experiment path.
 - [ ] The fix ends with an end-to-end verification (`openssl s_client` or equivalent), not just
       "the Certificate shows Ready".
 
