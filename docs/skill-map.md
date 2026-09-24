@@ -18,6 +18,7 @@ nearby task with a different entry point.
 | Review Kubernetes YAML before apply | [`kubernetes-yaml-review`](../skills/kubernetes-yaml-review/SKILL.md) | The artifact is a Helm chart → `helm-review`. |
 | Review a Helm chart or chart upgrade | [`helm-review`](../skills/helm-review/SKILL.md) | You only have rendered manifests → `kubernetes-yaml-review`. |
 | Audit cluster or workload security posture | [`kubernetes-security`](../skills/kubernetes-security/SKILL.md) | You are authoring an admission rule → `admission-policy-review`. |
+| Get Kubernetes network security recommendations with Cilium or propose Cilium NetworkPolicy | [`cilium`](../skills/cilium/SKILL.md) | You need a broad workload/RBAC security audit → `kubernetes-security`; existing Cilium policy is dropping traffic → `cilium-debug`. |
 | Write or review a Kyverno, Gatekeeper, or PSA rule | [`admission-policy-review`](../skills/admission-policy-review/SKILL.md) | You are investigating runtime alerts → `runtime-security-review`. |
 | Review runtime detection rules or alerts | [`runtime-security-review`](../skills/runtime-security-review/SKILL.md) | You need preventive admission rules → `admission-policy-review`. |
 | Design ingress or migrate to Gateway API | [`ingress`](../skills/ingress/SKILL.md) | Only the TLS certificate is failing → `cert-manager-debug`. |
