@@ -1,0 +1,82 @@
+{
+  "S1": {
+    "OLD": {
+      "commit": "e4fac2fdef31171f0104dd4c6856cb491fdd37fb",
+      "git_tree": "71d9e1a545f1932d16f913828b8587147728386a",
+      "content_manifest_sha256": "875b3e27134b2401097d8893df9d45e252f113e68b7a5d6ee0355747f49547a2",
+      "manifest_path": "/tmp/devops-regressions/pr4-fresh/candidate-hashes/OLD-S1-kubernetes-debug.sha256",
+      "file_count": 3
+    },
+    "NEW": {
+      "commit": "077195781e9c3d93b0353f2c44bf3e2ec138ec66",
+      "git_tree": "fcf9599f254a4d27f7aff1f092b370e74b541ab9",
+      "content_manifest_sha256": "c85fd48260fb25476ee6980330d176b05965d6d2844dca1be919e5392029932d",
+      "manifest_path": "/tmp/devops-regressions/pr4-fresh/candidate-hashes/NEW-S1-kubernetes-debug.sha256",
+      "file_count": 3
+    }
+  },
+  "S3": {
+    "OLD": {
+      "commit": "e4fac2fdef31171f0104dd4c6856cb491fdd37fb",
+      "git_tree": "8f899f2df3837db8e07fedbce35c66167aaf87b0",
+      "content_manifest_sha256": "0a95f4c4bc41d5aa1091bc41c43ca324387da27f0cacc7b7b359e03635d6ad99",
+      "manifest_path": "/tmp/devops-regressions/pr4-fresh/candidate-hashes/OLD-S3-terraform-review.sha256",
+      "file_count": 7
+    },
+    "NEW": {
+      "commit": "077195781e9c3d93b0353f2c44bf3e2ec138ec66",
+      "git_tree": "202199c3fc10d8795b59fa787cf7d9c4dac63c56",
+      "content_manifest_sha256": "714af6dadf0acf78249dc5bb20294d1ebf1541347ad5f5148dd732f8a5e77895",
+      "manifest_path": "/tmp/devops-regressions/pr4-fresh/candidate-hashes/NEW-S3-terraform-review.sha256",
+      "file_count": 7
+    }
+  },
+  "S10": {
+    "OLD": {
+      "commit": "e4fac2fdef31171f0104dd4c6856cb491fdd37fb",
+      "git_tree": "4b4a664300101b84e1547cff84a711f32cedb64e",
+      "content_manifest_sha256": "e21c44b3a21259f4bd32ccaa925795056fd83f250e9167f6624749cf2b53706a",
+      "manifest_path": "/tmp/devops-regressions/pr4-fresh/candidate-hashes/OLD-S10-argocd.sha256",
+      "file_count": 6
+    },
+    "NEW": {
+      "commit": "077195781e9c3d93b0353f2c44bf3e2ec138ec66",
+      "git_tree": "180d2dc6cb18971cce5cc9781c8bc4724b289f97",
+      "content_manifest_sha256": "7660a5323ab02c473118dcb7ac8b30272ca0bad1278eef59f04bcafd9adca910",
+      "manifest_path": "/tmp/devops-regressions/pr4-fresh/candidate-hashes/NEW-S10-argocd.sha256",
+      "file_count": 6
+    }
+  },
+  "S11": {
+    "OLD": {
+      "commit": "e4fac2fdef31171f0104dd4c6856cb491fdd37fb",
+      "git_tree": "ab7dbed84d4d25baeb3ef4f6ba7d60b8fedee0d5",
+      "content_manifest_sha256": "5fdb539972079e51354c881f20cb435203a0def0f64984dc175074ced4f04257",
+      "manifest_path": "/tmp/devops-regressions/pr4-fresh/candidate-hashes/OLD-S11-cilium.sha256",
+      "file_count": 10
+    },
+    "NEW": {
+      "commit": "077195781e9c3d93b0353f2c44bf3e2ec138ec66",
+      "git_tree": "1727f0ec78301a92395308975e2a0ff14f98d30c",
+      "content_manifest_sha256": "1fc248eae61553702be4c38b9748cf3715400a4ae14d38943ebbf3fe5281f04f",
+      "manifest_path": "/tmp/devops-regressions/pr4-fresh/candidate-hashes/NEW-S11-cilium.sha256",
+      "file_count": 10
+    }
+  },
+  "S13": {
+    "OLD": {
+      "commit": "e4fac2fdef31171f0104dd4c6856cb491fdd37fb",
+      "git_tree": "47b7fe3206a32f22ae9673b3bab8c5bbe74e7842",
+      "content_manifest_sha256": "8ce07fb905169759dd9167f0c7cca285d76839f7fc12216ed71e6633ac4d949c",
+      "manifest_path": "/tmp/devops-regressions/pr4-fresh/candidate-hashes/OLD-S13-vault.sha256",
+      "file_count": 5
+    },
+    "NEW": {
+      "commit": "077195781e9c3d93b0353f2c44bf3e2ec138ec66",
+      "git_tree": "ab386ea9b9335233f8e3ff928d07a78aac21acb3",
+      "content_manifest_sha256": "f269f1400a59a05db7f0bb8d1e466d076d29c3d845cc3522f62959a33a8b3a7e",
+      "manifest_path": "/tmp/devops-regressions/pr4-fresh/candidate-hashes/NEW-S13-vault.sha256",
+      "file_count": 5
+    }
+  }
+}

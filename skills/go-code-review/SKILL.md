@@ -1,6 +1,6 @@
 ---
 name: go-code-review
-description: Use when reviewing Go code for idiomatic style, correctness, and maintainability. Mention "review this go code", "is this idiomatic go", "go code review" as triggers.
+description: Use when reviewing Go code for idiomatic style, correctness, concurrency, or maintainability. Mention "review this go code", "is this idiomatic go", or "go code review"; use pr-review for a cross-language diff with no Go focus and go-testing-review for tests specifically.
 license: MIT
 compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, and other agents that support Agent Skills-style instructions.
 ---

@@ -1,6 +1,6 @@
 ---
 name: helm-review
-description: Use when reviewing a Helm chart's templates, values, or upgrade safety. Mention "review this helm chart", "helm chart review", "chart upgrade safety" as triggers.
+description: Use when reviewing a Helm chart's templates, values, or upgrade safety. Mention "review this helm chart", "helm chart review", or "chart upgrade safety"; use kubernetes-yaml-review for rendered manifests alone and pr-review for a diff with no narrower artifact focus.
 license: MIT
 compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, and other agents that support Agent Skills-style instructions.
 ---
@@ -11,6 +11,8 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 Use when reviewing a Helm chart (own or third-party) before adopting it, upgrading it, or
 changing its templates/values.
+Use `kubernetes-yaml-review` instead for rendered manifests alone and `pr-review` for a diff
+without a specific chart or manifest focus.
 
 ## Goal
 

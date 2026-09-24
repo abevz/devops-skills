@@ -1,11 +1,36 @@
 ---
 name: admission-policy-review
-description: Use when writing, reviewing, or rolling out Kubernetes admission policies with Kyverno, OPA Gatekeeper, or Pod Security Admission. Mention "kyverno policy", "gatekeeper constraint", "admission control", "pod security admission" as triggers.
+description: Use when authoring, reviewing, or rolling out Kubernetes admission enforcement with Kyverno, OPA Gatekeeper, or Pod Security Admission. Mention "kyverno policy", "gatekeeper constraint", or "admission control"; use kubernetes-security for broad posture audits and runtime-security-review for detection after admission.
 license: MIT
 compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, and other agents that support Agent Skills-style instructions.
 ---
 
 # Admission Policy Review
+
+## TL;DR checklist
+
+- [ ] Decide whether the gap belongs to PSA, Kyverno, Gatekeeper, or built-in admission policy.
+- [ ] Check the proposed deny set in audit mode and review violations before enforcement.
+- [ ] Require narrow, owned, expiring exceptions and test policies before rollout.
+
+## Key read-only checks
+
+- Read policy match/exclude scope, audit reports, webhook failure policy, and test fixtures.
+
+## Common pitfalls
+
+- Do not turn on enforcement before measuring its existing violations.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/kyverno-patterns.md](references/kyverno-patterns.md)
+- [references/kyverno-deployment.md](references/kyverno-deployment.md)
+
+Last verified: unverified
 
 ## When to use
 
@@ -15,6 +40,8 @@ authoring policies, planning an audit→enforce rollout, or debugging "why did a
 this." This is the enforcement counterpart to `kubernetes-security` (which
 finds the gaps policies should close) and `supply-chain-security` (whose signatures policies
 verify).
+Use `kubernetes-security` instead for a general posture audit and `runtime-security-review`
+instead for Falco/Tetragon/Tracee detection after admission.
 
 ## Goal
 

@@ -1,7 +1,10 @@
 # cert-manager chain playbooks
 
-Walk `Certificate → CertificateRequest → Order → Challenge` with `kubectl describe` (or
-`cmctl status certificate <name> -n <ns>` in one shot) and route by the deepest error message.
+Walk `Certificate → CertificateRequest` with `kubectl describe`; for ACME issuers, continue
+through `Order → Challenge`. `cmctl status certificate <name> -n <ns>` reports related
+resources, including Order and Challenge for ACME, in one read-only command. Route by the
+deepest error message. See the [cert-manager ACME resource chain](https://cert-manager.io/docs/concepts/acme-orders-challenges/)
+and [`cmctl status certificate` reference](https://cert-manager.io/docs/reference/cmctl/).
 All commands read-only.
 
 ## Chain status → cause → fix
@@ -21,14 +24,23 @@ All commands read-only.
 
 Challenge stuck `pending`, reason mentions the self-check:
 
-1. **Solver plumbing exists?** `kubectl get pods,ingress -n <ns> | grep cm-acme-http-solver` —
-   cert-manager creates a temporary pod + ingress per challenge. Absent = look at controller
-   logs; present = a routing/reachability problem.
-2. **`wrong status code '404'`** — the solver ingress isn't the one serving the request: class
-   mismatch (`class:` / `ingressClassName` in the solver config vs the controller actually
-   handling the domain), or another ingress with a more specific path wins. The solver must be
+1. **Which solver is configured?** Inspect the Issuer's `http01.ingress` or
+   `http01.gatewayHTTPRoute` choice, then list the temporary solver pod and the matching
+   route type: `kubectl get pods -n <ns> | grep cm-acme-http-solver`; for the Ingress solver,
+   `kubectl get ingress -n <ns> | grep cm-acme-http-solver`; for the Gateway solver,
+   `kubectl get httproute -n <ns> | grep cm-acme-http-solver`. The Gateway HTTP-01 solver is
+   available from cert-manager 1.15. If a configured Gateway solver has no HTTPRoute, check
+   that Gateway API CRDs are installed and cert-manager Gateway API support is enabled with
+   `config.gatewayAPI.enabled: true` (Helm values). Some
+   cert-manager components check for the CRDs only at startup; if the CRDs were installed
+   later, plan a cert-manager Deployment restart before retrying. A missing solver resource
+   also calls for controller logs; an existing one calls for route diagnostics.
+2. **`wrong status code '404'`** — with an Ingress solver, check its class
+   (`class`/`ingressClassName`) and path precedence. With a Gateway solver, check the
+   temporary HTTPRoute's `parentRefs`, status conditions, and whether the referenced Gateway
+   has an HTTP listener on port 80 that permits the Route's namespace. The solver must be
    reachable at `http://<domain>/.well-known/acme-challenge/<token>` — port 80, not a redirect
-   to 443 that drops the path.
+   to 443 that drops the path. [cert-manager HTTP-01 solvers](https://cert-manager.io/docs/configuration/acme/http01/).
 3. **`failed to perform self check GET request` / connection refused / timeout** — the check
    runs *from inside the cluster* to the domain's public IP. Homelab signature: hairpin NAT —
    the outside world can reach the URL but the cluster cannot reach its own external IP. Verify

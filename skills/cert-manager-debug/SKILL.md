@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # cert-manager Debug
 
+## TL;DR checklist
+
+- [ ] Check controller, webhook, and cainjector health.
+- [ ] Follow Certificate → CertificateRequest to the deepest error; for ACME issuers, continue through Order → Challenge.
+- [ ] Diagnose the configured HTTP-01 or DNS-01 path before proposing a retry.
+
+## Key read-only checks
+
+- Use `kubectl describe` on the issuer-appropriate resources and `cmctl status certificate` when available.
+
+## Common pitfalls
+
+- Do not delete certificate resources merely to force another ACME attempt.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/playbooks.md](references/playbooks.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when a cert-manager-managed certificate misbehaves — a `Certificate` stuck not Ready, an
@@ -16,9 +40,9 @@ errors — and the cause needs to be found.
 
 ## Goal
 
-Pinpoint which link in the issuance chain (Issuer → Certificate → CertificateRequest → Order →
-Challenge → served TLS) is failing and why, backed by the resource's own status/events, and
-propose a fix — without mutating live secrets, forcing renewals, or burning ACME rate limits.
+Pinpoint where issuance fails: Issuer → Certificate → CertificateRequest → served TLS; for
+ACME issuers, also inspect Order and Challenge. Back the diagnosis with status/events and
+propose a fix without mutating live secrets, forcing renewals, or burning ACME rate limits.
 
 ## Workflow
 
@@ -26,14 +50,16 @@ propose a fix — without mutating live secrets, forcing renewals, or burning AC
    cainjector all Running. A crashlooping webhook explains "nothing cert-manager related can
    even be applied"; a down controller explains "nothing progresses" with zero errors anywhere.
 2. **Walk the chain top-down** — `kubectl describe` the `Certificate`, then its
-   `CertificateRequest`, then `Order`, then `Challenge`(s). The deepest resource with an error
-   in status/events names the culprit; quote that exact message. `cmctl status certificate
-   <name> -n <ns>` walks the whole chain in one read-only command if `cmctl` is available.
+   `CertificateRequest`; for an ACME issuer, continue through `Order` and `Challenge`(s).
+   The deepest resource with an error in status/events names the culprit; quote that exact
+   message. `cmctl status certificate <name> -n <ns>` reports related resources in one
+   read-only command if `cmctl` is available.
 3. **Issuer readiness** — `kubectl describe clusterissuer/<name>` (or `issuer`): is it Ready?
    ACME account registration failures (missing/invalid account key secret, unreachable ACME
    server) stall every certificate under that issuer at once.
 4. **Route by challenge type** once a Challenge holds the error:
-   - **HTTP-01**: does the `cm-acme-http-solver` pod/ingress exist, and is
+   - **HTTP-01**: does the `cm-acme-http-solver` pod and configured Ingress or Gateway
+     HTTPRoute exist, and is
      `http://<domain>/.well-known/acme-challenge/<token>` reachable *from the internet*? The
      self-check runs from inside the cluster — hairpin-NAT homelab setups fail it even when the
      outside world would succeed.
@@ -93,11 +119,11 @@ certificate on it), start with `kubernetes-debug`.
 
 ## Quality checklist
 
-- [ ] The full chain (Certificate → CertificateRequest → Order → Challenge) was walked and the
-      deepest error message quoted, not paraphrased
-- [ ] The challenge type was identified and its specific playbook followed (HTTP-01 external
+- [ ] The issuer-appropriate chain (Certificate → CertificateRequest, plus Order → Challenge
+      for ACME) was walked and the deepest error message quoted, not paraphrased
+- [ ] For ACME, the challenge type was identified and its specific playbook followed (HTTP-01 external
       reachability / DNS-01 TXT at authoritative NS)
-- [ ] Rate-limit implications were considered before proposing any delete/retry
+- [ ] For ACME, rate-limit implications were considered before proposing any delete/retry
 - [ ] Only read-only commands were run without confirmation; secret deletion and forced renewal
       were marked as requiring it
 - [ ] The fix includes an end-to-end verification command, not just "the Certificate is Ready"
