@@ -7,6 +7,38 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Cluster Backup & DR
 
+## TL;DR checklist
+
+- [ ] Inventory state Git cannot rebuild: volume data, secret material, runtime objects, and self-hosted control-plane state.
+- [ ] Set recovery time and data-loss targets per item.
+- [ ] Design backup and restore tests for uncovered state.
+
+## Answer must include
+
+For a backup/DR design or review request, show each stateful item in a table as git-rebuildable,
+backup-covered, or uncovered, with its RPO/RTO or an explicit unknown. State the backup method
+and database consistency plan, a scheduled restore-test cadence, and what alerts on backup
+failure or stale success. If those inputs are missing, keep them as decisions to resolve; do not
+silently omit the row.
+
+## Key read-only checks
+
+- Read backup schedules, storage locations, volume method, and evidence from the latest restore test.
+
+## Common pitfalls
+
+- Do not treat GitOps desired state as a backup of running data.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/velero.md](references/velero.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when designing, reviewing, or questioning a cluster's backup/DR posture: "do we even need

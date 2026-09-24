@@ -7,6 +7,31 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Istio
 
+## TL;DR checklist
+
+- [ ] Identify whether the task is install, data-plane choice, traffic, security, or telemetry.
+- [ ] Record version, install method, sidecar/ambient mode, mTLS mode, and ingress.
+- [ ] Check L4 versus L7 needs before choosing proxies or waypoints.
+
+## Key read-only checks
+
+- Inspect revisions, proxy status, mesh policy, and relevant routes before proposing a change.
+
+## Common pitfalls
+
+- Do not assume every workload needs a sidecar or L7 waypoint.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/install-upgrade.md](references/install-upgrade.md)
+- [references/sidecar-vs-ambient.md](references/sidecar-vs-ambient.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when standing up or operating an Istio mesh: install method and revision-based upgrades,

@@ -7,6 +7,39 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Upgrade Readiness
 
+## TL;DR checklist
+
+- [ ] Record current and target component versions and plan each minor hop.
+- [ ] Check skew, removed APIs, addon ranges, and drain readiness.
+- [ ] Stage a canary node/pool and name recovery gates.
+
+## Answer must include
+
+For every minor hop, show the backup gate, control-plane and canary order, removed-API checks
+against the cluster, git, and Helm state, and an addon matrix with supported ranges and upgrade
+order. Check both workloads without PDB coverage and PDBs that would block drains; for replicated
+storage, check the backend's replica-placement and node-drain guidance. Mark unknown compatibility
+ranges as blockers to verify, never as confirmed facts; state restore or fix-forward instead of
+a control-plane downgrade.
+
+## Key read-only checks
+
+- Inspect version inventory, API scans, addon matrix, PDBs, and node-pool state.
+
+## Common pitfalls
+
+- Do not infer addon compatibility from a green core Kubernetes upgrade.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/upgrade-checks.md](references/upgrade-checks.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use before a Kubernetes cluster upgrade (or when someone proposes one): assess whether the
