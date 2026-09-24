@@ -1,6 +1,6 @@
 ---
 name: gitops-review
-description: Use when reviewing a GitOps repository's structure and deployment flow, independent of a specific tool like ArgoCD. Mention "gitops review", "review our deploy repo structure", "gitops repo layout" as triggers.
+description: Use when reviewing GitOps repository structure, environment separation, ownership, or promotion flow, independent of the controller. Mention "gitops review", "deploy repo structure", or "gitops repo layout"; use argocd for controller operation, argocd-debug for one stuck Application, and argocd-applicationset for generator design.
 license: MIT
 compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, and other agents that support Agent Skills-style instructions.
 ---
@@ -11,6 +11,8 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 Use when reviewing how a GitOps repository is organized and how changes flow from commit to
 running cluster — layout, environment separation, secrets, and promotion process.
+Use `argocd` instead for controller operation, `argocd-debug` for one stuck Application, and
+`argocd-applicationset` for generator/template design.
 
 ## Goal
 
