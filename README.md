@@ -19,10 +19,10 @@ Codex-style agents, CodeWhale, OpenCode, and others.
 
 ## Installing
 
-This personal setup keeps the repository as the source of truth:
+This personal setup keeps the main checkout at `~/github/devops-skills` as the source of truth:
 
 ```bash
-# ~/.agents/skills/<name> points to this clone's skills/<name>
+# ~/.agents/skills/<name> points to ~/github/devops-skills/skills/<name>
 # ~/.claude/skills/<name> points to ~/.agents/skills/<name>
 readlink ~/.agents/skills/kubernetes-debug
 readlink ~/.claude/skills/kubernetes-debug
@@ -37,9 +37,10 @@ The current machine has links for all 46 skills in `~/.agents/skills/` and
 skill list after setup or a new session: a link on disk alone does not prove the skill is
 available to the agent.
 
-To link a newly added skill from the repository clone:
+To link a newly added skill from the main checkout:
 
 ```bash
+cd ~/github/devops-skills
 ln -s "$PWD/skills/<name>" "$HOME/.agents/skills/<name>"
 ln -s "../../.agents/skills/<name>" "$HOME/.claude/skills/<name>"
 ```
@@ -48,8 +49,8 @@ For a separate copy-based install, the [`skills`](https://github.com/vercel-labs
 CLI remains available:
 
 ```bash
-npx skills add ./skills/<name> -g -y
-npx skills add . -g -y -s '*'
+npx skills add ./skills/<name> -g -y --copy
+npx skills add . -g -y -s '*' --copy
 ```
 
 Copies need refreshing after a repository update; links follow the checked-out files.
