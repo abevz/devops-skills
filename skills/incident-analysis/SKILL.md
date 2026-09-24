@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Incident Analysis
 
+## TL;DR checklist
+
+- [ ] Collect the incident timeline and actual evidence.
+- [ ] Separate user impact, immediate trigger, root cause, and mitigation.
+- [ ] Write owned follow-up actions from the observed gaps.
+
+## Key read-only checks
+
+- Read alerts, logs, dashboards, deploy history, and recorded response actions.
+
+## Common pitfalls
+
+- Do not infer a root cause only from the first visible symptom.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [Workflow](#workflow) below.
+
+Last verified: unverified
+
 ## When to use
 
 Use after a production (or production-like) incident, when the user wants a structured writeup:

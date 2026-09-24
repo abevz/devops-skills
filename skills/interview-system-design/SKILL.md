@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Interview System Design
 
+## TL;DR checklist
+
+- [ ] Clarify functional and non-functional requirements.
+- [ ] Estimate scale before choosing components.
+- [ ] Explain the request path, trade-offs, and failure behavior.
+
+## Key read-only checks
+
+- Review the given prompt, assumptions, scale figures, and design constraints.
+
+## Common pitfalls
+
+- Do not start with a favorite technology before stating the need.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [Workflow](#workflow) below.
+
+Last verified: unverified
+
 ## When to use
 
 Use when preparing for a system design interview: practicing a specific question ("design a URL

@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # English Technical Message
 
+## TL;DR checklist
+
+- [ ] Identify the author's intent and audience.
+- [ ] Correct grammar and phrasing without changing the technical facts.
+- [ ] Return one ready-to-send version in the original tone.
+
+## Key read-only checks
+
+- Read the exact draft and surrounding communication context supplied by the user.
+
+## Common pitfalls
+
+- Do not turn a short operational message into an essay.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [Workflow](#workflow) below.
+
+Last verified: unverified
+
 ## When to use
 
 Use when the user has drafted a short English technical message — a PR comment, GitHub issue,
