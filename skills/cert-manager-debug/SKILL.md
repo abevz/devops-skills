@@ -10,12 +10,12 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 ## TL;DR checklist
 
 - [ ] Check controller, webhook, and cainjector health.
-- [ ] Follow Certificate → CertificateRequest → Order → Challenge to the deepest error.
+- [ ] Follow Certificate → CertificateRequest to the deepest error; for ACME issuers, continue through Order → Challenge.
 - [ ] Diagnose the configured HTTP-01 or DNS-01 path before proposing a retry.
 
 ## Key read-only checks
 
-- Use `kubectl describe` on the chain and `cmctl status certificate` when available.
+- Use `kubectl describe` on the issuer-appropriate resources and `cmctl status certificate` when available.
 
 ## Common pitfalls
 
@@ -40,9 +40,9 @@ errors — and the cause needs to be found.
 
 ## Goal
 
-Pinpoint which link in the issuance chain (Issuer → Certificate → CertificateRequest → Order →
-Challenge → served TLS) is failing and why, backed by the resource's own status/events, and
-propose a fix — without mutating live secrets, forcing renewals, or burning ACME rate limits.
+Pinpoint where issuance fails: Issuer → Certificate → CertificateRequest → served TLS; for
+ACME issuers, also inspect Order and Challenge. Back the diagnosis with status/events and
+propose a fix without mutating live secrets, forcing renewals, or burning ACME rate limits.
 
 ## Workflow
 
@@ -50,9 +50,10 @@ propose a fix — without mutating live secrets, forcing renewals, or burning AC
    cainjector all Running. A crashlooping webhook explains "nothing cert-manager related can
    even be applied"; a down controller explains "nothing progresses" with zero errors anywhere.
 2. **Walk the chain top-down** — `kubectl describe` the `Certificate`, then its
-   `CertificateRequest`, then `Order`, then `Challenge`(s). The deepest resource with an error
-   in status/events names the culprit; quote that exact message. `cmctl status certificate
-   <name> -n <ns>` walks the whole chain in one read-only command if `cmctl` is available.
+   `CertificateRequest`; for an ACME issuer, continue through `Order` and `Challenge`(s).
+   The deepest resource with an error in status/events names the culprit; quote that exact
+   message. `cmctl status certificate <name> -n <ns>` reports related resources in one
+   read-only command if `cmctl` is available.
 3. **Issuer readiness** — `kubectl describe clusterissuer/<name>` (or `issuer`): is it Ready?
    ACME account registration failures (missing/invalid account key secret, unreachable ACME
    server) stall every certificate under that issuer at once.
@@ -118,11 +119,11 @@ certificate on it), start with `kubernetes-debug`.
 
 ## Quality checklist
 
-- [ ] The full chain (Certificate → CertificateRequest → Order → Challenge) was walked and the
-      deepest error message quoted, not paraphrased
-- [ ] The challenge type was identified and its specific playbook followed (HTTP-01 external
+- [ ] The issuer-appropriate chain (Certificate → CertificateRequest, plus Order → Challenge
+      for ACME) was walked and the deepest error message quoted, not paraphrased
+- [ ] For ACME, the challenge type was identified and its specific playbook followed (HTTP-01 external
       reachability / DNS-01 TXT at authoritative NS)
-- [ ] Rate-limit implications were considered before proposing any delete/retry
+- [ ] For ACME, rate-limit implications were considered before proposing any delete/retry
 - [ ] Only read-only commands were run without confirmation; secret deletion and forced renewal
       were marked as requiring it
 - [ ] The fix includes an end-to-end verification command, not just "the Certificate is Ready"

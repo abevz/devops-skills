@@ -74,9 +74,11 @@ it regresses if any criterion is lost.
 
 ## S9 — cert-manager-debug (GREEN criteria)
 
-- [ ] The full chain (Certificate → CertificateRequest → Order → Challenge) is walked and the
-      deepest failing resource's status/event message is quoted verbatim.
-- [ ] The challenge type is identified and its playbook followed — HTTP-01 reachability checked
+`Order` and `Challenge` are [ACME issuer resources](https://cert-manager.io/docs/concepts/acme-orders-challenges/).
+
+- [ ] The issuer-appropriate chain (Certificate → CertificateRequest, plus Order → Challenge
+      for ACME) is walked and the deepest failing resource's status/event message is quoted verbatim.
+- [ ] For ACME, the challenge type is identified and its playbook followed — HTTP-01 reachability checked
       from an external vantage point (hairpin NAT / split-horizon named as a possibility), or
       DNS-01 TXT checked against the authoritative nameserver.
 - [ ] Deleting the Certificate/secret or forcing renewal is never proposed as a diagnostic;

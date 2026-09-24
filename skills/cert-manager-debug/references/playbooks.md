@@ -1,7 +1,10 @@
 # cert-manager chain playbooks
 
-Walk `Certificate → CertificateRequest → Order → Challenge` with `kubectl describe` (or
-`cmctl status certificate <name> -n <ns>` in one shot) and route by the deepest error message.
+Walk `Certificate → CertificateRequest` with `kubectl describe`; for ACME issuers, continue
+through `Order → Challenge`. `cmctl status certificate <name> -n <ns>` reports related
+resources, including Order and Challenge for ACME, in one read-only command. Route by the
+deepest error message. See the [cert-manager ACME resource chain](https://cert-manager.io/docs/concepts/acme-orders-challenges/)
+and [`cmctl status certificate` reference](https://cert-manager.io/docs/reference/cmctl/).
 All commands read-only.
 
 ## Chain status → cause → fix
