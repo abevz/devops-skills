@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Dockerfile Review
 
+## TL;DR checklist
+
+- [ ] Inspect base image, build stages, final user, and copied artifacts.
+- [ ] Check reproducibility, cache behavior, image size, and secret exposure.
+- [ ] Report concrete changes to the final image or build.
+
+## Key read-only checks
+
+- Read the Dockerfile, build context, lockfiles, and supplied image metadata.
+
+## Common pitfalls
+
+- Do not copy build-only tools or secrets into the final stage.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/examples.md](references/examples.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when reviewing a Dockerfile (or Containerfile) before it ships — new images, base image

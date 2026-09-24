@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Migration Plan
 
+## TL;DR checklist
+
+- [ ] State current and target state with measurable completion criteria.
+- [ ] Split the move into verifiable phases with risk and rollback per phase.
+- [ ] Name the point after which rollback changes shape.
+
+## Key read-only checks
+
+- Read current topology, data ownership, traffic path, and recovery evidence.
+
+## Common pitfalls
+
+- Do not propose a big-bang cutover when a staged path exists.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [Workflow](#workflow) below.
+
+Last verified: unverified
+
 ## When to use
 
 Use when planning a move from one system, platform, or configuration to another — e.g. ingress

@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Grafana Dashboards
 
+## TL;DR checklist
+
+- [ ] Name the dashboard audience and the question it must answer.
+- [ ] Put the service or resource verdict before diagnostic detail.
+- [ ] Check panel queries, units, variables, and drill-down links.
+
+## Key read-only checks
+
+- Read dashboard JSON or panel queries plus the metrics they use.
+
+## Common pitfalls
+
+- Do not make a dashboard dense enough to hide the headline signal.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/panel-patterns.md](references/panel-patterns.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when creating a new Grafana dashboard, restructuring an unusable one, or reviewing dashboard

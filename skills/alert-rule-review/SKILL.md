@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Alert Rule Review
 
+## TL;DR checklist
+
+- [ ] Decide whether the rule is a page, warning, or ticket.
+- [ ] Check PromQL windows, labels, counter handling, and absent-data behavior.
+- [ ] Verify alert duration, routing, and runbook link.
+
+## Key read-only checks
+
+- Read the expression, scrape interval, labels, routing config, and related tests.
+
+## Common pitfalls
+
+- Do not page on a cause-only metric when the user-visible symptom is missing.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/promql-patterns.md](references/promql-patterns.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when writing new Prometheus alerting rules or reviewing existing ones — including "this

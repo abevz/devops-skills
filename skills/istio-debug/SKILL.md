@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Istio Debug
 
+## TL;DR checklist
+
+- [ ] Run `istioctl analyze` for configuration errors.
+- [ ] Check injection and proxy sync before tracing traffic rules.
+- [ ] Classify mTLS, routing, and upstream failures from exact proxy evidence.
+
+## Key read-only checks
+
+- Read `istioctl proxy-status`, pod injection state, route config, and relevant logs.
+
+## Common pitfalls
+
+- Do not alter a VirtualService until the proxy received the expected config.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/playbooks.md](references/playbooks.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when traffic in an Istio mesh misbehaves — 503s between services, mTLS handshake failures,
