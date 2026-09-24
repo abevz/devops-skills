@@ -7,6 +7,31 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Runtime Security Review
 
+## TL;DR checklist
+
+- [ ] Identify whether the task is sensor deployment, detection coverage, or alert triage.
+- [ ] Check the exact event, workload identity, and rule context.
+- [ ] Recommend a narrowly scoped detection or response change.
+
+## Key read-only checks
+
+- Read sensor status, rule definition, alert fields, and pod metadata.
+
+## Common pitfalls
+
+- Do not suppress a noisy rule before checking what it detects.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/falco-deployment.md](references/falco-deployment.md)
+- [references/tetragon-deployment.md](references/tetragon-deployment.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when **deploying** Falco/Tracee (driver choice, DaemonSet, rule authoring, alert output),

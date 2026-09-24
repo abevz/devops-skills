@@ -7,6 +7,31 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Kubernetes Security
 
+## TL;DR checklist
+
+- [ ] Review privilege, host access, identity, filesystem, and RBAC exposure.
+- [ ] Explain the exploit path for each material gap.
+- [ ] Rank findings by reachable risk and propose scoped controls.
+
+## Key read-only checks
+
+- Read workload securityContext, ServiceAccount bindings, namespace labels, and relevant policies.
+
+## Common pitfalls
+
+- Do not report a checklist item without showing its actual risk in context.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/examples.md](references/examples.md)
+- [references/hardening.md](references/hardening.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use for a focused security audit of Kubernetes workloads, RBAC, or cluster configuration —

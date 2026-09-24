@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Architecture Review
 
+## TL;DR checklist
+
+- [ ] Map components and dependency direction.
+- [ ] Identify unclear boundaries, coupling, and shared mutable state.
+- [ ] Prioritize changes by operational and maintenance cost.
+
+## Key read-only checks
+
+- Read package/service boundaries, interfaces, deployment dependencies, and the proposed diff.
+
+## Common pitfalls
+
+- Do not infer architecture from the directory tree alone.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [Workflow](#workflow) below.
+
+Last verified: unverified
+
 ## When to use
 
 Use when reviewing a repository's or system's structure — module boundaries, service

@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Cilium Debug
 
+## TL;DR checklist
+
+- [ ] Check agent and endpoint health on the affected node.
+- [ ] Use Hubble verdicts and drop reasons to locate the denied path.
+- [ ] Map the observed drop to the responsible policy or datapath layer.
+
+## Key read-only checks
+
+- Use `cilium status`, endpoint status, and read-only Hubble flow inspection.
+
+## Common pitfalls
+
+- Do not edit policies before the dropped flow and identity are known.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/playbooks.md](references/playbooks.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when pod-to-pod, pod-to-service, or egress traffic misbehaves in a Cilium cluster — drops,
