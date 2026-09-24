@@ -28,6 +28,7 @@ readlink ~/.agents/skills/kubernetes-debug
 readlink ~/.claude/skills/kubernetes-debug
 
 # after pulling changes in this clone, the linked skill files update automatically
+cd ~/github/devops-skills
 git pull
 ```
 
