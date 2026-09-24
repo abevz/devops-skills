@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # ArgoCD Debug
 
+## TL;DR checklist
+
+- [ ] Read Application sync, health, and conditions.
+- [ ] Compare desired and live state, then check revision/path and render output.
+- [ ] Identify the cause before proposing sync, prune, or live edits.
+
+## Key read-only checks
+
+- Use `argocd app get`, `argocd app diff`, and read the Application object.
+
+## Common pitfalls
+
+- Do not force sync while the reason for drift or health failure is unknown.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/playbooks.md](references/playbooks.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when an ArgoCD `Application` is `OutOfSync`, `Degraded`, `Unknown`, or stuck, and the cause

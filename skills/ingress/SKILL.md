@@ -7,6 +7,31 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Ingress / Gateway API
 
+## TL;DR checklist
+
+- [ ] Inventory the current controller, routes, TLS termination, and special annotations.
+- [ ] Choose the Gateway implementation against required features.
+- [ ] Plan a staged ingress migration with a verified rollback path.
+
+## Key read-only checks
+
+- Read Ingress, Gateway, and Route objects plus controller versions and status conditions.
+
+## Common pitfalls
+
+- Do not treat an automatic Ingress conversion as apply-ready.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/ingress-nginx.md](references/ingress-nginx.md)
+- [references/gateway-api.md](references/gateway-api.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when getting traffic *into* a cluster: configuring or reviewing ingress-nginx, designing

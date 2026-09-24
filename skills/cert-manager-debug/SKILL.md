@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # cert-manager Debug
 
+## TL;DR checklist
+
+- [ ] Check controller, webhook, and cainjector health.
+- [ ] Follow Certificate → CertificateRequest → Order → Challenge to the deepest error.
+- [ ] Diagnose the configured HTTP-01 or DNS-01 path before proposing a retry.
+
+## Key read-only checks
+
+- Use `kubectl describe` on the chain and `cmctl status certificate` when available.
+
+## Common pitfalls
+
+- Do not delete certificate resources merely to force another ACME attempt.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/playbooks.md](references/playbooks.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when a cert-manager-managed certificate misbehaves — a `Certificate` stuck not Ready, an

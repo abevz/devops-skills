@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Storage Debug
 
+## TL;DR checklist
+
+- [ ] Read PVC and pod events before choosing a storage layer.
+- [ ] Trace claim/class → provisioner → attach → mount → backend.
+- [ ] Treat a failed-node Multi-Attach case as a data-safety decision.
+
+## Key read-only checks
+
+- Use read-only `kubectl describe pvc`, `describe pod`, `get sc`, and `get volumeattachment`.
+
+## Common pitfalls
+
+- Do not delete an attachment until node failure and writer safety are established.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/playbooks.md](references/playbooks.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when persistent storage misbehaves in a Kubernetes cluster: a PVC stuck `Pending`, pods
