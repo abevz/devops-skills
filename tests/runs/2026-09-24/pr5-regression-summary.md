@@ -67,6 +67,8 @@ Security says we must be off Kubernetes 1.29 by end of month — target 1.33. It
 
 S16 original NEW at 9816a86: `51ca6c2ac6295915e51db0132dfa3298e3dcd5e8c117f0c29b5b60dd4b2abccd`. Corrected final S16 NEW at 2a97bec: `4d7297dda811b9de4cd95868150b61eb7bdda0cb65371d5482dad0a17e9bfe3e`.
 
+After these runs, cross-model review requested one scope qualifier in `cluster-backup`'s answer contract: the full table is required for backup/DR design or review requests. S18 is such a request. The S18 NEW hash above identifies the tested candidate; the final PR file has this additional qualifier and was not rerun. No other tested skill changed after the runs.
+
 No-skill controls S15/S18/S19 had no project `.agents/skills` files. Each empty project-skill-set SHA-256 is `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`; no-skill candidate CWDs and hashes are in [pr5-candidate-hashes.tsv](pr5-candidate-hashes.tsv). Built-in .system skills remained available.
 
 ## Strict GREEN results

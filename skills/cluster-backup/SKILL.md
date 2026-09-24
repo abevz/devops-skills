@@ -15,10 +15,11 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 ## Answer must include
 
-Show each stateful item in a table as git-rebuildable, backup-covered, or uncovered, with its
-RPO/RTO or an explicit unknown. State the backup method and database consistency plan, a
-scheduled restore-test cadence, and what alerts on backup failure or stale success. If those
-inputs are missing, keep them as decisions to resolve; do not silently omit the row.
+For a backup/DR design or review request, show each stateful item in a table as git-rebuildable,
+backup-covered, or uncovered, with its RPO/RTO or an explicit unknown. State the backup method
+and database consistency plan, a scheduled restore-test cadence, and what alerts on backup
+failure or stale success. If those inputs are missing, keep them as decisions to resolve; do not
+silently omit the row.
 
 ## Key read-only checks
 
