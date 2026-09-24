@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Root Cause Analysis
 
+## TL;DR checklist
+
+- [ ] Write the exact observed and expected behavior.
+- [ ] Tie hypotheses to logs, code, metrics, and timeline evidence.
+- [ ] Test competing explanations until one cause is supported.
+
+## Key read-only checks
+
+- Read exact errors, recent changes, call paths, and focused test output.
+
+## Common pitfalls
+
+- Do not present an untested hypothesis as the confirmed cause.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [Workflow](#workflow) below.
+
+Last verified: unverified
+
 ## When to use
 
 Use when something is broken, behaving unexpectedly, or regressed, and the cause is not yet

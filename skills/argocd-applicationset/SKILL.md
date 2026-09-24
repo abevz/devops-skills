@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # ArgoCD ApplicationSet
 
+## TL;DR checklist
+
+- [ ] Identify generator inputs and who owns cluster/environment membership.
+- [ ] Check template expansion for every generated Application.
+- [ ] Review target scope and promotion blast radius.
+
+## Key read-only checks
+
+- Read generator selectors, cluster secrets or Git paths, template values, and generated Application names.
+
+## Common pitfalls
+
+- Do not assume a new cluster or directory cannot expand the generator unexpectedly.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/generators.md](references/generators.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when designing a new ApplicationSet, or reviewing an existing one, for rolling out apps

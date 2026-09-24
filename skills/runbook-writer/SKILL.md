@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Runbook Writer
 
+## TL;DR checklist
+
+- [ ] State the triggering alert and user impact.
+- [ ] Put ordered read-only diagnosis before action.
+- [ ] Map each mitigation to the evidence that justifies it.
+
+## Key read-only checks
+
+- Read the alert rule, dashboards, logs, and existing recovery instructions.
+
+## Common pitfalls
+
+- Do not offer an invasive command without a condition and a recovery path.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [Workflow](#workflow) below.
+
+Last verified: unverified
+
 ## When to use
 
 Use when an alert, service, or recurring incident needs a runbook — or when an existing runbook

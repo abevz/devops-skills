@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # DAST Review
 
+## TL;DR checklist
+
+- [ ] Choose passive or active scanning for the intended stage.
+- [ ] Check target isolation, authentication, and scan scope.
+- [ ] Route findings to evidence-backed triage.
+
+## Key read-only checks
+
+- Read scan config, target URL/environment, auth setup, exclusions, and reports.
+
+## Common pitfalls
+
+- Do not launch an active scan against production while reviewing a plan.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/zap-usage.md](references/zap-usage.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when adding dynamic security testing to a running web app or HTTP API, or reviewing an
