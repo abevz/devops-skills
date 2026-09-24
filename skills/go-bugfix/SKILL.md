@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Go Bugfix
 
+## TL;DR checklist
+
+- [ ] Reproduce or precisely state the wrong behavior.
+- [ ] Trace from the symptom to the root cause and make a minimal fix.
+- [ ] Add a regression check and run focused package tests.
+
+## Key read-only checks
+
+- Inspect the failing output, call path, and nearby tests before editing.
+
+## Common pitfalls
+
+- Do not patch only the downstream panic when the bad value originates earlier.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [Workflow](#workflow) below.
+
+Last verified: unverified
+
 ## When to use
 
 Use when a Go program has a specific, identifiable bug (wrong output, panic, failing test,
