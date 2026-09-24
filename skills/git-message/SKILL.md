@@ -11,7 +11,7 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 - [ ] Read staged changes, or unstaged diff if nothing is staged.
 - [ ] Choose the conventional type and useful scope.
-- [ ] Write an imperative subject and a body only when context helps.
+- [ ] Write an imperative subject and a body explaining motivation and context.
 
 ## Key read-only checks
 
