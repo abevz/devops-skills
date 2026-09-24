@@ -1,5 +1,7 @@
 # PR5 paired-scenario results
 
+After PR4 merged, `argocd-debug` also acquired PR3's trigger-boundary wording. A fresh three-per-arm S4 check against the combined final skill is recorded in [pr5-s4-post-pr4.md](pr5-s4-post-pr4.md): OLD and NEW medians remain 2/3, with visible skill reads in all six answers. The S4 row below is the earlier, pre-reconciliation comparison.
+
 Run date: 2026-09-24 (UTC). The 58 persisted invocation records span 07:47:35–08:19:14 UTC; the two reused S18 replicate-1 smoke artifacts were created on the same date before the recorded matrix invocations. Their exact launch timestamp was not retained; reconstructed invocation metadata is marked in each file.
 
 ## Candidate definition and controls
