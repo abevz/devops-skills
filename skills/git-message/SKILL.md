@@ -7,6 +7,30 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 # Git Message
 
+## TL;DR checklist
+
+- [ ] Read staged changes, or unstaged diff if nothing is staged.
+- [ ] Choose the conventional type and useful scope.
+- [ ] Write an imperative subject and a body explaining motivation and context.
+
+## Key read-only checks
+
+- Use read-only `git diff --staged` or `git diff` to inspect the actual change.
+
+## Common pitfalls
+
+- Do not invent a change the diff does not contain.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [Workflow](#workflow) below.
+
+Last verified: unverified
+
 ## When to use
 
 Use when the user asks for a commit message, wants help writing one from a diff, or asks to
