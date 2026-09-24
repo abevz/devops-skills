@@ -6,13 +6,17 @@
 |---|---|---|
 | kube-apiserver (HA peers) | n-1 during rolling upgrade | Upgrade control-plane nodes one at a time |
 | kubelet | up to **n-3** older (never newer) | Node pools can lag several hops; a kubelet *ahead* of the API server is invalid — control plane always goes first |
-| kube-proxy | same minor as its kubelet | Upgrades with the node |
+| kube-proxy | not newer than any API server it contacts; up to three minors older than the API server and up to three minors older or newer than its kubelet (two minors for versions before 1.25) | Matching the node's kubelet is an operational preference, not the upstream skew limit |
 | kube-controller-manager / scheduler | n-1 vs apiserver | Part of the control-plane hop |
 | kubectl | ±1 minor of apiserver | Update operator tooling alongside |
 
 Control plane moves **one minor per hop** — 1.31→1.34 is three hops, each with its own gate.
 Node pools may batch hops only within the kubelet skew window, and only *after* the control
 plane is at target.
+
+HA API-server skew can narrow the allowed kubelet and kube-proxy versions. Recheck the full
+[upstream version-skew policy](https://kubernetes.io/releases/version-skew-policy/) for the
+actual old and target versions before scheduling a hop.
 
 ## Removed-API scanning (read-only)
 

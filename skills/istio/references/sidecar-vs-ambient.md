@@ -43,8 +43,12 @@ Deployment-planning: propose config, don't migrate a live mesh.
    is cleaner).
 3. Add a **waypoint** for namespaces/services that had L7 policy or routing (`istioctl waypoint
    apply`) — without it, L7 AuthorizationPolicy/VirtualService L7 rules won't be enforced (they
-   need an L7 proxy in path). This is the migration foot-gun: L7 policy silently stops applying
-   until a waypoint exists.
+   need an L7 proxy in path). A waypoint label alone does not guarantee traversal: traffic may
+   bypass it when the waypoint is unavailable or the traffic type is not handled. When L7
+   authorization must be enforced, pair the waypoint's L7 policy with an L4
+   `AuthorizationPolicy` on the destination workloads that allows only the waypoint's service
+   account identity, so bypass traffic is denied by ztunnel.
+   [Istio waypoint enforcement](https://istio.io/latest/docs/ambient/usage/waypoint/).
 4. Validate mTLS and policy with `istioctl analyze` / Hubble-equivalent flow checks per stage.
 
 ## Gotchas
