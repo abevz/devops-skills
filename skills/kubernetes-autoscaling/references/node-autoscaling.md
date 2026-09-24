@@ -51,7 +51,8 @@ before designing anything by hand.
 |---|---|
 | Pods Pending, no node added | Pod doesn't fit any allowed instance/group shape (huge requests, taints/affinity unsatisfiable, NodePool limits hit, cloud quota) — the Pending events + autoscaler status name it |
 | Nodes added but pods still Pending | Something else unschedulable: taints without tolerations, topology constraints, volume zone affinity (PV in another AZ) |
-| Empty nodes never removed | PDB blocks a pod on them, un-evictable pod (see pins above), or consolidation budget/policy too timid |
+| Node still hosts a protected pod | Its PDB or `karpenter.sh/do-not-disrupt` annotation can block voluntary eviction; inspect the pod and Karpenter's disruption decision before changing either. [Karpenter disruption](https://karpenter.sh/docs/concepts/disruption/) |
+| Actually empty node never removed | Check NodePool disruption budgets and the `Empty` consolidation reason, then inspect Karpenter's decision; a pod PDB cannot block eviction from a node with no pods. [Karpenter disruption](https://karpenter.sh/docs/concepts/disruption/) |
 | Node churn / workloads restarted "randomly" | Consolidation too aggressive with no budgets; missing do-not-disrupt on intolerant pods |
 | Cost went *up* after Karpenter | Requests dishonest (nodes sized to fiction) or consolidation disabled — check both before blaming the tool |
 

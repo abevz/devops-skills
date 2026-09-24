@@ -59,10 +59,12 @@ that's an outage. Plan registry access for the Kyverno SA before enabling `verif
 ## CRDs and upgrade discipline
 
 - Kyverno ships CRDs (`ClusterPolicy`, `Policy`, `PolicyException`, `PolicyReport`,
-  `CleanupPolicy`, etc.). Helm's CRD handling: chart puts them in a place that does **not**
-  auto-upgrade on `helm upgrade` — CRD upgrades are a deliberate step (apply the new CRDs from
-  the release, then upgrade the chart). Skipping this is the classic "new policy field ignored
-  after upgrade."
+  `CleanupPolicy`, etc.). Check the installed Kyverno/chart version and how CRDs were installed
+  before planning their upgrade. From Kyverno v1.19, the Helm chart manages CRDs through the
+  `kyverno-api` chart dependency when `crds.install` is enabled. If CRDs are managed separately
+  or `crds.install: false`, plan that CRD update explicitly. Earlier releases and YAML installs
+  have different upgrade paths; follow the matching release guide rather than applying a
+  blanket manual-CRD rule. [Kyverno upgrade guide](https://kyverno.io/docs/installation/upgrading/).
 - Kyverno minor versions track Kubernetes minors and occasionally change policy API (`v1` →
   `v2beta1` fields). Pin the chart version, read the migration notes on upgrade, and test
   policies against the target version (`kyverno test` / `chainsaw`) before rolling.

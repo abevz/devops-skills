@@ -67,10 +67,11 @@ against the feature list you actually need — implementations differ most at th
 
 ## Channels and versions
 
-- **Standard channel** CRDs = stable (Gateway, HTTPRoute, GRPCRoute, ReferenceGrant);
-  **experimental channel** adds alpha resources/fields (TCPRoute/UDPRoute/TLSRoute,
-  BackendTLSPolicy, session persistence). Don't build production on experimental fields
-  without flagging the upgrade risk — experimental CRDs can change shape between releases.
+- Check the channel and API version for the **specific Gateway API release** being installed;
+  the Standard/Experimental split changes as resources graduate. In particular, `TLSRoute`
+  is GA in the Standard channel starting with Gateway API v1.5.0, not an Experimental-only
+  resource. Confirm the implementation supports the route type as well as installing its CRD.
+  [Upstream TLSRoute status](https://gateway-api.sigs.k8s.io/reference/api-types/tlsroute/).
 - CRDs install/upgrade separately from the implementation — version-skew between CRDs and
   controller is a real failure mode; pin both in GitOps and upgrade CRDs first per the
   implementation's compatibility matrix.

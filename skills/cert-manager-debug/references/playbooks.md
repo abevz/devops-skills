@@ -21,14 +21,16 @@ All commands read-only.
 
 Challenge stuck `pending`, reason mentions the self-check:
 
-1. **Solver plumbing exists?** `kubectl get pods,ingress -n <ns> | grep cm-acme-http-solver` —
-   cert-manager creates a temporary pod + ingress per challenge. Absent = look at controller
-   logs; present = a routing/reachability problem.
-2. **`wrong status code '404'`** — the solver ingress isn't the one serving the request: class
-   mismatch (`class:` / `ingressClassName` in the solver config vs the controller actually
-   handling the domain), or another ingress with a more specific path wins. The solver must be
+1. **Which solver is configured?** Inspect the Issuer's `http01.ingress` or
+   `http01.gatewayHTTPRoute` choice, then list the temporary solver pod and either Ingress or
+   HTTPRoute: `kubectl get pods,ingress,httproute -n <ns> | grep cm-acme-http-solver`. A
+   missing resource calls for controller logs; an existing one calls for route diagnostics.
+2. **`wrong status code '404'`** — with an Ingress solver, check its class
+   (`class`/`ingressClassName`) and path precedence. With a Gateway solver, check the
+   temporary HTTPRoute's `parentRefs`, status conditions, and whether the referenced Gateway
+   has an HTTP listener on port 80 that permits the Route's namespace. The solver must be
    reachable at `http://<domain>/.well-known/acme-challenge/<token>` — port 80, not a redirect
-   to 443 that drops the path.
+   to 443 that drops the path. [cert-manager HTTP-01 solvers](https://cert-manager.io/docs/configuration/acme/http01/).
 3. **`failed to perform self check GET request` / connection refused / timeout** — the check
    runs *from inside the cluster* to the domain's public IP. Homelab signature: hairpin NAT —
    the outside world can reach the URL but the cluster cannot reach its own external IP. Verify
