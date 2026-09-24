@@ -7,7 +7,8 @@
 | `GatewayClass` | Implementation/platform | Which controller implements Gateways of this class |
 | `Gateway` | Cluster operator | Listeners: port/protocol/hostname/TLS; where the LB lives |
 | `HTTPRoute` / `GRPCRoute` | App teams | Host/path/header matching → backendRefs, filters |
-| `TLSRoute` / `TCPRoute` / `UDPRoute` | App teams | Non-HTTP passthrough/L4 (experimental channel) |
+| `TLSRoute` | App teams | TLS/SNI routing; Standard channel since v1.5.0 |
+| `TCPRoute` / `UDPRoute` | App teams | L4 port routing; Experimental channel |
 | `ReferenceGrant` | Target namespace owner | Allows cross-namespace refs (route→backend, gateway→secret) |
 
 The split is the point: app teams write routes in their namespaces; only the operator touches
@@ -71,7 +72,8 @@ against the feature list you actually need — implementations differ most at th
   the Standard/Experimental split changes as resources graduate. In particular, `TLSRoute`
   is GA in the Standard channel starting with Gateway API v1.5.0, not an Experimental-only
   resource. Confirm the implementation supports the route type as well as installing its CRD.
-  [Upstream TLSRoute status](https://gateway-api.sigs.k8s.io/reference/api-types/tlsroute/).
+  [Upstream TLSRoute status](https://gateway-api.sigs.k8s.io/reference/api-types/tlsroute/);
+  [TCPRoute/UDPRoute channel](https://gateway-api.sigs.k8s.io/docs/concepts/api-overview/).
 - CRDs install/upgrade separately from the implementation — version-skew between CRDs and
   controller is a real failure mode; pin both in GitOps and upgrade CRDs first per the
   implementation's compatibility matrix.

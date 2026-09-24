@@ -22,9 +22,15 @@ All commands read-only.
 Challenge stuck `pending`, reason mentions the self-check:
 
 1. **Which solver is configured?** Inspect the Issuer's `http01.ingress` or
-   `http01.gatewayHTTPRoute` choice, then list the temporary solver pod and either Ingress or
-   HTTPRoute: `kubectl get pods,ingress,httproute -n <ns> | grep cm-acme-http-solver`. A
-   missing resource calls for controller logs; an existing one calls for route diagnostics.
+   `http01.gatewayHTTPRoute` choice, then list the temporary solver pod and the matching
+   route type: `kubectl get pods -n <ns> | grep cm-acme-http-solver`; for the Ingress solver,
+   `kubectl get ingress -n <ns> | grep cm-acme-http-solver`; for the Gateway solver,
+   `kubectl get httproute -n <ns> | grep cm-acme-http-solver`. The Gateway HTTP-01 solver is
+   available from cert-manager 1.15. If a configured Gateway solver has no HTTPRoute, check
+   that Gateway API CRDs are installed and cert-manager Gateway API support is enabled. Some
+   cert-manager components check for the CRDs only at startup; if the CRDs were installed
+   later, plan a cert-manager Deployment restart before retrying. A missing solver resource
+   also calls for controller logs; an existing one calls for route diagnostics.
 2. **`wrong status code '404'`** — with an Ingress solver, check its class
    (`class`/`ingressClassName`) and path precedence. With a Gateway solver, check the
    temporary HTTPRoute's `parentRefs`, status conditions, and whether the referenced Gateway
