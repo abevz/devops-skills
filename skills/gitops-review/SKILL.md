@@ -1,16 +1,43 @@
 ---
 name: gitops-review
-description: Use when reviewing a GitOps repository's structure and deployment flow, independent of a specific tool like ArgoCD. Mention "gitops review", "review our deploy repo structure", "gitops repo layout" as triggers.
+description: Use when reviewing GitOps repository structure, environment separation, ownership, or promotion flow, independent of the controller. Mention "gitops review", "deploy repo structure", or "gitops repo layout"; use argocd for controller operation, argocd-debug for one stuck Application, and argocd-applicationset for generator design.
 license: MIT
 compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, and other agents that support Agent Skills-style instructions.
 ---
 
 # GitOps Review
 
+## TL;DR checklist
+
+- [ ] Trace where an Application is defined and how a commit reaches each environment.
+- [ ] Check secrets, image updates, drift handling, rollback, and bootstrap.
+- [ ] Report structural gaps with the affected path and promotion risk.
+
+## Key read-only checks
+
+- Read the repository tree, environment boundaries, application definitions, and pre-merge checks.
+
+## Common pitfalls
+
+- Do not mistake a single manifest finding for a repository-flow finding.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/validation-policy.md](references/validation-policy.md)
+- [references/tools.md](references/tools.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when reviewing how a GitOps repository is organized and how changes flow from commit to
 running cluster — layout, environment separation, secrets, and promotion process.
+Use `argocd` instead for controller operation, `argocd-debug` for one stuck Application, and
+`argocd-applicationset` for generator/template design.
 
 ## Goal
 

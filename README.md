@@ -19,30 +19,42 @@ Codex-style agents, CodeWhale, OpenCode, and others.
 
 ## Installing
 
-From a clone of this repository, using the [`skills`](https://github.com/vercel-labs/skills)
-CLI:
+This personal setup keeps the main checkout at `~/github/devops-skills` as the source of truth:
 
 ```bash
-# one skill (recommended first step — see safety advice below)
-npx skills add ./skills/<name> -g -y
+# ~/.agents/skills/<name> points to ~/github/devops-skills/skills/<name>
+# ~/.claude/skills/<name> points to ~/.agents/skills/<name>
+readlink ~/.agents/skills/kubernetes-debug
+readlink ~/.claude/skills/kubernetes-debug
 
-# everything at once (installs to ~/.agents/skills and symlinks into each agent's skill dir)
-npx skills add . -g -y -s '*'
-
-# after updating the clone (git pull / new commits), re-run the same command to refresh:
-npx skills add . -g -y -s '*'
+# after pulling changes in this clone, the linked skill files update automatically
+cd ~/github/devops-skills
+git pull
 ```
 
-Notes:
+The current machine has links for all 46 skills in `~/.agents/skills/` and
+`~/.claude/skills/`. Codex discovers the shared agent skills; its
+`~/.codex/skills/` directory has no separate copies of this repository. Check each agent's
+skill list after setup or a new session: a link on disk alone does not prove the skill is
+available to the agent.
 
-- The install **copies** skill files into `~/.agents/skills/`; it does not track the clone.
-  Re-run the `add` command after every repo update — or skip the CLI and symlink
-  `skills/*` into `~/.agents/skills/` yourself if you want `git pull` to be the update.
-- If bare `npx skills` misresolves on your system (some npm setups pass it to `npm` instead),
-  use the explicit form: `npm exec --yes --package=skills@latest -- skills add . -g -y -s '*'`.
-- A `✗ PromptScript: does not support global skill installation` line in the output is
-  harmless — that's one target agent that has no global install; every other agent still gets
-  the skills.
+To link a newly added skill from the main checkout:
+
+```bash
+cd ~/github/devops-skills
+ln -s "$PWD/skills/<name>" "$HOME/.agents/skills/<name>"
+ln -s "../../.agents/skills/<name>" "$HOME/.claude/skills/<name>"
+```
+
+For a separate copy-based install, the [`skills`](https://github.com/vercel-labs/skills)
+CLI remains available:
+
+```bash
+npx skills add ./skills/<name> -g -y --copy
+npx skills add . -g -y -s '*' --copy
+```
+
+Copies need refreshing after a repository update; links follow the checked-out files.
 
 ## Safety-first installation advice
 
@@ -113,28 +125,6 @@ full reference inventory — see [`docs/skill-map.md`](docs/skill-map.md).
 | [`vault`](skills/vault) | Security | Operate HashiCorp Vault/OpenBao: HA, auto-unseal, auth methods, policies, secret engines, DR |
 | [`interview-system-design`](skills/interview-system-design) | Career | Structure and practice system design interview answers |
 | [`homelab-change-plan`](skills/homelab-change-plan) | Homelab | Plan homelab infra changes with no staging: tiers, snapshots, bail-out |
-
-## Installing
-
-Install the whole repo:
-
-```bash
-npx skills add .
-```
-
-Or install a single skill (recommended when trying things out):
-
-```bash
-npx skills add ./skills/kubernetes-debug
-npx skills add ./skills/argocd-debug
-```
-
-Manual copy, if you'd rather not use the installer:
-
-```bash
-mkdir -p ~/.agents/skills
-cp -r skills/kubernetes-debug ~/.agents/skills/
-```
 
 ## Suggested daily workflow
 

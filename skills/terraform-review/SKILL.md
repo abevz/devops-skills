@@ -1,16 +1,43 @@
 ---
 name: terraform-review
-description: Use when writing, reviewing, or debugging Terraform or OpenTofu code, modules, or plan output. Mention "terraform review", "review this module", "terraform plan looks wrong" as triggers.
+description: Use when doing a bounded review of Terraform or OpenTofu code, modules, state operations, or plan output; this is the personal default. Mention "terraform review", "review this module", or "terraform plan looks wrong"; consult third-party terraform-skill for deeper reference material when the bounded review needs it.
 license: MIT
 compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, and other agents that support Agent Skills-style instructions.
 ---
 
 # Terraform Review
 
+## TL;DR checklist
+
+- [ ] Identify the present risk: identity churn, secrets, blast radius, CI drift, or state corruption.
+- [ ] Check module contracts, provider constraints, lifecycle rules, and the supplied plan.
+- [ ] Flag unexpected replacement or destroy for explicit review.
+
+## Key read-only checks
+
+- Read `required_version`, provider constraints, `.terraform.lock.hcl`, and the exact plan if supplied.
+
+## Common pitfalls
+
+- Do not treat a state-changing command or destructive plan as routine.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/version-guards.md](references/version-guards.md)
+- [references/examples.md](references/examples.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when reviewing Terraform/OpenTofu modules, variables/outputs, provider configuration, or
 `plan` output — before anything is applied.
+Use the third-party `terraform-skill` as a deeper reference when this bounded review needs
+additional detail; keep this skill as the default entry point for a specific module or plan.
 
 ## Goal
 

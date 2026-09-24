@@ -1,6 +1,6 @@
 ---
 name: argocd-applicationset
-description: Use when designing or reviewing an ArgoCD ApplicationSet for multi-cluster or multi-environment deployment. Mention "applicationset", "argocd multi-cluster", "generator design" as triggers.
+description: Use when designing or reviewing an Argo CD ApplicationSet generator and template for multi-cluster or multi-environment deployment. Mention "applicationset", "argocd multi-cluster", or "generator design"; use argocd-debug for a stuck generated Application, argocd for controller operation, and gitops-review for repository flow.
 license: MIT
 compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, and other agents that support Agent Skills-style instructions.
 ---
@@ -35,6 +35,8 @@ Last verified: unverified
 
 Use when designing a new ApplicationSet, or reviewing an existing one, for rolling out apps
 across multiple clusters or environments.
+Use `argocd-debug` instead for one generated Application that is stuck, `argocd` for controller
+operation, and `gitops-review` for repository layout or promotion.
 
 ## Goal
 

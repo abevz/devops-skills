@@ -1,16 +1,43 @@
 ---
 name: kubernetes-yaml-review
-description: Use when reviewing Kubernetes manifests (Deployments, Services, Helm-rendered YAML, Kustomize output) before they are applied. Mention "review this manifest", "review this YAML", "k8s manifest review" as triggers.
+description: Use when reviewing raw or rendered Kubernetes manifests before apply, including Deployments, Services, Helm output, and Kustomize output. Mention "review this manifest", "review this YAML", or "k8s manifest review"; use helm-review for chart templates/values and pr-review for a diff with no manifest focus.
 license: MIT
 compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, and other agents that support Agent Skills-style instructions.
 ---
 
 # Kubernetes YAML Review
 
+## TL;DR checklist
+
+- [ ] Identify the workload type and deployment context.
+- [ ] Check selectors, probes, resources, security context, RBAC, and rollout safety.
+- [ ] Report concrete manifest risks before apply.
+
+## Key read-only checks
+
+- Read raw or rendered YAML, including referenced Services, Secrets, RBAC, PDBs, and HPAs.
+
+## Common pitfalls
+
+- Do not review only the template when rendered output is the artifact being deployed.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/reliability.md](references/reliability.md)
+- [references/examples.md](references/examples.md)
+
+Last verified: unverified
+
 ## When to use
 
 Use when reviewing raw or rendered Kubernetes manifests before they're committed or applied —
 Deployments, StatefulSets, Services, Ingress, RBAC, etc.
+Use `helm-review` instead for chart templates, values, or upgrade behavior and `pr-review`
+for a diff without a specific manifest focus.
 
 ## Goal
 

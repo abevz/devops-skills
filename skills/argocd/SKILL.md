@@ -1,11 +1,36 @@
 ---
 name: argocd
-description: Use when installing, configuring, or operating Argo CD itself — HA deployment, controller sharding, SSO/RBAC, AppProject design, repository/credential setup, sync policy design, config management plugins, disaster recovery, and scaling. Mention "install argocd", "argocd HA", "argocd rbac", "argocd sso", "appproject", "argocd backup", "argocd sharding" as triggers.
+description: Use when installing, configuring, or operating Argo CD itself — HA deployment, controller sharding, SSO/RBAC, AppProject design, repository/credential setup, sync policy design, config management plugins, disaster recovery, and scaling. Mention "install argocd", "argocd HA", "argocd rbac", "argocd sso", "appproject", "argocd backup", or "argocd sharding"; use argocd-debug for one stuck Application, argocd-applicationset for generators, and gitops-review for repository flow.
 license: MIT
 compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, and other agents that support Agent Skills-style instructions.
 ---
 
 # Argo CD
+
+## TL;DR checklist
+
+- [ ] Choose the Argo CD operation area and its reference.
+- [ ] Record version, install method, HA shape, cluster/app count, and auth source.
+- [ ] Check tenancy boundaries and recovery inputs before recommending a design.
+
+## Key read-only checks
+
+- Inspect current installation, AppProjects, RBAC, repositories, and sync configuration.
+
+## Common pitfalls
+
+- Do not assume Git alone preserves repository credentials or other cluster-held configuration.
+
+## Agent procedure
+
+Follow the [Workflow](#workflow), [Safety rules](#safety-rules), and [Quality checklist](#quality-checklist) below.
+
+## Quick references
+
+- [references/install-ha.md](references/install-ha.md)
+- [references/rbac-sso.md](references/rbac-sso.md)
+
+Last verified: unverified
 
 ## When to use
 
