@@ -1,6 +1,6 @@
 ---
 name: kubernetes-security
-description: Use when reviewing the security posture of a Kubernetes cluster, namespace, or workload. Mention "kubernetes security review", "is this pod secure", "k8s hardening" as triggers.
+description: Use when auditing Kubernetes cluster, namespace, workload, or RBAC security posture. Mention "kubernetes security review", "is this pod secure", or "k8s hardening"; use admission-policy-review for authoring enforcement rules and runtime-security-review for detection after admission.
 license: MIT
 compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, and other agents that support Agent Skills-style instructions.
 ---
@@ -11,6 +11,8 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 Use for a focused security audit of Kubernetes workloads, RBAC, or cluster configuration —
 distinct from a general manifest-quality review.
+Use `admission-policy-review` instead when writing or rolling out Kyverno, Gatekeeper, or PSA
+enforcement. Use `runtime-security-review` instead for Falco/Tetragon/Tracee detections.
 
 ## Goal
 

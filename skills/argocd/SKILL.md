@@ -1,6 +1,6 @@
 ---
 name: argocd
-description: Use when installing, configuring, or operating Argo CD itself — HA deployment, controller sharding, SSO/RBAC, AppProject design, repository/credential setup, sync policy design, config management plugins, disaster recovery, and scaling. Mention "install argocd", "argocd HA", "argocd rbac", "argocd sso", "appproject", "argocd backup", "argocd sharding" as triggers.
+description: Use when installing, configuring, or operating the Argo CD controller and platform — HA, RBAC/SSO, AppProjects, repositories, sync policy, backup, and scaling. Mention "install argocd", "argocd HA", "argocd rbac", or "appproject"; use argocd-debug for one stuck Application, argocd-applicationset for generators, and gitops-review for repository flow.
 license: MIT
 compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, and other agents that support Agent Skills-style instructions.
 ---
