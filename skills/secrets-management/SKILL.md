@@ -19,7 +19,7 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 ## Common pitfalls
 
-- Do not hide a static credential inside Kubernetes merely to bootstrap a secret operator.
+- When workload identity is available, do not hide a long-lived credential inside Kubernetes merely to bootstrap a secret operator.
 
 ## Agent procedure
 
