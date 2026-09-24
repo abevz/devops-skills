@@ -19,7 +19,7 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 
 ## Common pitfalls
 
-- Do not call a service ready without a recovery path for its state.
+- Treat missing rollback or DR as high risk; check for tested DR in stateful systems.
 
 ## Agent procedure
 
