@@ -103,14 +103,14 @@ The earlier interim S16 totals (OLD median 2, NEW median 1) were too generous ab
 
 ## Visible load and isolation evidence
 
-- App-server forceReload preflight for corrected S16: [s16-new-final-preflight.jsonl](/tmp/devops-regressions/pr5/s16-new-final-preflight.jsonl) returns the exact repo-scoped path /tmp/devops-regressions/pr5/candidates/S16/new-final/.agents/skills/kubernetes-autoscaling/SKILL.md; stderr is at /tmp/devops-regressions/pr5/s16-new-final-preflight.stderr.
+- App-server forceReload [preflight for corrected S16](pr5-s16-preflight.jsonl) returns the exact isolated candidate path `/tmp/devops-regressions/pr5/candidates/S16/new-final/.agents/skills/kubernetes-autoscaling/SKILL.md`.
 - The valid model traces show the relative project-skill path from each isolated invocation CWD: 51/51 skill-bearing samples (48 original matrix + 3 corrected S16) have the expected relative skill read. No-skill runs have zero project-skill reads.
 - Trace audit: [pr5-trace-audit.tsv](pr5-trace-audit.tsv) records 0 reads from /home/abevz/.agents/skills, 0 reads from tests/runs/2026-09-24/, and 0 project-skill reads in the no-skill controls. It also corrects the runner’s initial trace detector: that detector searched for an absolute fixture prefix, while Codex recorded a relative cat command.
-- Original preflight note: [skills-preflight.txt](/tmp/devops-regressions/pr5/skills-preflight.txt). Raw Codex JSONL traces and stderr files remain under `/tmp/devops-regressions/pr5/runs/` and the valid S18 sample-1 smoke files.
+- Original [preflight note](pr5-skills-preflight.txt). Full Codex JSONL traces and stderr files remain local under `/tmp/devops-regressions/pr5/`; they are not included in this PR.
 
 ## Raw evidence
 
-- Combined unedited answer appendix: [pr5-regression-answers.md](pr5-regression-answers.md) (153,884 bytes). It contains every valid OLD/NEW sample, the three no-skill trios, the three corrected S16 samples, exact prompts, raw answer bodies, and paths to per-sample invocation/event/stderr/status files.
+- Combined answer appendix: [pr5-regression-answers.md](pr5-regression-answers.md). It contains every valid OLD/NEW sample, the three no-skill trios, the three corrected S16 samples, exact prompts, raw answer bodies, and local paths to per-sample invocation/event/stderr/status files. Only the appendix's navigation link was changed after generation.
 - Per-run folders: `/tmp/devops-regressions/pr5/runs/<S#>/<arm>-<replicate>/` contain `invocation.json`, `answer.md`, `events.jsonl`, `stderr.log`, and `status.json`. Corrected S16 is under `runs/S16/new-final-1..3/`.
 - Reused validated S18 replicate 1: `/tmp/devops-regressions/pr5/smoke-s18-old-isolated.*` and `/tmp/devops-regressions/pr5/smoke-s18-new-isolated.*`; invocation metadata files record that their original launch timestamp was not persisted.
 - Skill hash table, including corrected S16 and no-skill controls: [pr5-candidate-hashes.tsv](pr5-candidate-hashes.tsv).
@@ -122,6 +122,4 @@ The earlier interim S16 totals (OLD median 2, NEW median 1) were too generous ab
 - The temporary HOME/CODEX_HOME deliberately isolates global personal skills and memory. The minimal config matches the requested model/reasoning defaults but does not reproduce all personal MCP/plugin configuration; credentials came only from an auth symlink and were never displayed.
 - The fixture has no live Kubernetes API or scenario cluster data. Event-, metric-, request-, addon-version-, and state-dependent checklist items may be untestable (notably S9 event quotation and S16 measured bottleneck). Strict scores remain zero for any unchecked box; this alone is not attributed as a skill defect.
 - Three samples per arm provide a descriptive median only. Model variability, the isolated fixture, and the absent live cluster limit confidence; the no-skill trios are controls, not a broad skill-quality benchmark.
-- The corrected S16 candidate contract has not yet had its independent verifier review; parent assigned that separately.
-
-All primary logs, answer files, and this report are under /tmp/devops-regressions/pr5/. No repository files were modified.
+The answer appendix, scores, hashes, and trace audit are committed in this PR. Full invocation logs remain local at `/tmp/devops-regressions/pr5/`, so external readers can inspect the answers and summarized load checks here but cannot independently replay every trace from this PR alone.
