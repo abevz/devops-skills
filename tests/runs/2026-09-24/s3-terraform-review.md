@@ -1,6 +1,6 @@
 # S3 — terraform-review: paired observation
 
-Date: 2026-09-24. Model: baseline `claude-opus-5-5`, with skill `claude-opus-5-5`. Fresh read-only Claude Code sessions; no cluster/repository access or mutations. Score uses [`GREEN criteria`](../../compliance-verification.md) verbatim as the rubric. The answers below are raw model output, not endorsed technical guidance; their factual claims were not independently verified.
+Date: 2026-09-24. Model: baseline `claude-opus-5-5`, with skill `claude-opus-5-5`. Fresh Claude Code sessions; no cluster/infrastructure access or mutation was observed. Score uses [`GREEN criteria`](../../compliance-verification.md) verbatim as the rubric. The answers below are raw model output, not endorsed technical guidance; their factual claims were not independently verified.
 
 ## Prompt (identical in both arms)
 
@@ -9,18 +9,18 @@ Date: 2026-09-24. Model: baseline `claude-opus-5-5`, with skill `claude-opus-5-5
 ## Harness
 
 - Baseline: `claude -p --restricted --disable-slash-commands --tools '' --output-format json`.
-- With skill: `claude -p --restricted --tools Read --allowedTools Read --add-dir /tmp/devops-skills-paired-candidate` and a system instruction to read the candidate skill catalog, then the applicable SKILL.md and references. The catalog contained the five candidates only.
-- Skill visibly loaded: **yes**. Read trace: `/tmp/devops-skills-paired-candidate/skills/terraform-review/SKILL.md`, `/tmp/devops-skills-paired-candidate/skills/terraform-review/references/state-operations.md`, `/tmp/devops-skills-paired-candidate/skills/terraform-review/references/version-guards.md`, `/tmp/devops-skills-paired-candidate/skills/terraform-review/references/module-design.md`.
+- With skill: `claude -p --restricted --tools Read --allowedTools Read --add-dir /tmp/devops-skills-paired-candidate` and a system instruction to choose an applicable skill by name/description, then read its SKILL.md and references. The model made four failed path probes before successfully loading the skill. The runtime still advertised other MCP tools despite these flags; the trace shows no mutating tool calls.
+- Skill visibly loaded: **yes**. Relevant successful Read trace: `/tmp/devops-skills-paired-candidate/skills/terraform-review/SKILL.md`, `/tmp/devops-skills-paired-candidate/skills/terraform-review/references/state-operations.md`, `/tmp/devops-skills-paired-candidate/skills/terraform-review/references/version-guards.md`, `/tmp/devops-skills-paired-candidate/skills/terraform-review/references/module-design.md`.
 - Candidate was assembled from PRs #2–#5 before merge: structure opening plus corrected references where applicable; S4 also has PR #3's final description. This tests a candidate snapshot, not automatic skill discovery from the installed directories.
 
 ## Score
 
 | Arm | GREEN criteria | Result |
 |---|---:|---|
-| Without skill | 4/4 | observed |
+| Without skill | 3/4 | observed |
 | With skill | 4/4 | observed |
 
-**FAIL.** The baseline already met all GREEN criteria; the skill made no material correction.
+**PASS.** The baseline covered identity churn, plan and safety gates, but omitted rollback notes. The skill answer added explicit rollback guidance and met all GREEN criteria.
 
 ## Without skill: full answer
 

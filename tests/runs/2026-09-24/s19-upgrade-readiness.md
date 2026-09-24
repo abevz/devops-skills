@@ -1,6 +1,6 @@
 # S19 — upgrade-readiness: paired observation
 
-Date: 2026-09-24. Model: baseline `claude-opus-5-5`, with skill `claude-opus-5-5`. Fresh read-only Claude Code sessions; no cluster/repository access or mutations. Score uses [`GREEN criteria`](../../compliance-verification.md) verbatim as the rubric. The answers below are raw model output, not endorsed technical guidance; their factual claims were not independently verified.
+Date: 2026-09-24. Model: baseline `claude-opus-5-5`, with skill `claude-opus-5-5`. Fresh Claude Code sessions; no cluster/infrastructure access or mutation was observed. Score uses [`GREEN criteria`](../../compliance-verification.md) verbatim as the rubric. The answers below are raw model output, not endorsed technical guidance; their factual claims were not independently verified.
 
 ## Prompt (identical in both arms)
 
@@ -9,18 +9,19 @@ Date: 2026-09-24. Model: baseline `claude-opus-5-5`, with skill `claude-opus-5-5
 ## Harness
 
 - Baseline: `claude -p --restricted --disable-slash-commands --tools '' --output-format json`.
-- With skill: `claude -p --restricted --tools Read --allowedTools Read --add-dir /tmp/devops-skills-paired-candidate` and a system instruction to read the candidate skill catalog, then the applicable SKILL.md and references. The catalog contained the five candidates only.
-- Skill visibly loaded: **yes**. Read trace: `/tmp/devops-skills-paired-candidate/skills/upgrade-readiness/SKILL.md`, `/tmp/devops-skills-paired-candidate/skills/upgrade-readiness/references/upgrade-checks.md`.
+- With skill: `claude -p --restricted --tools Read --allowedTools Read --add-dir /tmp/devops-skills-paired-candidate` and a system instruction to read the candidate skill catalog, then the applicable SKILL.md and references. The catalog contained the five candidates only. The runtime still advertised other MCP tools despite these flags; the trace shows no mutating tool calls.
+- Skill visibly loaded: **yes**. Relevant successful Read trace: `/tmp/devops-skills-paired-candidate/skills/upgrade-readiness/SKILL.md`, `/tmp/devops-skills-paired-candidate/skills/upgrade-readiness/references/upgrade-checks.md`.
+- The trace also shows a successful read of `skills/cluster-backup/SKILL.md` and some failed path probes before the successful reads.
 - Candidate was assembled from PRs #2–#5 before merge: structure opening plus corrected references where applicable; S4 also has PR #3's final description. This tests a candidate snapshot, not automatic skill discovery from the installed directories.
 
 ## Score
 
 | Arm | GREEN criteria | Result |
 |---|---:|---|
-| Without skill | 1/4 | observed |
-| With skill | 3/4 | observed |
+| Without skill | 0/4 | observed |
+| With skill | 1/4 | observed |
 
-**FAIL.** The skill answer adds git and Helm API scans and a canary, but its addon compatibility matrix is explicitly memory-based rather than verified.
+**FAIL.** The skill answer adds a canary and scans git and Helm, but scans only against 1.33 rather than each intermediate minor. Its addon matrix is explicitly memory-based and incomplete, and it does not check for workloads without PDB coverage.
 
 ## Without skill: full answer
 

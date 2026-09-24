@@ -1,6 +1,6 @@
 # S15 — ingress: paired observation
 
-Date: 2026-09-24. Model: baseline `claude-opus-5-5`, with skill `claude-opus-5-5`. Fresh read-only Claude Code sessions; no cluster/repository access or mutations. Score uses [`GREEN criteria`](../../compliance-verification.md) verbatim as the rubric. The answers below are raw model output, not endorsed technical guidance; their factual claims were not independently verified.
+Date: 2026-09-24. Model: baseline `claude-opus-5-5`, with skill `claude-opus-5-5`. Fresh Claude Code sessions; no cluster/infrastructure access or mutation was observed. Score uses [`GREEN criteria`](../../compliance-verification.md) verbatim as the rubric. The answers below are raw model output, not endorsed technical guidance; their factual claims were not independently verified.
 
 ## Prompt (identical in both arms)
 
@@ -9,8 +9,8 @@ Date: 2026-09-24. Model: baseline `claude-opus-5-5`, with skill `claude-opus-5-5
 ## Harness
 
 - Baseline: `claude -p --restricted --disable-slash-commands --tools '' --output-format json`.
-- With skill: `claude -p --restricted --tools Read --allowedTools Read --add-dir /tmp/devops-skills-paired-candidate` and a system instruction to read the candidate skill catalog, then the applicable SKILL.md and references. The catalog contained the five candidates only.
-- Skill visibly loaded: **yes**. Read trace: `/tmp/devops-skills-paired-candidate/skills/ingress/SKILL.md`, `/tmp/devops-skills-paired-candidate/skills/ingress/references/migration.md`, `/tmp/devops-skills-paired-candidate/skills/ingress/references/gateway-api.md`, `/tmp/devops-skills-paired-candidate/skills/ingress/references/ingress-nginx.md`.
+- With skill: `claude -p --restricted --tools Read --allowedTools Read --add-dir /tmp/devops-skills-paired-candidate` and a system instruction to read the candidate skill catalog, then the applicable SKILL.md and references. The catalog contained the five candidates only. The runtime still advertised other MCP tools despite these flags; the trace shows no mutating tool calls.
+- Skill visibly loaded: **yes**. Relevant successful Read trace: `/tmp/devops-skills-paired-candidate/skills/ingress/SKILL.md`, `/tmp/devops-skills-paired-candidate/skills/ingress/references/migration.md`, `/tmp/devops-skills-paired-candidate/skills/ingress/references/gateway-api.md`, `/tmp/devops-skills-paired-candidate/skills/ingress/references/ingress-nginx.md`.
 - Candidate was assembled from PRs #2–#5 before merge: structure opening plus corrected references where applicable; S4 also has PR #3's final description. This tests a candidate snapshot, not automatic skill discovery from the installed directories.
 
 ## Score
@@ -18,9 +18,9 @@ Date: 2026-09-24. Model: baseline `claude-opus-5-5`, with skill `claude-opus-5-5
 | Arm | GREEN criteria | Result |
 |---|---:|---|
 | Without skill | 1/4 | observed |
-| With skill | 4/4 | observed |
+| With skill | 2/4 | observed |
 
-**PASS.** The skill answer added a feature/conformance check and per-host behavior verification before selecting and cutting over the gateway.
+**FAIL.** The skill answer improved inventory and per-host rollout, but did not check a conformance report for the Cilium/Istio branches or reverify affinity and long-lived connections per host, so it misses strict GREEN criteria.
 
 ## Without skill: full answer
 
