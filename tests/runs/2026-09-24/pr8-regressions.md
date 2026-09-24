@@ -1,6 +1,6 @@
 # PR8 S5 paired regression
 
-Run date: 2026-09-24 UTC. OLD is merged main after PR6; NEW is PR8 after PR6 reconciliation. Each arm used three fresh read-only Codex sessions with `gpt-6-luna`/max and the same staged README addition in an isolated temporary Git repository. The prompt matches [S5 baseline](../../baseline-scenarios.md). No commit was created. The temporary HOME/CODEX_HOME contained only the candidate `git-message` skill.
+Run date: 2026-09-24 UTC. OLD is merged main after PR6; NEW is PR8 after PR6 reconciliation. Each arm used three fresh read-only Codex sessions with `gpt-6-luna`/max and the same staged README addition in an isolated temporary Git repository. The prompt matches [S5 baseline](../../baseline-scenarios.md). No commit was created. The temporary project skill directory contained only the candidate `git-message` skill; Codex could still populate its own cache in the isolated CODEX_HOME.
 
 **Exact prompt:**
 
