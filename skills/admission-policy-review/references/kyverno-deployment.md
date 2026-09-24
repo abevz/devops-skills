@@ -65,9 +65,10 @@ that's an outage. Plan registry access for the Kyverno SA before enabling `verif
   or `crds.install: false`, plan that CRD update explicitly. Earlier releases and YAML installs
   have different upgrade paths; follow the matching release guide rather than applying a
   blanket manual-CRD rule. [Kyverno upgrade guide](https://kyverno.io/docs/installation/upgrading/).
-- Kyverno minor versions track Kubernetes minors and occasionally change policy API (`v1` →
-  `v2beta1` fields). Pin the chart version, read the migration notes on upgrade, and test
-  policies against the target version (`kyverno test` / `chainsaw`) before rolling.
+- Before Kyverno v1.20, plan migration of legacy `kyverno.io/v1` `Policy` and
+  `ClusterPolicy` resources to the CEL-based `policies.kyverno.io` policy types. Pin the chart
+  version, read the matching migration notes, and test policies against the target version
+  (`kyverno test` / `chainsaw`) before rolling. [Kyverno upgrade guide](https://kyverno.io/docs/installation/upgrading/) · [CEL migration guide](https://kyverno.io/docs/guides/migration-to-cel/).
 
 ## GitOps integration (ArgoCD/Flux)
 

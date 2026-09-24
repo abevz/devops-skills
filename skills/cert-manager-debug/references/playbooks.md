@@ -27,7 +27,8 @@ Challenge stuck `pending`, reason mentions the self-check:
    `kubectl get ingress -n <ns> | grep cm-acme-http-solver`; for the Gateway solver,
    `kubectl get httproute -n <ns> | grep cm-acme-http-solver`. The Gateway HTTP-01 solver is
    available from cert-manager 1.15. If a configured Gateway solver has no HTTPRoute, check
-   that Gateway API CRDs are installed and cert-manager Gateway API support is enabled. Some
+   that Gateway API CRDs are installed and cert-manager Gateway API support is enabled with
+   `config.gatewayAPI.enabled: true` (Helm values). Some
    cert-manager components check for the CRDs only at startup; if the CRDs were installed
    later, plan a cert-manager Deployment restart before retrying. A missing solver resource
    also calls for controller logs; an existing one calls for route diagnostics.
