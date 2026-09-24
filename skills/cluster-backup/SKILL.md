@@ -13,6 +13,13 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 - [ ] Set recovery time and data-loss targets per item.
 - [ ] Design backup and restore tests for uncovered state.
 
+## Answer must include
+
+Show each stateful item in a table as git-rebuildable, backup-covered, or uncovered, with its
+RPO/RTO or an explicit unknown. State the backup method and database consistency plan, a
+scheduled restore-test cadence, and what alerts on backup failure or stale success. If those
+inputs are missing, keep them as decisions to resolve; do not silently omit the row.
+
 ## Key read-only checks
 
 - Read backup schedules, storage locations, volume method, and evidence from the latest restore test.

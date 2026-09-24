@@ -13,6 +13,14 @@ compatibility: Works with Claude Code, Codex-style agents, CodeWhale, OpenCode, 
 - [ ] Choose the Gateway implementation against required features.
 - [ ] Plan a staged ingress migration with a verified rollback path.
 
+## Answer must include
+
+For a migration request, give the annotation inventory buckets, compare candidate Gateway
+implementations (including any existing CNI or mesh) against the features in use, and lay out a
+host-by-host cutover with DNS rollback. Name the behaviors to recheck for each affected host:
+source IP, session affinity, and long-lived connections. Mark missing inventory or conformance
+evidence as unknown instead of choosing a controller from habit.
+
 ## Key read-only checks
 
 - Read Ingress, Gateway, and Route objects plus controller versions and status conditions.
