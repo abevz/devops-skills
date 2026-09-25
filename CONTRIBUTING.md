@@ -67,8 +67,7 @@ Frontmatter rules (matches the [Agent Skills specification](https://agentskills.
 If you find another skill repository worth mining for ideas later, follow the same process used
 to build this repository:
 
-1. Clone it somewhere **outside** this repo (or into a path this repo's `.gitignore` excludes)
-   — never as a tracked subdirectory here.
+1. Clone it somewhere **outside** this repo — never as a subdirectory here.
 2. Read it fully before reusing anything; run the `grep` checklist in `SECURITY.md`.
 3. Extract *ideas and wording*, not scripts, hooks, or install logic — rewrite content in this
    repository's own skill shape rather than copying files wholesale.

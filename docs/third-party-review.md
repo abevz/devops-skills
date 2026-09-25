@@ -14,8 +14,8 @@ were deleted (2026-07-02). Upstream sources, for re-cloning if ever needed:
 | `kubernetes-skill` | https://github.com/LukasNiessen/kubernetes-skill |
 | `terraform-skill` | https://github.com/antonbabenko/terraform-skill |
 
-Future third-party inspections go into the gitignored `third-party-review/` scratch directory
-(see `.gitignore`), get an entry in this file, and get deleted after the review — same process.
+Future third-party inspections are cloned outside this repository, get an entry in this file,
+and get deleted after the review — same process.
 
 ---
 
@@ -123,7 +123,7 @@ Future third-party inspections go into the gitignored `third-party-review/` scra
   `package.json` scripts of concern (only a `honkit build/serve` for the doc site), no
   curl/wget pipes, no secrets or credential references — verified by full-tree grep.
 - **Reused**: Yes — in two passes. First pass: structure and framing informed several skills.
-  Second pass (2026-07-02, re-cloned into `third-party-review/` scratch): direct distillation of
+  Second pass (2026-07-02, re-cloned into a local scratch copy): direct distillation of
   `references/fragile-rollouts.md` + `references/resource-starvation.md` into
   `skills/kubernetes-yaml-review/references/reliability.md` (probe semantics and the cascading-
   restart rule, graceful-shutdown/preStop mechanics, QoS classes, the CPU-limit throttling
@@ -165,7 +165,7 @@ Future third-party inspections go into the gitignored `third-party-review/` scra
   run `terraform destroy` without a reviewed `plan -destroy` first.
 - **Reused**: Yes — in two passes. First pass: the Response Contract pattern shaped
   `terraform-review`'s output format and the safety discipline of several review skills. Second
-  pass (2026-07-02, re-cloned into `third-party-review/` scratch): direct distillation of
+  pass (2026-07-02, re-cloned into a local scratch copy): direct distillation of
   `references/quick-reference.md` into `skills/terraform-review/references/version-guards.md`
   (feature version floors, Terraform/OpenTofu divergence, stuck-state-lock protocol,
   CI-vs-local version skew, test-cost hygiene). Third pass (same day): `state-management.md`
@@ -176,15 +176,3 @@ Future third-party inspections go into the gitignored `third-party-review/` scra
   credited in each reference file header.
 - **Rejected**: N/A — nothing risky to reject.
 - **Trust level**: **High.**
-
----
-
-## `2026-07-02-best-practices-codewhale.md`
-
-Not a repository — a personal research notes file (exported AI conversation) already present in
-the workspace. It contains a pre-written brief matching this task almost exactly, including the
-target skill list, a directory taxonomy, and an explicit supply-chain vetting checklist (grep
-for `curl|wget|bash|sh |rm -rf|sudo|chmod|postinstall|token|secret|kubectl apply|helm install`
-before trusting a third-party skill). That checklist is the basis for the "Third-party skills
-are untrusted input" section of `SECURITY.md`. Kept locally, gitignored, not part of the
-published repository.
