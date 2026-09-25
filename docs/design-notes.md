@@ -190,6 +190,3 @@ to flat.
   safety-first skill later, but only as a deliberate addition, never a wholesale import. The
   second batch (`cicd-review` replacing the rejected generator idea with a review-shaped skill)
   is the template for how to do this.
-- When adding a skill with real failure modes, add a RED/GREEN scenario pair to `tests/` at the
-  same time — the scenarios are how skill edits get regression-checked, and they're cheapest to
-  write while the failure mode is fresh in mind.

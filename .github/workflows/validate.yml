@@ -122,7 +122,7 @@ jobs:
 
       - name: No secrets or credential patterns
         run: |
-          if grep -rEl 'AKIA[0-9A-Z]{16}|BEGIN (RSA|OPENSSH|PGP) PRIVATE KEY|ghp_[A-Za-z0-9]{36}' skills/ docs/ tests/ README.md SECURITY.md CONTRIBUTING.md; then
+          if grep -rEl 'AKIA[0-9A-Z]{16}|BEGIN (RSA|OPENSSH|PGP) PRIVATE KEY|ghp_[A-Za-z0-9]{36}' skills/ docs/ README.md SECURITY.md CONTRIBUTING.md; then
             echo "::error::possible secret/credential pattern found"
             exit 1
           fi

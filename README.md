@@ -165,13 +165,9 @@ directly. Add `cilium-debug`/`istio-debug` if you run those, and `alert-rule-rev
 │   └── <skill-name>/
 │       ├── SKILL.md
 │       └── references/        # only where genuinely useful: tool lists, bad→good examples
-├── tests/
-│   ├── baseline-scenarios.md          # RED: unguided-agent failure modes per scenario
-│   └── compliance-verification.md     # GREEN: expected behavior with the skill loaded
 └── docs/
     └── design-notes.md
 ```
 
 See `docs/design-notes.md` for why these skills (and not others) were chosen and which
-third-party collections inspired them, and `tests/` for the markdown-only RED/GREEN methodology used to
-check that skills actually change agent behavior.
+third-party collections inspired them.

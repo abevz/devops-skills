@@ -86,5 +86,3 @@ required sections, no executable scripts/package manifests, and no secret patter
 - [ ] Safety rules cover the destructive commands this skill's domain could reach
 - [ ] No install instructions were added (CI catches scripts, not prose telling an agent to install things)
 - [ ] README skill table is updated
-- [ ] For skills with meaningful failure modes: a RED/GREEN scenario pair added to
-      `tests/baseline-scenarios.md` + `tests/compliance-verification.md`
