@@ -31,7 +31,7 @@ upstream content credit their source in the file header.
 ## Skills intentionally not created
 
 - **No day-2 operational skills that mutate infrastructure** (namespace provisioning, node
-  drains, secret rotation, cluster upgrades). `cluster-skills` has scripts for this, but they
+  drains, secret rotation, cluster upgrades). [`cluster-skills`](https://github.com/kcns008/cluster-skills) has scripts for this, but they
   came with unsafe defaults (no dry-run, no confirmation) and a broken dependency — exactly the
   category this repository avoids by design. If day-2 automation is ever wanted, it should be a
   deliberate, carefully-guarded addition, not a default inclusion.
@@ -45,7 +45,7 @@ upstream content credit their source in the file header.
 - **No generic "devops-assistant" or "kubernetes-swarm-orchestrator" mega-skill** —
   `cluster-skills`' agent-persona layer (Atlas/Shield/Flow/Pulse/etc.) was interesting but out of
   scope: it's a multi-agent orchestration product, not a single reusable skill, and duplicates
-  what the 20 skills here already cover individually.
+  what the skills here already cover individually.
 - **No install/setup skill** — deliberately excluded per the project's own safety rules; nothing
   in this repository should ever be the thing that decides to `brew install` or `apt-get install`
   something on the user's machine.
@@ -89,21 +89,15 @@ upstream content credit their source in the file header.
   needs a `migration-plan`), the skill explicitly points to the other rather than absorbing its
   content.
 
-## Relationship to installed third-party skill collections
+## Relationship to upstream skill collections
 
-This repository deliberately does **not** duplicate the third-party collections already
-installed and managed separately (via `npx skills add` / symlinks into `~/.agents/skills`).
-Upstream sources, as recorded in `~/.agents/.skill-lock.json` at the time of writing:
+This repository deliberately does **not** duplicate two upstream collections that pair well with
+it:
 
-| Installed collection | Upstream | Role vs. this repo |
-|---|---|---|
-| `golang-*` (35+ skills) | https://github.com/samber/cc-skills-golang | Go *knowledge base* (idioms, libraries, slog/testify/pprof). The `go-*` skills here are *workflow* skills (fix a bug, review a diff) — complement, not compete. Don't add Go knowledge-base skills here. |
-| `terraform-skill` | https://github.com/antonbabenko/terraform-skill | Diagnose-first Terraform knowledge base. `terraform-review` here is the review-workflow counterpart. Both active is intentional. |
-| `gws-*` (17 skills) | https://github.com/googleworkspace/cli | Tool-bound (Google Workspace CLI); off-domain. |
-| `find-skills` | https://github.com/vercel-labs/skills | Skill discovery tooling; off-domain. |
-| `excalidraw-diagram` | https://github.com/coleam00/excalidraw-diagram-skill | Diagramming; off-domain. |
-| `beads` | Steve Yegge's beads issue tracker (author field in SKILL.md) | Tool-bound; off-domain. Not in the lock file — installed manually. |
-| `chezmoi`, `dream`, `playwright-cli` | not recorded in the lock file (installed manually / bundled) | Tool-bound or off-domain. |
+| Collection | Role vs. this repo |
+|---|---|
+| [`samber/cc-skills-golang`](https://github.com/samber/cc-skills-golang) | Go *knowledge base* (idioms, libraries, slog/testify/pprof). The `go-*` skills here are *workflow* skills (fix a bug, review a diff) — complement, not compete. Don't add Go knowledge-base skills here. |
+| [`antonbabenko/terraform-skill`](https://github.com/antonbabenko/terraform-skill) | Diagnose-first Terraform knowledge base. `terraform-review` here is the review-workflow counterpart; using both is intentional. |
 
 The rule: third-party collections stay upstream-managed and are never vendored in. If one dies
 or degrades, write a replacement here in this repo's own shape rather than forking the corpse.
@@ -118,22 +112,22 @@ Skills split deliberately into two depths:
   `kubernetes-security`, `helm-review`, `gitops-review`, `terraform-review`, `cicd-review`,
   `observability-review`, `alert-rule-review`, `grafana-dashboards`, `dockerfile-review`,
   `argocd-applicationset`, `production-readiness`, `supply-chain-security`,
-  `admission-policy-review`, `dast-review`, `secrets-management`, `cilium` (6 references — its
+  `admission-policy-review`, `runtime-security-review`, `dast-review`, `secrets-management`, `cilium` (6 references — its
   own multi-facet umbrella, like the upstream terraform-skill), `argocd` (5 references — operator/
   platform umbrella), `vault` (4 references — Vault/OpenBao operator umbrella), `istio` (5
-references — service-mesh operator umbrella), `observability-stack` (4 references — metrics/logs/
-traces platform operator umbrella), `cert-manager-debug` (issuance-chain and ACME error-text
-playbooks), `ingress` (3 references — north-south umbrella: ingress-nginx EOL, Gateway API,
-migration), `kubernetes-autoscaling` (2 references — workload and node layers), `storage-debug`
-(layer-by-layer event playbooks incl. Longhorn/Rook-Ceph backends), `cluster-backup` (Velero/
-etcd design and failure modes — review/design-shaped, so it stays within the "no mutating day-2
-skills" rule the same way `cicd-review` did), `upgrade-readiness` (skew/scan/matrix/drain
-checks — same review-shaped split).
+  references — service-mesh operator umbrella), `observability-stack` (4 references — metrics/logs/
+  traces platform operator umbrella), `cert-manager-debug` (issuance-chain and ACME error-text
+  playbooks), `ingress` (3 references — north-south umbrella: ingress-nginx EOL, Gateway API,
+  migration), `kubernetes-autoscaling` (2 references — workload and node layers), `storage-debug`
+  (layer-by-layer event playbooks incl. Longhorn/Rook-Ceph backends), `cluster-backup` (Velero/
+  etcd design and failure modes — review/design-shaped, so it stays within the "no mutating day-2
+  skills" rule the same way `cicd-review` did), `upgrade-readiness` (skew/scan/matrix/drain
+  checks — same review-shaped split).
 - **Flat (SKILL.md only)** — methodology skills where the workflow itself is the whole content
   and extra reference material would be padding: `git-message`, `pr-review`,
   `root-cause-analysis`, `incident-analysis`, `architecture-review`, `migration-plan`,
   `runbook-writer`, `english-technical-message`, `interview-system-design`,
-  `homelab-change-plan`, `vulnerability-triage`, `runtime-security-review`. Also the `go-*`
+  `homelab-change-plan`, `vulnerability-triage`. Also the `go-*`
   trio — deliberately thin because deep Go knowledge lives in the upstream `golang-*`
   collection (see the boundary section above). Note: Go-specific security scanning depth
   (`gosec`, `govulncheck` mechanics) also stays upstream in `golang-security`.
@@ -173,8 +167,8 @@ to flat.
 - If a skill's `## Workflow` section grows past what's readable in one sitting, split it instead
   of letting it become a mega-skill.
 - Re-run the vetting process in `SECURITY.md` on any future
-  third-party skill import — read fully, grep for risky patterns, extract ideas only, document
-  the trust level.
+  third-party skill import — read fully, grep for risky patterns, extract ideas only, credit the
+  source in the reference file header.
 - Prefer `references/` for genuinely reusable supporting material (like the optional-tooling
   tables added to the Kubernetes/Helm/Terraform/GitOps review skills) over bloating `SKILL.md`
   itself — but keep the bar high; most skills should stay flat.
