@@ -169,11 +169,9 @@ directly. Add `cilium-debug`/`istio-debug` if you run those, and `alert-rule-rev
 │   ├── baseline-scenarios.md          # RED: unguided-agent failure modes per scenario
 │   └── compliance-verification.md     # GREEN: expected behavior with the skill loaded
 └── docs/
-    ├── design-notes.md
-    └── third-party-review.md
+    └── design-notes.md
 ```
 
-See `docs/design-notes.md` for why these skills (and not others) were chosen,
-`docs/third-party-review.md` for the vetting notes on the third-party repositories this
-collection was inspired by, and `tests/` for the markdown-only RED/GREEN methodology used to
+See `docs/design-notes.md` for why these skills (and not others) were chosen and which
+third-party collections inspired them, and `tests/` for the markdown-only RED/GREEN methodology used to
 check that skills actually change agent behavior.

@@ -71,8 +71,7 @@ to build this repository:
 2. Read it fully before reusing anything; run the `grep` checklist in `SECURITY.md`.
 3. Extract *ideas and wording*, not scripts, hooks, or install logic — rewrite content in this
    repository's own skill shape rather than copying files wholesale.
-4. Add an entry to `docs/third-party-review.md` documenting what you found, what you reused, and
-   the trust level you assigned it, the same way the initial batch was documented.
+4. Credit the source in the header of any reference file that distills its content.
 5. Never add a `postinstall` script, install hook, or auto-executing shell script as part of the
    import.
 

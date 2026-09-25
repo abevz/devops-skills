@@ -19,12 +19,14 @@ same read-only-first shape as `kubernetes-debug` but with the tool-specific evid
 Hubble verdicts, Envoy response flags — that generic advice misses).
 
 Three of the reviewed third-party repositories were genuinely strong reference material —
-`kubernetes-skill` (failure-mode-first content, pure markdown) and `terraform-skill`
-(diagnose-first workflow, Response Contract discipline) most of all, with `devops-ai-skill`
+[`kubernetes-skill`](https://github.com/LukasNiessen/kubernetes-skill) (failure-mode-first
+content, pure markdown) and [`terraform-skill`](https://github.com/antonbabenko/terraform-skill)
+(diagnose-first workflow, Response Contract discipline) most of all, with
+[`devops-ai-skill`](https://github.com/qwedsazxc78/devops-ai-skill)
 contributing the plan-only migration methodology and the optional-tooling idea. None of their
 files were copied; every skill here was written from scratch in this repository's own shape, so
-it stays small, consistent, and fully auditable in one sitting. See `docs/third-party-review.md`
-for the full per-repository breakdown.
+it stays small, consistent, and fully auditable in one sitting. Reference files that distill
+upstream content credit their source in the file header.
 
 ## Skills intentionally not created
 
@@ -170,7 +172,7 @@ to flat.
   keep it narrow, no scripts unless truly unavoidable.
 - If a skill's `## Workflow` section grows past what's readable in one sitting, split it instead
   of letting it become a mega-skill.
-- Re-run the vetting process in `SECURITY.md`/`docs/third-party-review.md` on any future
+- Re-run the vetting process in `SECURITY.md` on any future
   third-party skill import — read fully, grep for risky patterns, extract ideas only, document
   the trust level.
 - Prefer `references/` for genuinely reusable supporting material (like the optional-tooling
