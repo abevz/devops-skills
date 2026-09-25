@@ -126,31 +126,14 @@ full reference inventory — see [`docs/skill-map.md`](docs/skill-map.md).
 | [`interview-system-design`](skills/interview-system-design) | Career | Structure and practice system design interview answers |
 | [`homelab-change-plan`](skills/homelab-change-plan) | Homelab | Plan homelab infra changes with no staging: tiers, snapshots, bail-out |
 
-## Suggested daily workflow
+## Where to start
 
-```
-Plan → Investigate → Patch → Test → Review → Commit
-```
-
-- **Plan** — `migration-plan`, `architecture-review` for anything bigger than a one-line fix.
-- **Investigate** — `root-cause-analysis`, `kubernetes-debug`, `argocd-debug`, `cilium-debug`,
-  `istio-debug`, `incident-analysis`.
-- **Patch** — `go-bugfix`, targeted fixes informed by the investigation above.
-- **Test** — `go-testing-review` before you consider a fix done.
-- **Review** — `pr-review`, `go-code-review`, `kubernetes-yaml-review`, `kubernetes-security`,
-  `helm-review`, `terraform-review`, `gitops-review`, `dockerfile-review`, `cicd-review`,
-  `observability-review`, `alert-rule-review`, `production-readiness`, as relevant to what
-  changed. `grafana-dashboards` and `runbook-writer` close the loop on operability.
-- **Commit** — `git-message`, then `english-technical-message` for the PR description or a
-  comment explaining the change.
-
-## Recommended skills for this stack
-
-If you only install a handful: `kubernetes-debug`, `kubernetes-security`, `argocd-debug`,
-`gitops-review`, `terraform-review`, `production-readiness`, `observability-review`,
-`go-bugfix`. These cover the day-to-day Kubernetes/ArgoCD/GitOps/Terraform/Go loop most
-directly. Add `cilium-debug`/`istio-debug` if you run those, and `alert-rule-review` +
-`grafana-dashboards` + `runbook-writer` if you own the observability stack.
+- **You know the symptom** ("PVC Pending", "certificate not Ready", "Application OutOfSync"):
+  open the [quick task index](docs/skill-map.md#quick-task-index) and follow the link.
+- **You want to see how skills fit together** — entry points, domain boundaries, and the
+  review/investigation loops: sections 1–3 of [`docs/skill-map.md`](docs/skill-map.md).
+- **Installing only a few**: `kubernetes-debug`, `argocd-debug`, `storage-debug`,
+  `cert-manager-debug`, `upgrade-readiness`, `terraform-review`.
 
 ## Repository layout
 
