@@ -1,5 +1,0 @@
-Codex 0.156.1 app-server skills/list preflight, forceReload=true, 2026-09-24.
-smoke-old cwd: /tmp/devops-regressions/pr5/smoke-old; cluster-backup path: /tmp/devops-regressions/pr5/smoke-old/.agents/skills/cluster-backup/SKILL.md.
-smoke-new cwd: /tmp/devops-regressions/pr5/smoke-new; cluster-backup path: /tmp/devops-regressions/pr5/smoke-new/.agents/skills/cluster-backup/SKILL.md.
-smoke-no-skill cwd: /tmp/devops-regressions/pr5/smoke-no-skill; no project skills returned; only built-in .system skills appeared.
-No /home/abevz/.agents/skills paths appeared in the skills/list result.

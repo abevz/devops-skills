@@ -67,13 +67,11 @@ Frontmatter rules (matches the [Agent Skills specification](https://agentskills.
 If you find another skill repository worth mining for ideas later, follow the same process used
 to build this repository:
 
-1. Clone it somewhere **outside** this repo (or into a path this repo's `.gitignore` excludes)
-   — never as a tracked subdirectory here.
+1. Clone it somewhere **outside** this repo — never as a subdirectory here.
 2. Read it fully before reusing anything; run the `grep` checklist in `SECURITY.md`.
 3. Extract *ideas and wording*, not scripts, hooks, or install logic — rewrite content in this
    repository's own skill shape rather than copying files wholesale.
-4. Add an entry to `docs/third-party-review.md` documenting what you found, what you reused, and
-   the trust level you assigned it, the same way the initial batch was documented.
+4. Credit the source in the header of any reference file that distills its content.
 5. Never add a `postinstall` script, install hook, or auto-executing shell script as part of the
    import.
 
@@ -88,5 +86,3 @@ required sections, no executable scripts/package manifests, and no secret patter
 - [ ] Safety rules cover the destructive commands this skill's domain could reach
 - [ ] No install instructions were added (CI catches scripts, not prose telling an agent to install things)
 - [ ] README skill table is updated
-- [ ] For skills with meaningful failure modes: a RED/GREEN scenario pair added to
-      `tests/baseline-scenarios.md` + `tests/compliance-verification.md`
