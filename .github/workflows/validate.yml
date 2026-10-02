@@ -3,13 +3,67 @@ name: Validate skills
 on:
   push:
     branches: [main]
+    tags: ['v*']
   pull_request:
+
+permissions:
+  contents: read
 
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Validate every skill with agentskills-validate
+        run: |
+          fail=0
+          for d in skills/*/; do
+            npx --yes agentskills-validate@1.0.1 "$d" || fail=1
+          done
+          exit "$fail"
+
+      - name: Plugin manifests and release version are consistent
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import re
+          from pathlib import Path
+
+          plugin = json.loads(Path('.claude-plugin/plugin.json').read_text())
+          marketplace = json.loads(Path('.claude-plugin/marketplace.json').read_text())
+          assert plugin['name'] == marketplace['name'] == 'devops-skills'
+          assert marketplace['owner']['name'] == 'abevz'
+          assert len(marketplace['plugins']) == 1
+          entry = marketplace['plugins'][0]
+          assert entry['name'] == plugin['name']
+          assert entry['source'] == './'
+          assert plugin['skills'] == './skills/'
+          version = plugin['version']
+          assert re.fullmatch(r'[0-9]+\.[0-9]+\.[0-9]+', version), version
+          assert entry['version'] == version
+          assert f'## [{version}] - ' in Path('CHANGELOG.md').read_text()
+          count = len(list(Path('skills').glob('*/SKILL.md')))
+          assert count > 0
+          assert plugin['description'].startswith(f'{count} markdown-only skills ')
+          assert entry['description'] == plugin['description']
+          # Keep the package limited to declarative metadata and markdown skills.
+          assert set(plugin) == {
+              'name', 'version', 'description', 'author', 'homepage',
+              'repository', 'license', 'keywords', 'skills',
+          }
+          assert set(entry) == {'name', 'source', 'version', 'description'}
+          for path in ('hooks', 'agents', 'commands', 'scripts', '.mcp.json', '.lsp.json'):
+              assert not Path(path).exists(), path
+          if os.environ.get('GITHUB_REF_TYPE') == 'tag':
+              assert os.environ['GITHUB_REF_NAME'] == f'v{version}'
+          print(f'Plugin v{version}: {count} skills; manifests and release tag agree')
+          PY
 
       - name: Every skill directory has exactly one SKILL.md
         run: |

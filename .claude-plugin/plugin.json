@@ -1,0 +1,19 @@
+{
+  "name": "devops-skills",
+  "version": "1.0.0",
+  "description": "46 markdown-only skills for DevOps, platform engineering, Kubernetes, GitOps, Terraform, Go, and technical communication.",
+  "author": {
+    "name": "abevz"
+  },
+  "homepage": "https://github.com/abevz/devops-skills",
+  "repository": "https://github.com/abevz/devops-skills",
+  "license": "MIT",
+  "keywords": [
+    "devops",
+    "kubernetes",
+    "gitops",
+    "terraform",
+    "go"
+  ],
+  "skills": "./skills/"
+}

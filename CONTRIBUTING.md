@@ -77,7 +77,9 @@ to build this repository:
 
 ## Validating before committing
 
-CI (`.github/workflows/validate.yml`) automatically checks structure on every push/PR:
+CI (`.github/workflows/validate.yml`) runs `agentskills-validate@1.0.1` for every skill and
+checks plugin metadata and release-version consistency on pushes to main, PRs, and `v*` tags.
+It also checks structure:
 frontmatter presence and required fields, `name` ↔ directory match, naming convention, the six
 required sections, no executable scripts/package manifests, and no secret patterns. It validates
 *shape*, not content quality — before committing, also manually check:
@@ -86,3 +88,26 @@ required sections, no executable scripts/package manifests, and no secret patter
 - [ ] Safety rules cover the destructive commands this skill's domain could reach
 - [ ] No install instructions were added (CI catches scripts, not prose telling an agent to install things)
 - [ ] README skill table is updated
+
+## Preparing a release
+
+1. Count `skills/*/SKILL.md` and update the count in both plugin descriptions if it changed.
+2. Set the same semantic version in `.claude-plugin/plugin.json` and the plugin entry in
+   `.claude-plugin/marketplace.json`. Add the corresponding dated entry to `CHANGELOG.md`.
+3. Run CI checks and `claude plugin validate .` before release. Test marketplace installation
+   in a separate Claude profile (`CLAUDE_CONFIG_DIR` pointing to a temporary directory),
+   preserving the maintainer's symlinks. Confirm `claude plugin list` reports the new version
+   and `claude plugin details devops-skills` inventories every skill.
+4. After independent review and authorization to merge/publish, merge the change, tag that
+   main commit as `vX.Y.Z`, and publish the matching GitHub release. CI rejects a tag whose
+   version differs from the manifests. Wait for tag CI to pass before publishing the release.
+5. At release time, refresh the GitHub About description with the current skill count
+   (`gh repo edit abevz/devops-skills --description "<current count> markdown-only Agent Skills
+   for DevOps, Kubernetes, GitOps, Terraform, and Go"`). Keep the existing project description
+   meaningful when updating the count.
+6. Check the public route in the isolated profile: `claude plugin marketplace add
+   abevz/devops-skills`, `claude plugin install devops-skills@devops-skills`, then
+   `claude plugin list`. Its version must match the latest release tag.
+
+Local preparation does not publish a release. Keep the maintainer's existing symlink install;
+use the isolated profile for plugin checks to avoid duplicate skills.
