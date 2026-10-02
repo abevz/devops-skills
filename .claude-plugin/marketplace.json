@@ -1,0 +1,15 @@
+{
+  "name": "devops-skills",
+  "owner": {
+    "name": "abevz"
+  },
+  "plugins": [
+    {
+      "name": "devops-skills",
+      "source": "./",
+      "version": "1.0.0",
+      "description": "46 markdown-only skills for DevOps, platform engineering, Kubernetes, GitOps, Terraform, Go, and technical communication."
+    }
+  ],
+  "description": "Markdown-only Agent Skills for DevOps and platform engineering."
+}

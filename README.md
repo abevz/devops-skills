@@ -17,60 +17,98 @@ but every skill is self-contained and generic enough to be useful to any DevOps/
 engineer. Compatible with any agent that supports the Agent Skills format: Claude Code,
 Codex-style agents, CodeWhale, OpenCode, and others.
 
-## Installing
+## Installing and updating
 
-This personal setup keeps the main checkout at `~/github/devops-skills` as the source of truth:
+### Claude Code plugin
+
+In Claude Code:
+
+```text
+/plugin marketplace add abevz/devops-skills
+/plugin install devops-skills@devops-skills
+```
+
+Or from a terminal:
 
 ```bash
-# ~/.agents/skills/<name> points to ~/github/devops-skills/skills/<name>
+claude plugin marketplace add abevz/devops-skills
+claude plugin install devops-skills@devops-skills
+claude plugin list
+```
+
+Restart Claude Code after installation. Skills use the `devops-skills:` namespace, for example
+`/devops-skills:kubernetes-debug`. `claude plugin list` shows the installed version; compare it
+with the [latest release](https://github.com/abevz/devops-skills/releases/latest) and
+[CHANGELOG.md](CHANGELOG.md).
+
+To update, refresh the marketplace first, then the plugin, and restart Claude Code:
+
+```bash
+claude plugin marketplace update devops-skills
+claude plugin update devops-skills@devops-skills
+claude plugin list
+```
+
+### Other Agent Skills clients
+
+Install from this public repository with the
+[`skills` CLI](https://github.com/vercel-labs/skills):
+
+```bash
+npx skills add abevz/devops-skills
+```
+
+The CLI lets you choose skills and target agents. To refresh skills installed through it:
+
+```bash
+npx skills update
+```
+
+GitHub installs work directly for this public repository. A private fork needs working Git
+credentials; alternatively, clone it first and install a local path such as
+`npx skills add ./skills/kubernetes-debug`.
+
+### Maintainer's symlink setup
+
+The maintainer keeps the main checkout at `~/github/devops-skills/main` as the source of truth:
+
+```bash
+# ~/.agents/skills/<name> points to ~/github/devops-skills/main/skills/<name>
 # ~/.claude/skills/<name> points to ~/.agents/skills/<name>
 readlink ~/.agents/skills/kubernetes-debug
 readlink ~/.claude/skills/kubernetes-debug
 
-# after pulling changes in this clone, the linked skill files update automatically
-cd ~/github/devops-skills
-git pull
+# pulling updates the linked skill files
+cd ~/github/devops-skills/main
+git pull --ff-only
 ```
 
-The current machine has links for all 46 skills in `~/.agents/skills/` and
-`~/.claude/skills/`. Codex discovers the shared agent skills; its
-`~/.codex/skills/` directory has no separate copies of this repository. Check each agent's
-skill list after setup or a new session: a link on disk alone does not prove the skill is
-available to the agent.
+Keep this setup when maintaining the repository. Installing the plugin on the same machine
+would duplicate every skill (for example, `kubernetes-debug` and
+`devops-skills:kubernetes-debug`). Use one installation route per agent.
 
 To link a newly added skill from the main checkout:
 
 ```bash
-cd ~/github/devops-skills
+cd ~/github/devops-skills/main
 ln -s "$PWD/skills/<name>" "$HOME/.agents/skills/<name>"
 ln -s "../../.agents/skills/<name>" "$HOME/.claude/skills/<name>"
 ```
 
-For a separate copy-based install, the [`skills`](https://github.com/vercel-labs/skills)
-CLI remains available:
-
-```bash
-npx skills add ./skills/<name> -g -y --copy
-npx skills add . -g -y -s '*' --copy
-```
-
-Copies need refreshing after a repository update; links follow the checked-out files.
+Check each agent's skill list after setup or a new session: a link on disk alone does not prove
+that the skill is available to the agent. Symlinks follow the checkout; CLI-managed copies and
+plugin caches need the update commands above.
 
 ## Safety-first installation advice
 
-- Read a skill's `SKILL.md` before installing it — these are short, plain markdown, this takes a
-  minute.
-- Prefer installing one skill at a time (`npx skills add ./skills/<name>`) over the whole repo,
-  especially at first, so you know exactly what's active.
-- The `./skills/<name>` form is a *local path* — clone this repository first, then install from
-  the clone. Installing straight from a GitHub URL (`npx skills add github:owner/repo`) only
-  works if the repository is public or your git credentials can reach it; for a private copy,
-  the clone-then-path (or a symlink into `~/.agents/skills`) route is the reliable one.
-- None of these skills bundle install scripts or `postinstall` hooks. If you ever add a
-  third-party skill from elsewhere, treat it as untrusted input first — see `SECURITY.md`.
-- A few review skills mention *optional* local CLI tools (e.g. `kubeconform`, `trivy`,
-  `checkov`) in a `references/tools.md` file. These are suggestions only — nothing installs them
-  for you, and the skills explicitly instruct the agent not to install or auto-run them.
+- Read a skill's `SKILL.md` before installing it — these are short, plain markdown.
+- Start with selected skills through `npx skills add abevz/devops-skills`; the Claude Code
+  plugin installs the whole collection.
+- None of these skills bundle install scripts or `postinstall` hooks. Treat third-party
+  skills as untrusted input first — see `SECURITY.md`.
+- A few review skills mention optional local CLI tools (e.g. `kubeconform`, `trivy`,
+  `checkov`) in `references/tools.md`. Nothing installs them for you; skills explicitly
+  instruct the agent not to install or auto-run them.
 
 ## Skills
 
@@ -143,7 +181,11 @@ full reference inventory — see [`docs/skill-map.md`](docs/skill-map.md).
 ├── SECURITY.md
 ├── CONTRIBUTING.md
 ├── LICENSE
-├── .github/workflows/validate.yml   # CI: frontmatter, naming, no-scripts, no-secrets checks
+├── CHANGELOG.md
+├── .claude-plugin/
+│   ├── plugin.json              # plugin identity and version
+│   └── marketplace.json         # installable as devops-skills@devops-skills
+├── .github/workflows/validate.yml   # CI: Agent Skills, plugin/version, structure, safety checks
 ├── skills/
 │   └── <skill-name>/
 │       ├── SKILL.md
